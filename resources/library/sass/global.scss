@@ -1,0 +1,74 @@
+$spacerHeight: 800px;
+$panelHeight: 1200px + $spacerHeight;
+$panelPaddingBottom: 1000px;
+
+$messageWidth: 20%;
+
+body{
+	background-color: black;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.panel {
+	position: absolute;
+	width: 100%;
+	height: $panelHeight + $panelPaddingBottom;
+	margin: 0;
+	padding: 0;
+}
+
+
+#panel1{
+	background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
+	background-size: 120%;
+	background-position: 0px 0px;
+	//background-color: orange;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	
+}	
+
+#panel2{
+	top:  $panelHeight;
+}
+
+#panel3{
+	top: 2 * $panelHeight;
+}
+
+#panel4{
+	top: 3 * $panelHeight;
+}
+
+.animate-container{
+
+}
+
+
+
+.spacer{
+	height: $spacerHeight;
+}
+
+
+
+.small-spacer{
+	height: 200px;
+}
+
+h1{
+	position: relative;
+	color: white;
+	width: $messageWidth;
+	text-align: center;
+	left: -$messageWidth;
+	margin: 0;
+	padding: 0;
+	opacity: 1;
+}
+
