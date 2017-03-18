@@ -16,65 +16,69 @@
 	<script src="js/animations.js"></script>
 </head>
 <body>
-	<div id="pinContainer">
+	<div id="container">
 		<div id="panel1" class="panel">
 			<div class="spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 1</h1>
+				<div class="small-spacer"></div>
 			</span>
 			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 2</h1>
+				<div class="small-spacer"></div>
 			</span>
 			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 3</h1>
+				<div class="small-spacer"></div>
 			</span>
 			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 4</h1>
+				<div class="small-spacer"></div>
 			</span>
 			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 5</h1>
+				<div class="small-spacer"></div>
 			</span>
 		</div>
 		<div id="panel2" class="panel" style="background-color: blue;">
 			<div class="spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 1</h1>
+				<div class="small-spacer"></div>
 			</span>
+			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 2</h1>
+				<div class="small-spacer"></div>
 			</span>
+			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 3</h1>
+				<div class="small-spacer"></div>
 			</span>
+			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 4</h1>
+				<div class="small-spacer"></div>
 			</span>
+			<div class="small-spacer"></div>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
 				<h1 class="animate-text">Animate 5</h1>
+				<div class="small-spacer"></div>
 			</span>
 		</div>
 		<div id="panel3" class="panel" style="background-color: green;">
@@ -82,27 +86,22 @@
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 1</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 2</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 3</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 4</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 5</h1>
 			</span>
 		</div>
 		<div id="panel4" class="panel" style="background-color: red;">
@@ -110,27 +109,22 @@
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 1</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 2</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 3</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 4</h1>
 			</span>
 			<span class="animate-container">
 				<div class="animate-trigger"></div>
 				<div class="small-spacer"></div>
-				<h1 class="animate-text">Animate 5</h1>
 			</span>
 		</div>
 	</div>

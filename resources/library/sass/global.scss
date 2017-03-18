@@ -1,5 +1,7 @@
 $spacerHeight: 800px;
-$panelHeight: 1200px + $spacerHeight;
+$smallSpacerHeight: 400px;
+
+$panelHeight: 4000px + $spacerHeight;
 $panelPaddingBottom: 1000px;
 
 $messageWidth: 20%;
@@ -23,10 +25,12 @@ body{
 
 
 #panel1{
-	background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
-	background-size: 120%;
+	background-color: orange;
+	//background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
+	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
+	background-size: 200%;
 	background-position: 0px 0px;
-	//background-color: orange;
+	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
 	top: 0;
@@ -58,17 +62,20 @@ body{
 
 
 .small-spacer{
-	height: 200px;
+	height: $smallSpacerHeight;
 }
 
-h1{
-	position: relative;
+.animate-text{
+	z-index: 9999;
+	position: fixed;
 	color: white;
 	width: $messageWidth;
 	text-align: center;
-	left: -$messageWidth;
+	//left: -$messageWidth;
 	margin: 0;
 	padding: 0;
-	opacity: 1;
+	//opacity: 0;
+	//top: 100%;
+	top: 50%;
 }
 
