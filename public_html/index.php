@@ -17,115 +17,100 @@
 </head>
 <body>
 	<div id="container">
-		<div id="panel1" class="panel">
-			<div class="spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 1</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 2</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 3</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 4</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 5</h1>
-				<div class="small-spacer"></div>
-			</span>
-		</div>
-		<div id="panel2" class="panel" style="background-color: blue;">
-			<div class="spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 1</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 2</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 3</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 4</h1>
-				<div class="small-spacer"></div>
-			</span>
-			<div class="small-spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<h1 class="animate-text">Animate 5</h1>
-				<div class="small-spacer"></div>
-			</span>
-		</div>
-		<div id="panel3" class="panel" style="background-color: green;">
-			<div class="spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-		</div>
-		<div id="panel4" class="panel" style="background-color: red;">
-			<div class="spacer"></div>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
-			<span class="animate-container">
-				<div class="animate-trigger"></div>
-				<div class="small-spacer"></div>
-			</span>
+		<nav id="navbar">abcdsasd</nav>
+		<div class="panel" id="panel_1" data-p-num="1"></div>
+		<div class="panel" id="panel_2" data-p-num="2"></div>
+		<div class="panel" id="panel_3" data-p-num="3"></div>
+		<!-- This div is where all of the triggers and text are -->
+		<div id="layout-container">
+			<div class="panel-layout" id="panel-1-layout" data-layout-for="panel_1">
+				<div class="spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 1</h1>
+				</div>
+				<div class="large-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 2</h1>
+				</div>
+				<div class="large-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 3</h1>
+				</div>
+				<div class="large-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 4</h1>
+				</div>
+				<div class="large-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 5</h1>
+				</div>
+				<div class="large-spacer"></div>
+				<div id="panel-wipe-trigger-2" data-triggers="2" class="panel-wipe-trigger"></div>
+			</div>
+			<div class="panel-layout" id="panel-2-layout" data-layout-for="panel_2">
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 1</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 2</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 3</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 4</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 5</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div id="panel-wipe-trigger-3" data-triggers="3" class="panel-wipe-trigger"></div>
+			</div>
+			<div class="panel-layout" id="panel-3-layout" data-layout-for="panel_3">
+				<div class="spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 1</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 2</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 3</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 4</h1>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="animate-container">
+					<div class="animate-trigger"></div>
+					<h1 class="animate-text">Animate 5</h1>
+				</div>
+				<div class="medium-spacer"></div>
+			</div>
 		</div>
 	</div>
 </body>

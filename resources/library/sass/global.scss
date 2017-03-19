@@ -1,7 +1,10 @@
 $spacerHeight: 800px;
+$largeSpacerHeight: 1500px;
+$mediumSpacerHeight: 800px;
 $smallSpacerHeight: 400px;
 
-$panelHeight: 4000px + $spacerHeight;
+$panelContentHeight: 4000px;
+$panelOverflow: $spacerHeight;
 $panelPaddingBottom: 1000px;
 
 $messageWidth: 20%;
@@ -11,46 +14,41 @@ body{
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
+	//height: 10000px;
 }
 
 
 
 .panel {
-	position: absolute;
+	position: fixed;
 	width: 100%;
-	height: $panelHeight + $panelPaddingBottom;
+	height: 100%;
 	margin: 0;
 	padding: 0;
+	background-position: 0px 0px;
 }
 
 
-#panel1{
+#panel_1{
 	background-color: orange;
 	//background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
 	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
+	//background-image: url("https://static.pexels.com/photos/340901/pexels-photo-340901.jpeg");
+	background-image: url("https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg");
 	background-size: 200%;
-	background-position: 0px 0px;
 	background-attachment: fixed;
-	margin: 0;
-	padding: 0;
-	top: 0;
+	
 	
 }	
 
-#panel2{
-	top:  $panelHeight;
+#panel_2{
+	background-color: green;
+	background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
+	background-attachment: fixed;
 }
 
-#panel3{
-	top: 2 * $panelHeight;
-}
-
-#panel4{
-	top: 3 * $panelHeight;
-}
-
-.animate-container{
-
+#panel_3{
+	background-color: blue;
 }
 
 
@@ -59,7 +57,14 @@ body{
 	height: $spacerHeight;
 }
 
+.large-spacer{
+	height: $largeSpacerHeight;
+}
 
+
+.medium-spacer{
+	height: $mediumSpacerHeight;
+}
 
 .small-spacer{
 	height: $smallSpacerHeight;
@@ -71,11 +76,15 @@ body{
 	color: white;
 	width: $messageWidth;
 	text-align: center;
-	//left: -$messageWidth;
-	margin: 0;
-	padding: 0;
-	//opacity: 0;
-	//top: 100%;
-	top: 50%;
 }
+
+
+
+
+#navbar{
+	position: fixed;
+	z-index: 10;
+}
+
+
 
