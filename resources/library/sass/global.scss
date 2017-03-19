@@ -1,7 +1,8 @@
 $spacerHeight: 800px;
-$largeSpacerHeight: 1500px;
+$largeSpacerHeight: 1600px;
 $mediumSpacerHeight: 800px;
 $smallSpacerHeight: 400px;
+$tinySpacerHeight: 200px;
 
 $panelContentHeight: 4000px;
 $panelOverflow: $spacerHeight;
@@ -9,11 +10,24 @@ $panelPaddingBottom: 1000px;
 
 $messageWidth: 20%;
 
+$headerFont: "coalition";
+
+@font-face{
+	src: url("../fonts/coalition.ttf");
+	font-family: "coalition";
+}
+
+@font-face{
+	src: url("../fonts/PowerChord.ttf");
+	font-family: "power_chord";
+}
+
 body{
 	background-color: black;
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
+	color: white;
 	//height: 10000px;
 }
 
@@ -26,6 +40,13 @@ body{
 	margin: 0;
 	padding: 0;
 	background-position: 0px 0px;
+	img{
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 220%;
+	}
 }
 
 
@@ -34,17 +55,18 @@ body{
 	//background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
 	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
 	//background-image: url("https://static.pexels.com/photos/340901/pexels-photo-340901.jpeg");
-	background-image: url("https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg");
-	background-size: 200%;
-	background-attachment: fixed;
-	
-	
+	//background-image: url("https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg");
+	//background-size: 200%;
+	//background-attachment: fixed;
 }	
 
 #panel_2{
 	background-color: green;
-	background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
-	background-attachment: fixed;
+	img{
+		left: -200px;
+	}
+	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
+	//background-attachment: fixed;
 }
 
 #panel_3{
@@ -70,6 +92,10 @@ body{
 	height: $smallSpacerHeight;
 }
 
+.tiny-spacer{
+	height: $tinySpacerHeight;
+}
+
 .animate-text{
 	z-index: 9999;
 	position: fixed;
@@ -84,7 +110,33 @@ body{
 #navbar{
 	position: fixed;
 	z-index: 10;
+	color: white;
 }
+
+
+#main-header{
+	position: fixed;
+	top: $tinySpacerHeight;
+	color: white;
+	font-family: $headerFont;
+	text-align: center;
+	font-size: 8em;
+}
+
+
+#site-examples{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+.site-example{
+	position: relative;
+}
+
+
 
 
 
