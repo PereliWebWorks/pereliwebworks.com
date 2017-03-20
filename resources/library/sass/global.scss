@@ -9,6 +9,7 @@ $panelOverflow: $spacerHeight;
 $panelPaddingBottom: 1000px;
 
 $messageWidth: 20%;
+$animateBoxWidth: 40%;
 
 $headerFont: "coalition";
 
@@ -34,12 +35,12 @@ body{
 
 
 .panel {
+	background-color: black;
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background-position: 0px 0px;
 	img{
 		overflow: hidden;
 		position: fixed;
@@ -51,7 +52,6 @@ body{
 
 
 #panel_1{
-	background-color: orange;
 	//background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
 	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
 	//background-image: url("https://static.pexels.com/photos/340901/pexels-photo-340901.jpeg");
@@ -61,7 +61,6 @@ body{
 }	
 
 #panel_2{
-	background-color: green;
 	img{
 		left: -200px;
 	}
@@ -70,7 +69,6 @@ body{
 }
 
 #panel_3{
-	background-color: blue;
 }
 
 
@@ -96,12 +94,23 @@ body{
 	height: $tinySpacerHeight;
 }
 
-.animate-text{
+.animate-container{
+	width: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	height: 100vH;
+}
+
+.animate-box{
 	z-index: 9999;
 	position: fixed;
 	color: white;
-	width: $messageWidth;
-	text-align: center;
+	width: $animateBoxWidth;
+	text-align: left;
+	h1, h2{
+		text-align: center;
+	}
 }
 
 
@@ -130,10 +139,19 @@ body{
 	height: 100%;
 	left: 0;
 	top: 0;
+	text-align: center;
+}
+
+#site-example-header{
+	position: relative;
 }
 
 .site-example{
 	position: relative;
+	width: 10%;
+	margin: 1%;
+	box-shadow: 0 0 6px 2px white;
+  	border-radius: 2px;
 }
 
 

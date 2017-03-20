@@ -1,4 +1,5 @@
 var messageWidth = 20; //In %
+var animateBoxWidth = 40; //In %
 var controller = new ScrollMagic.Controller();
 
 
@@ -76,7 +77,7 @@ $(()=>{
 		//Add scroll effects
 		var animation = new TimelineMax()
 					.to($(e).find("img"), 2, {top: "-=500px", left: toLeft1, ease:Power1.easeOut})
-					.to($(e).find("img"), 2, {top: "-=500px", left: toLeft2, ease:Power1.easeIn});
+					.to($(e).find("img"), 2, {top: "-=500px", left: toLeft2, ease:Power1.easeInOut});
 		new ScrollMagic.Scene({
 			triggerElement: $layout.find(".start-scroll-trigger"),
 			triggerHook: "onLeave",
@@ -91,12 +92,22 @@ $(()=>{
 
 	//Animate example sites
 	var animation = new TimelineMax()
-		.staggerFromTo($(".site-example"), 1, 
-					{left: "0", top: "100vH", opacity: 0},
-					{left: "40%", top: "50vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
+		.staggerFromTo($(".site-example, #site-example-header"), 1, 
+					{left: "-100%", top: "100vH", opacity: 0},
+					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
 				.2)
 		.staggerTo($(".site-example"), 1, 
-					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1), delay: 4},
+					{scale: 1.1, yoyo: true, repeat: 4}, .2)
+		/*
+		.staggerTo($(".site-example"), .2, 
+					{scale: 1, ease: Elastic.easeInOut}, .5)
+		.staggerTo($(".site-example"), .2, 
+					{scale: 1.1, ease: Elastic.easeInOut}, .5)
+		.staggerTo($(".site-example"), .2, 
+					{scale: 1, ease: Elastic.easeInOut}, .5)
+		*/
+		.staggerTo($(".site-example, #site-example-header"), 1, 
+					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1)},
 				.2);
 		new ScrollMagic.Scene({
 				triggerElement: $("#site-example-trigger"),
@@ -105,19 +116,26 @@ $(()=>{
 			})
 			.setTween(animation)
 			.addTo(controller);
+	//Add mouseover animation
+	$(".site-example").mouseover(function(){
+		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100});
+	});
+	$(".site-example").mouseout(function(){
+		TweenMax.to($(this), .3, {scale: 1, zIndex: 1});
+	});
 	
 
 
 	//Animate messages
 	
 	$(".animate-container").each((i,e)=>{
-		var textElement = $(e).find(".animate-text");
-		var fromX = i % 2 === 0 ? -messageWidth : 100;
-		var toX = i % 2 === 0 ? 100 : -messageWidth;
+		var textElement = $(e).find(".animate-box");
+		var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
+		var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
 		var animation = new TimelineMax()
 			.fromTo(textElement, 1, 
 				{left: fromX + "%", top: "100%", opacity: "0"},
-				{left: (50-messageWidth/2)+"%", top: "50%", opacity: "1", ease: Power2.easeOut})
+				{left: (50-animateBoxWidth/2)+"%", top: "50%", opacity: "1", ease: Power2.easeOut})
 			.to(textElement, 1, 
 				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn});
 		new ScrollMagic.Scene({
