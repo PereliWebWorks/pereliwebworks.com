@@ -96,8 +96,8 @@ $(()=>{
 					{left: "-100%", top: "100vH", opacity: 0},
 					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
 				.2)
-		.staggerTo($(".site-example"), 1, 
-					{scale: 1.1, yoyo: true, repeat: 4}, .2)
+		.staggerTo($(".site-example"), .2, 
+					{scale: 1.1, yoyo: true, repeat: 1}, .2)
 		/*
 		.staggerTo($(".site-example"), .2, 
 					{scale: 1, ease: Elastic.easeInOut}, .5)
@@ -112,13 +112,13 @@ $(()=>{
 		new ScrollMagic.Scene({
 				triggerElement: $("#site-example-trigger"),
 				triggerHook: "onEnter",
-				duration: 2000
+				duration: 3000
 			})
 			.setTween(animation)
 			.addTo(controller);
 	//Add mouseover animation
 	$(".site-example").mouseover(function(){
-		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100});
+		TweenMax.to($(this), .3, {scale: 2, zIndex: 100});
 	});
 	$(".site-example").mouseout(function(){
 		TweenMax.to($(this), .3, {scale: 1, zIndex: 1});
@@ -127,7 +127,6 @@ $(()=>{
 
 
 	//Animate messages
-	
 	$(".animate-container").each((i,e)=>{
 		var textElement = $(e).find(".animate-box");
 		var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
@@ -135,13 +134,13 @@ $(()=>{
 		var animation = new TimelineMax()
 			.fromTo(textElement, 1, 
 				{left: fromX + "%", top: "100%", opacity: "0"},
-				{left: (50-animateBoxWidth/2)+"%", top: "50%", opacity: "1", ease: Power2.easeOut})
+				{left: (50-animateBoxWidth/2)+"%", top: "30%", opacity: "1", ease: Power2.easeOut})
 			.to(textElement, 1, 
-				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn});
+				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn, delay: 2});
 		new ScrollMagic.Scene({
 						triggerElement: $(e).find(".animate-trigger"),
 						triggerHook: "onEnter",
-						duration: 1300,
+						duration: 1500,
 					})
 					.setTween(animation) // trigger a TweenMax.to tween
 					.addIndicators({name: "t" + i}) // add indicators (requires plugin)
@@ -184,6 +183,9 @@ $(()=>{
 			}
 		}
 	});
+
+
+
 
 
 

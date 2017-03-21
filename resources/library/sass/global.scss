@@ -11,7 +11,15 @@ $panelPaddingBottom: 1000px;
 $messageWidth: 20%;
 $animateBoxWidth: 40%;
 
+$defaultFont: "timeburner";
 $headerFont: "coalition";
+
+$mainTextColor: #ddd;
+
+@font-face{
+	src: url("../fonts/timeburnernormal.ttf");
+	font-family: "timeburner";
+}
 
 @font-face{
 	src: url("../fonts/coalition.ttf");
@@ -23,12 +31,31 @@ $headerFont: "coalition";
 	font-family: "power_chord";
 }
 
+.display-none{
+	display: none;
+}
+
+.message{
+	padding: 1em;
+  	border-radius: 4px;
+}
+
+
+.success-message{
+	background-color: rgba(50, 200, 50, .6);
+  }
+
+.failure-message{
+	background-color: rgba(200, 50, 50, .6);
+}
+
 body{
 	background-color: black;
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
-	color: white;
+	color: $mainTextColor;
+	font-family: $defaultFont;
 	//height: 10000px;
 }
 
@@ -105,22 +132,22 @@ body{
 .animate-box{
 	z-index: 9999;
 	position: fixed;
-	color: white;
+	color: $mainTextColor;
 	width: $animateBoxWidth;
 	text-align: left;
 	h1, h2{
 		text-align: center;
 	}
+	background-color: rgba(0,0,0,.8);
+	padding: 1em;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 5px #ddd;
 }
 
 
 
 
-#navbar{
-	position: fixed;
-	z-index: 10;
-	color: white;
-}
+
 
 
 #main-header{
@@ -153,6 +180,33 @@ body{
 	box-shadow: 0 0 6px 2px white;
   	border-radius: 2px;
 }
+
+
+
+
+
+
+
+
+
+
+
+//Contact form
+input, textarea{
+  margin-top: .5em;
+  margin-bottom: .5em;
+  background-color: rgba(250,250,250,.3);
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  padding: 4px;
+  color: $mainTextColor;
+  width: 100%;
+}
+
+
+
+
+
 
 
 
