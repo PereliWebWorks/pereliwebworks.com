@@ -59,6 +59,17 @@ body{
 	//height: 10000px;
 }
 
+#loading_spinner_container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 999999;
+  text-align: center;
+}
+
 
 
 .panel {
@@ -73,7 +84,12 @@ body{
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 220%;
+		@media screen and (min-width: 768px){
+			width: 220%;
+		}
+		@media screen and (max-width: 768px){
+			height: 200%;
+		}
 	}
 }
 
@@ -121,6 +137,8 @@ body{
 	height: $tinySpacerHeight;
 }
 
+
+
 .animate-container{
 	width: 100%;
 	text-align: center;
@@ -138,10 +156,18 @@ body{
 	h1, h2{
 		text-align: center;
 	}
-	background-color: rgba(0,0,0,.8);
+	background-color: rgba(0,0,0,.85);
 	padding: 1em;
 	border-radius: 5px;
 	box-shadow: 0 0 10px 5px #ddd;
+	font-size: 1.2em;
+	a{
+	  $linkColor: rgb(28,133,248);
+	  color: $linkColor;
+	  &:hover{
+	  	color: darken($linkColor, 10%);
+	  }
+	}
 }
 
 
@@ -191,16 +217,35 @@ body{
 
 
 
-//Contact form
-input, textarea{
+//Forms
+.form-group{
   margin-top: .5em;
   margin-bottom: .5em;
-  background-color: rgba(250,250,250,.3);
-  border: 0;
-  border-bottom: 1px solid #ddd;
-  padding: 4px;
-  color: $mainTextColor;
   width: 100%;
+  display: flex;
+    > input, > textarea, > #card-element{
+	  background-color: rgba(250,250,250,.3);
+	  border: 0;
+	  border-bottom: 1px solid #ddd;
+	  padding: 4px;
+	  color: $mainTextColor;
+	  flex-grow: 1;
+	}
+	.pre-input{
+		padding: 4px;
+		padding-left: .5em;
+		padding-right: .5em;
+		background-color: #ddd;
+		color: #111;
+	}
+}
+
+.response{
+  margin-top: 1em;
+  text-align: center;
+  img{
+  	width: 3em;
+  }
 }
 
 

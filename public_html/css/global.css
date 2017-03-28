@@ -1,0 +1,134 @@
+@font-face {
+  src: url("../fonts/timeburnernormal.ttf");
+  font-family: "timeburner"; }
+@font-face {
+  src: url("../fonts/coalition.ttf");
+  font-family: "coalition"; }
+@font-face {
+  src: url("../fonts/PowerChord.ttf");
+  font-family: "power_chord"; }
+.display-none {
+  display: none; }
+
+.message {
+  padding: 1em;
+  border-radius: 4px; }
+
+.success-message {
+  background-color: rgba(50, 200, 50, 0.6); }
+
+.failure-message {
+  background-color: rgba(200, 50, 50, 0.6); }
+
+body {
+  background-color: black;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  color: #ddd;
+  font-family: "timeburner"; }
+
+.panel {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+  .panel img {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220%; }
+
+#panel_2 img {
+  left: -200px; }
+
+.spacer {
+  height: 800px; }
+
+.large-spacer {
+  height: 1600px; }
+
+.medium-spacer {
+  height: 800px; }
+
+.small-spacer {
+  height: 400px; }
+
+.tiny-spacer {
+  height: 200px; }
+
+.animate-container {
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  height: 100vH; }
+
+.animate-box {
+  z-index: 9999;
+  position: fixed;
+  color: #ddd;
+  width: 40%;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px #ddd; }
+  .animate-box h1, .animate-box h2 {
+    text-align: center; }
+
+#main-header {
+  position: fixed;
+  top: 200px;
+  color: white;
+  font-family: "coalition";
+  text-align: center;
+  font-size: 8em; }
+
+#site-examples {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center; }
+
+#site-example-header {
+  position: relative; }
+
+.site-example {
+  position: relative;
+  width: 10%;
+  margin: 1%;
+  box-shadow: 0 0 6px 2px white;
+  border-radius: 2px; }
+
+.form-group {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  width: 100%;
+  display: flex; }
+  .form-group > input, .form-group > textarea, .form-group > #card-element {
+    background-color: rgba(250, 250, 250, 0.3);
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 4px;
+    color: #ddd;
+    flex-grow: 1; }
+  .form-group .pre-input {
+    padding: 4px;
+    padding-left: .5em;
+    padding-right: .5em;
+    background-color: #ddd;
+    color: #111; }
+
+.response {
+  margin-top: 1em;
+  text-align: center; }
+  .response img {
+    width: 3em; }
+
+/*# sourceMappingURL=global.css.map */

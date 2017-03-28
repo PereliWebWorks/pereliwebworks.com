@@ -5,14 +5,7 @@ var controller = new ScrollMagic.Controller();
 
 $(()=>{
 	var swipeDuration = 1500;
-	panelOffsets = [0, ...$(".panel-wipe-trigger").map(
-				(i, e)=> {
-					return $(e).offset().top + swipeDuration;
-				}
-			)];
-	//console.log(panelOffsets);
-	//Create wipe animation
-	//Also add scroll animation
+	//Create wipe animation and scroll animation
 	var currentPanel = 1; //Current panel we're looking at. Doesn't change until next panel is fully faded in
 	$(".panel").each((i, e) => {
 		var id = $(e).data("p-num");
@@ -88,6 +81,7 @@ $(()=>{
 	});
 
 
+	
 
 
 	//Animate example sites
@@ -136,7 +130,7 @@ $(()=>{
 				{left: fromX + "%", top: "100%", opacity: "0"},
 				{left: (50-animateBoxWidth/2)+"%", top: "30%", opacity: "1", ease: Power2.easeOut})
 			.to(textElement, 1, 
-				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn, delay: 2});
+				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn, delay: .5});
 		new ScrollMagic.Scene({
 						triggerElement: $(e).find(".animate-trigger"),
 						triggerHook: "onEnter",
@@ -154,7 +148,7 @@ $(()=>{
 	new ScrollMagic.Scene({
 		triggerElement: $("#main-header-disappear-trigger"),
 		triggerHook: "onEnter",
-		duration: 1000
+		duration: 600
 	})
 	.setTween(animation)
 	.addTo(controller);

@@ -5,9 +5,7 @@
 	$mailer->Body = "Thanks for getting in touch. I've received your message and I'll get back to you as soon as possible. --Drew Pereli";
 	if(!$mailer->send()) {
 		die();
-	} else {
-		echo "1";
-	}
+	} 
 	$mailer->ClearAllRecipients( );
 	$mailer->addAddress("drew@pereliwebworks.com", "Drew Pereli");
 	$mailer->addReplyTo($_POST["email"], $_POST["name"]);

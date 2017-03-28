@@ -1,6 +1,7 @@
 <?php require_once __DIR__ . "/../resources/config.php"; ?>
 <html>
 <head>
+	<title>Pereli Web Works</title>
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -26,9 +27,17 @@
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
 	<script src="js/animations.js"></script>
+	<script>
+		$(window).on("load", function(){
+			$("#loading_spinner_container").remove();
+		});
+	</script>
 </head>
 <body>
-	<div id="container">
+	<div id="loading_spinner_container">
+		<img src="img/loading_spinner.gif"/>
+	</div>
+	<div id="container" class="">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
 		    <div class="container-fluid">
 		        <div class="navbar-header"><a class="navbar-brand" href="#home">Pereli Web Works</a>
@@ -78,16 +87,16 @@
 				<div id="home"></div><!-- Anchor for home section -->
 				<div class="start-scroll-trigger"></div>
 				<h1 id="main-header">Pereli Web Works</h1>
-				<div class="large-spacer"></div>
+				<div class="medium-spacer"></div>
 				<div id="main-header-disappear-trigger"></div>
 				<div class="spacer"></div>
 				<div id="about">
 				<div class="animate-container">
 					<div class="animate-trigger"></div>
 					<div class="animate-box">
-						<h2>Who am I?</h2>
+						<h2>Who I am</h2>
 						<div>
-							I'm a Madison based freelance web developer. Here's some more bullshit about me. blah blah blah, blah blah BLAH blah blah.
+							I'm a Madison based freelance web developer. Here's some more bullshit about me. blah blah blah, blah blah BLAH blah blah. <a href="#contact">Get in touch.</a>
 						</div>
 					</div>
 				</div>
@@ -95,9 +104,9 @@
 				<div class="animate-container">
 					<div class="animate-trigger"></div>
 					<div class="animate-box">
-						<h2>Looking for an affordable, quality website?</h2>
+						<h2>What I Do</h2>
 						<div>
-							<a href="#contact">Get in touch.</a> Shoot me a message to discuss your project.
+							 I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out <a href="/#work">some of my work</a>.
 						</div>
 					</div>
 				</div>
@@ -164,9 +173,22 @@
 					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Resume</h2>
-						<div>
-							Click here to see my resume.
-							Click here to download.
+						<div class="text-center">
+							<button class="bttn-fill bttn-sm bttn-primary" id="see-resume-btn">
+								See my resume
+							</button>
+							<div>&nbsp;</div>
+							<button class="bttn-fill bttn-sm bttn-primary" id="download-resume-btn">
+								Download my resume
+							</button>
+							<script>
+								$("#see-resume-btn").click(function(){
+									window.open("/resume", "_blank");
+								});
+								$("#download-resume-btn").click(function(){
+									window.open("/download_resume");
+								});
+							</script>
 						</div>
 					</div>
 				</div>
@@ -177,11 +199,11 @@
 					<div class="animate-box">
 						<h2>Pricing</h2>
 						<div>
-							My rate is negotiable, but I generally charge around $25 per hour. For a non-profit, I usually charge less. 
+							My rate is negotiable, but I generally charge around $25 per hour. I'm also happy to work from a fixed-price contract. If you have a specific budget, I can give you an estimate of what I could do for you while staying within your price range.
 						</div>
 					</div>
 				</div>
-				<div class="large-spacer"></div>
+				<div class="small-spacer"></div>
 				<div id="panel-wipe-trigger-3" data-triggers="3" class="panel-wipe-trigger"></div>
 				<div class="end-scroll-trigger"></div>
 			</div>
@@ -198,52 +220,61 @@
 							Feel free to email me directly at drew@pereliwebworks.com.<br/>
 							Or use this form to contact me.
 							<form id="contact-form" method="POST" action="contact.php">
-								<div>
+								<div class="form-group">
 									<input 
 										name="name" 
 										type="text" 
 										placeholder="Name" 
 										required/>
 								</div>
-								<div>
+								<div class="form-group">
 									<input 
 										name="email" 
 										type="email" 
 										placeholder="Email Address"
 										required/>
 								</div>
-								<div>
+								<div class="form-group">
 									<input 
 										name="subject" 
 										placeholder="Subject"
 										required/>
 								</div>
-								<div>
+								<div class="form-group">
 									<textarea 
 										name="message"
 										placeholder="Message"
 										rows="5" required></textarea>
 								</div>
-								<div>
-									<button class="bttn-fill bttn-sm bttn-primary">Submit</button>
+								<div class="form-group">
+									<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
 								</div>
 							</form>
-							<div class="response message display-none"></div>
+							<div class="response">
+								<img src="img/spinner.gif" class="display-none"/>
+								<div class="message display-none"></div>
+							</div>
 							<script>
-								$("#contact-form").ajaxForm(function(response){
-									if (response){
-										$("#contact-form").parent().find(".response")
-											.removeClass("display-none")
-											.addClass("success-message")
-											.html("Your message has been sent.");
-									}
-									else{
-										$("#contact-form").parent().find(".response")
-											.removeClass("display-none")
-											.addClass("failure-message")
-											.html("There was an error. Please try again later.");
-									}
-								})
+								$("#contact-form").submit(function(e){
+									e.preventDefault();
+									$("#contact-form").parent().find(".response img").removeClass("display-none");
+									$("#contact-form").ajaxSubmit(function(response){
+										$("#contact-form").parent().find(".response img").addClass("display-none");
+										if (response){
+											$("#contact-form").parent().find(".response .message")
+												.removeClass("display-none")
+												.addClass("success-message")
+												.html("Your message has been sent.");
+										}
+										else{
+											$("#contact-form").parent().find(".response .message")
+												.removeClass("display-none")
+												.addClass("failure-message")
+												.html("There was an error. Please try again later.");
+										}
+									});
+									return false;
+								});
 							</script>
 						</div>
 					</div>
@@ -256,6 +287,128 @@
 						<h2>Make a Payment</h2>
 						<div>
 							You can use the secure payment form bellow to make a payment. If you'd rather use PayPal, you can send a PayPal payment to drew@pereliwebworks.com.
+							<script src="https://js.stripe.com/v3/"></script>
+							<form action="/charge.php" method="post" id="payment-form">
+								<div class="form-group">
+									<input 
+										name="name" 
+										placeholder="Name" 
+										required/>
+								</div>
+							    <div class="form-group">
+							   		<div id="card-element"></div>
+							   	</div>
+
+							    <!-- Used to display form errors -->
+							    <div id="card-errors"></div>
+							    <div>
+
+							    <div class="form-group">
+							    	<span class="pre-input">$</span>
+									<input 
+										name="amount" 
+										type="number" 
+										placeholder="Amount" 
+										required/>
+								</div>
+
+							  <button class="bttn-fill bttn-sm bttn-primary">Submit Payment</button>
+							</form>
+							<div class="response">
+								<img src="img/spinner.gif" class="display-none"/>
+								<div class="message display-none"></div>
+							</div>
+							<script>
+								// Create a Stripe client
+								var stripe = Stripe('pk_live_CNeiyiaWknkKKhcZ05jBA7OH');
+
+								// Create an instance of Elements
+								var elements = stripe.elements();
+
+								// Custom styling can be passed to options when creating an Element.
+								// (Note that this demo uses a wider set of styles than the guide below.)
+
+								var style = {
+								  base: {
+								    color: '#ddd',
+								    iconColor: '#fff'
+								    //lineHeight: '24px',
+								    //fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+								    //fontSmoothing: 'antialiased',
+								    //fontSize: '16px',
+								    //'::placeholder': {
+								      //color: '#aab7c4'
+								    //}
+								  },
+								  invalid: {
+								    color: '#fa755a',
+								    iconColor: '#fa755a'
+								  }
+								};
+
+								// Create an instance of the card Element
+								var card = elements.create('card', {style: style});
+
+								// Add an instance of the card Element into the `card-element` <div>
+								card.mount('#card-element');
+
+								// Handle real-time validation errors from the card Element.
+								card.addEventListener('change', function(event) {
+								  var displayError = document.getElementById('card-errors');
+								  if (event.error) {
+								    displayError.textContent = event.error.message;
+								  } else {
+								    displayError.textContent = '';
+								  }
+								});
+
+								// Handle form submission
+								var form = document.getElementById('payment-form');
+								form.addEventListener('submit', function(event) {
+								  event.preventDefault();
+
+								  $(form).parent().find(".response img").removeClass("display-none");
+
+								  stripe.createToken(card).then(function(result) {
+								    if (result.error) {
+								      // Inform the user if there was an error
+								      var errorElement = document.getElementById('card-errors');
+								      errorElement.textContent = result.error.message;
+								    } else {
+								      // Send the token to your server
+								      stripeTokenHandler(result.token);
+								    }
+								  });
+								});
+
+								function stripeTokenHandler(token) {
+								  // Insert the token ID into the form so it gets submitted to the server
+								  var form = document.getElementById('payment-form');
+								  var hiddenInput = document.createElement('input');
+								  hiddenInput.setAttribute('type', 'hidden');
+								  hiddenInput.setAttribute('name', 'stripeToken');
+								  hiddenInput.setAttribute('value', token.id);
+								  form.appendChild(hiddenInput);
+
+								  // Submit the form
+								  $(form).ajaxSubmit(function(response){
+								  	$(form).parent().find(".response .img").addClass("display-none")
+								  	if (response){
+								  		$(form).parent().find(".response .message")
+								  			.removeClass("display-none")
+											.addClass("success-message")
+											.html("Your payment has been sent.");
+								  	}
+								  	else{
+								  		$(form).parent().find(".response .message")
+								  			.removeClass("display-none")
+											.addClass("failure-message-message")
+											.html("There was an error with your payment. Please try again later.");
+								  	}
+								  });
+								}
+							</script>
+							<!--
 							<form>
 								<div>
 									<input 
@@ -282,6 +435,7 @@
 									<button class="bttn-fill bttn-sm bttn-primary">Submit</button>
 								</div>
 							</form>
+							-->
 						</div>
 					</div>
 				</div>
