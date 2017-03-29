@@ -201,10 +201,12 @@ body{
 
 .site-example{
 	position: relative;
-	width: 10%;
+	width: 20vh;
+	height: 20vh;
 	margin: 1%;
 	box-shadow: 0 0 6px 2px white;
   	border-radius: 2px;
+  	filter: grayscale(100%);
 }
 
 

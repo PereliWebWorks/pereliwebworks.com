@@ -301,7 +301,6 @@
 
 							    <!-- Used to display form errors -->
 							    <div id="card-errors"></div>
-							    <div>
 
 							    <div class="form-group">
 							    	<span class="pre-input">$</span>

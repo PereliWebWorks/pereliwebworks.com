@@ -92,14 +92,6 @@ $(()=>{
 				.2)
 		.staggerTo($(".site-example"), .2, 
 					{scale: 1.1, yoyo: true, repeat: 1}, .2)
-		/*
-		.staggerTo($(".site-example"), .2, 
-					{scale: 1, ease: Elastic.easeInOut}, .5)
-		.staggerTo($(".site-example"), .2, 
-					{scale: 1.1, ease: Elastic.easeInOut}, .5)
-		.staggerTo($(".site-example"), .2, 
-					{scale: 1, ease: Elastic.easeInOut}, .5)
-		*/
 		.staggerTo($(".site-example, #site-example-header"), 1, 
 					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1)},
 				.2);
@@ -112,10 +104,10 @@ $(()=>{
 			.addTo(controller);
 	//Add mouseover animation
 	$(".site-example").mouseover(function(){
-		TweenMax.to($(this), .3, {scale: 2, zIndex: 100});
+		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, filter: 'grayscale(0)', rotationY: 360});
 	});
 	$(".site-example").mouseout(function(){
-		TweenMax.to($(this), .3, {scale: 1, zIndex: 1});
+		TweenMax.to($(this), .3, {scale: 1, zIndex: 1, filter: 'grayscale(100&)', rotationY: 0});
 	});
 	
 
@@ -125,10 +117,17 @@ $(()=>{
 		var textElement = $(e).find(".animate-box");
 		var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
 		var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
+		var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
 		var animation = new TimelineMax()
 			.fromTo(textElement, 1, 
 				{left: fromX + "%", top: "100%", opacity: "0"},
-				{left: (50-animateBoxWidth/2)+"%", top: "30%", opacity: "1", ease: Power2.easeOut})
+				{
+					left: (50-animateBoxWidth/2)+"%", 
+					top: toY + "%", opacity: "1", 
+					//rotationY: 360, 
+
+					ease: Power2.easeOut
+				})
 			.to(textElement, 1, 
 				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn, delay: .5});
 		new ScrollMagic.Scene({
