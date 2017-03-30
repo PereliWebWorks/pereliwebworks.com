@@ -133,24 +133,9 @@ $(()=>{
 					ease: Power2.easeOut
 				}
 			)
-			/*
-			.fromTo(textElement, 1, 
-				{left: fromX + "%", top: "100%", opacity: "0"},
-				{
-					//left: (50-animateBoxWidth/2)+"%", 
-					//top: toY + "%", opacity: "1", 
-					
-					rotationY: 360, 
-
-					ease: Power2.easeOut
-				})
-			*/
 			.to(textElement, 1, {rotationY: 0, rotationX: 0, opacity: 1})
 			.to(textElement, 1, 
 				{
-					//left: toX + "%", 
-					//top: "100%", 
-					//opacity: "1",
 					rotationY: 90, 
 					rotationX: -40,
 					opacity: 0,
