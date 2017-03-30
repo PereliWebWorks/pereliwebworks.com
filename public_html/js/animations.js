@@ -81,67 +81,65 @@ $(()=>{
 	});
 
 
+	//Animate header
+	var animation = new TimelineMax().to($("#main-header"), 1, {opacity: 0});
+	new ScrollMagic.Scene({
+		triggerElement: $("#main-header-disappear-trigger"),
+		triggerHook: "onEnter",
+		duration: 600
+	})
+	.setTween(animation)
+	.addTo(controller);
 	
 
 
-	//Animate example sites
-	var animation = new TimelineMax()
-		.staggerFromTo($(".site-example, #site-example-header"), 1, 
-					{left: "-100%", top: "100vH", opacity: 0},
-					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
-				.2)
-		.staggerTo($(".site-example"), .2, 
-					{scale: 1.1, filter: "grayscale(0)", yoyo: true, repeat: 1}, .2)
-		.staggerTo($(".site-example, #site-example-header"), 1, 
-					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1)},
-				.2);
-		new ScrollMagic.Scene({
-				triggerElement: $("#site-example-trigger"),
-				triggerHook: "onEnter",
-				duration: 3000
-			})
-			.setTween(animation)
-			.addTo(controller);
-	//Add mouseover animation
-	$(".site-example").mouseover(function(){
-		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, filter: 'grayscale(0)', rotationY: 360});
-	});
-	$(".site-example").mouseout(function(){
-		TweenMax.to($(this), .3, {scale: 1, zIndex: 1, filter: 'grayscale(100&)', rotationY: 0});
-	});
+
 	
 
 
-	//Animate messages
+	//Animate base containers
 	$(".animate-container").each((i,e)=>{
 		var textElement = $(e).find(".animate-box");
-		var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
-		var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
-		var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
+		//var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
+		//var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
+		//var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
+		var baseRY = 40;
+		var startRY = i % 2 === 0 ? -baseRY : baseRY;
+		var startRX = -10;
 		var vw = document.body.clientWidth;
-		var rotationRadius = -1 * vw * .8 ;
+		var rotationRadius = -1 * vw * 1.3 ;
 		var animation = new TimelineMax()
 			.set(textElement,
 				{
 					left: (50-animateBoxWidth/2)+"%", 
-					top: toY + "%", 
-					rotationY: -90,
-					rotationX: -40, 
+					top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
+					rotationY: startRY,
+					rotationX: startRX, 
 					transformOrigin: "50% 50% " + rotationRadius,
 					transformPerspective: 1000,
 					opacity: 0,
+					//boxShadow: "0 0 100px 50px #ddd",
+				}
+			)
+			.to(textElement, 1, 
+				{
+					rotationY: 0, 
+					rotationX: 0, 
+					opacity: 1,
+					//boxShadow: "0 0 10px 5px #ddd",
 					ease: Power2.easeOut
 				}
 			)
-			.to(textElement, 1, {rotationY: 0, rotationX: 0, opacity: 1})
 			.to(textElement, 1, 
 				{
-					rotationY: 90, 
-					rotationX: -40,
+					rotationY: -startRY, 
+					rotationX: -startRX,
 					opacity: 0,
+					//boxShadow: "0 0 100px 50px #ddd",
 					ease: Power2.easeIn, 
 					delay: 1
-				});
+				}
+			);
 		var s = new ScrollMagic.Scene({
 						triggerElement: $(e).find(".animate-trigger"),
 						triggerHook: "onEnter",
@@ -170,17 +168,33 @@ $(()=>{
 	});
 	
 
-	//Animate header
-	var animation = new TimelineMax().to($("#main-header"), 1, {opacity: 0});
-	new ScrollMagic.Scene({
-		triggerElement: $("#main-header-disappear-trigger"),
-		triggerHook: "onEnter",
-		duration: 600
-	})
-	.setTween(animation)
-	.addTo(controller);
+
 	
-	// build scene
+	//Animate example sites
+	var animation = new TimelineMax()
+		.staggerFromTo($(".site-example, #site-example-header"), 1, 
+					{left: "-100%", top: "100vH", opacity: 0, rotationY: -360},
+					{left: "0", top: "12vH", opacity: 1, rotationY: 0, ease: Elastic.easeOut.config(1, .75)},
+				.2)
+		.staggerTo($(".site-example"), .2, 
+					{scale: 1.2, filter: "grayscale(0)", yoyo: true, repeat: 1}, .2)
+		.staggerTo($(".site-example, #site-example-header"), 1, 
+					{left: "100%", top: "100vH", opacity: 0, rotationY: 90, ease: Back.easeIn.config(1)},
+				.2);
+		new ScrollMagic.Scene({
+				triggerElement: $("#site-example-trigger"),
+				triggerHook: "onEnter",
+				duration: 3000
+			})
+			.setTween(animation)
+			.addTo(controller);
+	//Add mouseover animation
+	$(".site-example").mouseover(function(){
+		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, filter: 'grayscale(0)', ease: Back.easeOut.config(3)});
+	});
+	$(".site-example").mouseout(function(){
+		TweenMax.to($(this), .3, {scale: 1, zIndex: 1, filter: 'grayscale(100&)'});
+	});
 });
 
 //Add nice scrolling
