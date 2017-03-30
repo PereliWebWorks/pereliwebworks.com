@@ -81,7 +81,15 @@
 				<img src="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"></div>
 			</div>
 		</span>
-		<!-- This div is where all of the triggers and text are -->
+		<!-- 
+			***********************
+			***********************
+			***********************
+			This div is where all of the triggers and text are 
+			***********************
+			***********************
+			***********************
+		-->
 		<div id="layout-container">
 			<div class="panel-layout" id="panel-1-layout" data-layout-for="panel_1">
 				<div id="home"></div><!-- Anchor for home section -->
@@ -90,7 +98,7 @@
 				<div class="medium-spacer"></div>
 				<div id="main-header-disappear-trigger"></div>
 				<div class="spacer"></div>
-				<div id="about">
+				<div id="about"></div>
 				<div class="animate-container">
 					<div class="animate-trigger"></div>
 					<div class="animate-box">
@@ -106,7 +114,7 @@
 					<div class="animate-box">
 						<h2>What I Do</h2>
 						<div>
-							 I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out <a href="/#work">some of my work</a>.
+							 I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out <a href="#work">some of my work</a>.
 						</div>
 					</div>
 				</div>

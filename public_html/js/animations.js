@@ -91,7 +91,7 @@ $(()=>{
 					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
 				.2)
 		.staggerTo($(".site-example"), .2, 
-					{scale: 1.1, yoyo: true, repeat: 1}, .2)
+					{scale: 1.1, filter: "grayscale(0)", yoyo: true, repeat: 1}, .2)
 		.staggerTo($(".site-example, #site-example-header"), 1, 
 					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1)},
 				.2);
@@ -118,19 +118,46 @@ $(()=>{
 		var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
 		var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
 		var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
+		var vw = document.body.clientWidth;
+		var rotationRadius = -1 * vw * .8 ;
 		var animation = new TimelineMax()
+			.set(textElement,
+				{
+					left: (50-animateBoxWidth/2)+"%", 
+					top: toY + "%", 
+					rotationY: -90,
+					rotationX: -40, 
+					transformOrigin: "50% 50% " + rotationRadius,
+					transformPerspective: 1000,
+					opacity: 0,
+					ease: Power2.easeOut
+				}
+			)
+			/*
 			.fromTo(textElement, 1, 
 				{left: fromX + "%", top: "100%", opacity: "0"},
 				{
-					left: (50-animateBoxWidth/2)+"%", 
-					top: toY + "%", opacity: "1", 
-					//rotationY: 360, 
+					//left: (50-animateBoxWidth/2)+"%", 
+					//top: toY + "%", opacity: "1", 
+					
+					rotationY: 360, 
 
 					ease: Power2.easeOut
 				})
+			*/
+			.to(textElement, 1, {rotationY: 0, rotationX: 0, opacity: 1})
 			.to(textElement, 1, 
-				{left: toX + "%", top: "100%", opacity: "0", ease: Power2.easeIn, delay: .5});
-		new ScrollMagic.Scene({
+				{
+					//left: toX + "%", 
+					//top: "100%", 
+					//opacity: "1",
+					rotationY: 90, 
+					rotationX: -40,
+					opacity: 0,
+					ease: Power2.easeIn, 
+					delay: 1
+				});
+		var s = new ScrollMagic.Scene({
 						triggerElement: $(e).find(".animate-trigger"),
 						triggerHook: "onEnter",
 						duration: 1500,
@@ -138,7 +165,23 @@ $(()=>{
 					.setTween(animation) // trigger a TweenMax.to tween
 					.addIndicators({name: "t" + i}) // add indicators (requires plugin)
 					.addTo(controller);
+		s.on("start", function(e){
+			if (e.scrollDirection === "FORWARD"){
+				$(textElement).css("display", "initial");
+			}
+			else{
+				$(textElement).css("display", "none");
+			}
+		});
 
+		s.on("end", function(e){
+			if (e.scrollDirection === "FORWARD"){
+				$(textElement).css("display", "none");
+			}
+			else{
+				$(textElement).css("display", "initial");
+			}
+		})
 	});
 	
 
