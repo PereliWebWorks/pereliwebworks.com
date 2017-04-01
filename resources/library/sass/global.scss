@@ -145,30 +145,40 @@ body{
 	top: 0;
 	left: 0;
 	height: 100vH;
-}
 
-.animate-box{
-	z-index: 9999;
-	display: none;
-	position: fixed;
-	color: $mainTextColor;
-	width: $animateBoxWidth;
-	
-	text-align: left;
-	h1, h2{
-		text-align: center;
-	}
-	background-color: rgba(0,0,0,.85);
-	padding: 1em;
-	border-radius: 5px;
-	box-shadow: 0 0 10px 5px #ddd;
-	font-size: 1.2em;
-	a{
-	  $linkColor: rgb(28,133,248);
-	  color: $linkColor;
-	  &:hover{
-	  	color: darken($linkColor, 10%);
-	  }
+	.animate-box{
+		z-index: 9999;
+		display: none;
+		position: fixed;
+		color: $mainTextColor;
+		width: $animateBoxWidth;
+		text-align: left;
+		background-color: rgba(0,0,0,.85);
+		padding: 1em;
+		border-radius: 5px;
+		box-shadow: 0 0 10px 5px #ddd;
+		font-size: 1.2em;
+
+		&.starting-animation{
+
+		}
+
+		&.ending-animation{
+			
+		}
+
+		h1, h2{
+			text-align: center;
+		}
+
+		a{
+		  $linkColor: rgb(28,133,248);
+		  color: $linkColor;
+
+		  &:hover{
+		  	color: darken($linkColor, 10%);
+		  }
+		}
 	}
 }
 
