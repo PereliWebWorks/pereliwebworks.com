@@ -108,11 +108,18 @@ $(()=>{
 		var startRX = -10;
 		var vw = document.body.clientWidth;
 		var rotationRadius = -1 * vw * 1.3 ;
+		//Global animation settings
 		var animation = new TimelineMax()
 			.set(textElement,
 				{
 					left: (50-animateBoxWidth/2)+"%", 
 					top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
+				}
+			);
+
+		animation
+			.set(textElement,
+				{
 					rotationY: startRY,
 					rotationX: startRX, 
 					transformOrigin: "50% 50% " + rotationRadius,
