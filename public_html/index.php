@@ -23,6 +23,10 @@
 	<script src="library/ScrollMagic/plugins/jquery.ScrollMagic.js"></script>
 	<!-- Bttn.css-->
 	<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />
+	<!-- Lettering.js -->
+	<script src="https://raw.githubusercontent.com/davatron5000/Lettering.js/master/jquery.lettering.js"
+			type="text/javascript">
+	</script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
@@ -100,7 +104,6 @@
 				<div class="spacer"></div>
 				<div id="about"></div>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Who I am</h2>
 						<div>
@@ -108,9 +111,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="large-spacer"></div>
+				<script>
+					$(".animate-box").eq(0).lettering();
+				</script>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>What I Do</h2>
 						<div>
@@ -118,7 +122,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="medium-spacer"></div>
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
 				<div id="site-examples">
@@ -178,7 +181,6 @@
 				<div class="spacer"></div>
 				<div id="resume"></div>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Resume</h2>
 						<div class="text-center">
@@ -200,10 +202,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="medium-spacer"></div>
 				<div id="pricing"></div>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Pricing</h2>
 						<div>
@@ -211,7 +211,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="small-spacer"></div>
 				<div id="panel-wipe-trigger-3" data-triggers="3" class="panel-wipe-trigger"></div>
 				<div class="end-scroll-trigger"></div>
 			</div>
@@ -221,7 +220,6 @@
 				<div class="medium-spacer"></div>
 				<div id="contact"></div>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Get in Touch</h2>
 						<div>
@@ -287,10 +285,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="medium-spacer"></div>
 				<div id="payment"></div>
 				<div class="animate-container">
-					<div class="animate-trigger"></div>
 					<div class="animate-box">
 						<h2>Make a Payment</h2>
 						<div>

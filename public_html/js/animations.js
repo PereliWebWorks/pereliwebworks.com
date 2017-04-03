@@ -206,9 +206,9 @@ $(()=>{
 
 		//Add animation to scene
 		var s = new ScrollMagic.Scene({
-						triggerElement: $(e).find(".animate-trigger"),
+						triggerElement: $(e),//.find(".animate-trigger"),
 						triggerHook: "onEnter",
-						duration: 1500,
+						duration: $(e).height(),
 					})
 					.setTween(animation) // trigger a TweenMax.to tween
 					.addIndicators({name: "t" + i}) // add indicators (requires plugin)
