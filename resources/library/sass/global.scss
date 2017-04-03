@@ -144,7 +144,7 @@ body{
 	text-align: center;
 	top: 0;
 	left: 0;
-	height: 100vH;
+	min-height: 100vH;
 
 	.animate-box{
 		z-index: 9999;
@@ -170,6 +170,10 @@ body{
 		  &:hover{
 		  	color: darken($linkColor, 10%);
 		  }
+		}
+
+		.lettering span{
+			visibility: hidden;
 		}
 	}
 }

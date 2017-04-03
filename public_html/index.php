@@ -24,18 +24,29 @@
 	<!-- Bttn.css-->
 	<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />
 	<!-- Lettering.js -->
-	<script src="https://raw.githubusercontent.com/davatron5000/Lettering.js/master/jquery.lettering.js"
-			type="text/javascript">
-	</script>
+	<script src="library/lettering.js"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
-	<script src="js/animations.js"></script>
 	<script>
+		$(function(){
+			$(".lettering").each(function(_,e){
+				var html = $(e).html().split("");
+				html = html.reduce(function(acc, val){
+					return acc + "<span class='char'>" + val + "</span>";
+				}, "");
+				$(e).html(html);
+			});
+			/*
+			$(".lettering")
+				.lettering();
+			*/
+		});
 		$(window).on("load", function(){
 			$("#loading_spinner_container").remove();
 		});
 	</script>
+	<script src="js/animations.js"></script>
 </head>
 <body>
 	<div id="loading_spinner_container">
@@ -105,15 +116,14 @@
 				<div id="about"></div>
 				<div class="animate-container">
 					<div class="animate-box">
-						<h2>Who I am</h2>
+						<h2><span class="lettering">Who I am</span></h2>
 						<div>
-							I'm a Madison based freelance web developer. Here's some more bullshit about me. blah blah blah, blah blah BLAH blah blah. <a href="#contact">Get in touch.</a>
+							<span class="lettering">I'm a Madison based freelance web developer. Here's some more bullshit about me. blah blah blah, blah blah BLAH blah blah. </span><a href="#contact" class="lettering">Get in touch.</a>
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
-				<script>
-					$(".animate-box").eq(0).lettering();
-				</script>
 				<div class="animate-container">
 					<div class="animate-box">
 						<h2>What I Do</h2>

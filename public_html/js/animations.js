@@ -135,16 +135,23 @@ $(()=>{
 							opacity: 1,
 							ease: Power2.easeOut
 						}
+					);
+					$(e).find(".lettering").each(function(i,el){
+						animation.staggerTo($(el).children(), .1, {visibility: "initial"}, 0.01);
+					});
+
+					animation
+					.staggerTo($(e).find(".lettering").children(), .1, 
+						{backgroundColor: "gray", delay: .5}, 
+						0.01
 					)
-					.to($(textElement).children(), .2, 
-						{
-							opacity: 0,
-							delay: 1
-						}
+					.to($(e).find(".lettering").children(), .1, 
+						{visibility: "hidden", delay: .5}
 					)
 					.to(textElement, 1, 
 						{
 							scaleX: .05,
+							delay: .5,
 							ease: Power2.easeIn, 
 						}
 					)
