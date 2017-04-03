@@ -108,7 +108,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="medium-spacer"></div>
+				<div class="large-spacer"></div>
 				<div class="animate-container">
 					<div class="animate-trigger"></div>
 					<div class="animate-box">

@@ -116,37 +116,95 @@ $(()=>{
 					top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
 				}
 			);
+		switch(i){
+			case 0:
+				animation
+					.set(textElement,
+						{
+							rotationY: startRY,
+							rotationX: startRX, 
+							transformOrigin: "50% 50% " + rotationRadius,
+							transformPerspective: 1000,
+							opacity: 0,
+						}
+					)
+					.to(textElement, 1, 
+						{
+							rotationY: 0, 
+							rotationX: 0, 
+							opacity: 1,
+							ease: Power2.easeOut
+						}
+					)
+					.to($(textElement).children(), .2, 
+						{
+							opacity: 0,
+							delay: 1
+						}
+					)
+					.to(textElement, 1, 
+						{
+							scaleX: .05,
+							ease: Power2.easeIn, 
+						}
+					)
+					.to(textElement, 1, 
+						{
+							scaleY: 0,
+							scaleY: 0,
+							ease: Power2.easeIn
+						}
+					)
+					;
+				break;
+			case 1:
+				animation
+					.set(textElement,
+						{
+							scaleX: 0,
+							scaleY: 0,
+							transformOrigin: "50% 50% " + rotationRadius,
+							transformPerspective: 1000,
+						}
+					)
+					.set($(textElement).children(),
+						{
+							opacity: 0,
+						}
+					)
+					.to(textElement, 1, 
+						{
+							scaleY: .05
+						}
+					)
+					.to(textElement, 1, 
+						{
+							scaleX: 1
+						}
+					)
+					.to(textElement, 1, 
+						{
+							scaleY: 1
+						}
+					)
+					.to($(textElement).children(), 1, 
+						{
+							opacity: 1,
+						}
+					)
+					.to(textElement, 1, 
+						{
+							rotationY: startRY,
+							rotationX: -startRX, 
+							delay: 1,
+							ease: Power2.easeIn
+						}
+					)
+					;
+				break;
+		}
 
-		animation
-			.set(textElement,
-				{
-					rotationY: startRY,
-					rotationX: startRX, 
-					transformOrigin: "50% 50% " + rotationRadius,
-					transformPerspective: 1000,
-					opacity: 0,
-					//boxShadow: "0 0 100px 50px #ddd",
-				}
-			)
-			.to(textElement, 1, 
-				{
-					rotationY: 0, 
-					rotationX: 0, 
-					opacity: 1,
-					//boxShadow: "0 0 10px 5px #ddd",
-					ease: Power2.easeOut
-				}
-			)
-			.to(textElement, 1, 
-				{
-					rotationY: -startRY, 
-					rotationX: -startRX,
-					opacity: 0,
-					//boxShadow: "0 0 100px 50px #ddd",
-					ease: Power2.easeIn, 
-					delay: 1
-				}
-			);
+		//Add animation to scene
 		var s = new ScrollMagic.Scene({
 						triggerElement: $(e).find(".animate-trigger"),
 						triggerHook: "onEnter",
