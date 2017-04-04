@@ -37,6 +37,14 @@
 				}, "");
 				$(e).html(html);
 			});
+
+			$(".wording").each(function(_,e){
+				var html = $(e).html().split(" ");
+				html = html = html.reduce(function(acc, val){
+					return acc + "<span class='word'>" + val + "</span> ";
+				}, "");
+				$(e).html(html);
+			});
 			/*
 			$(".lettering")
 				.lettering();
@@ -118,7 +126,7 @@
 					<div class="animate-box">
 						<h2><span class="lettering">Who I am</span></h2>
 						<div>
-							<span class="lettering">I'm a Madison based freelance web developer. Here's some more bullshit about me. blah blah blah, blah blah BLAH blah blah. </span><a href="#contact" class="lettering">Get in touch.</a>
+							<span class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </span><a href="#contact" class="lettering">Get in touch.</a>
 						</div>
 					</div>
 					<div class="large-spacer"></div>
@@ -126,11 +134,14 @@
 				</div>
 				<div class="animate-container">
 					<div class="animate-box">
-						<h2>What I Do</h2>
+						<h2 class="lettering">What I Do</h2>
 						<div>
-							 I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out <a href="#work">some of my work</a>.
+							 <span class="lettering">I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out </span>
+							 <a href="#work" class="lettering">some of my work.</a>
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
@@ -194,13 +205,15 @@
 					<div class="animate-box">
 						<h2>Resume</h2>
 						<div class="text-center">
-							<button class="bttn-fill bttn-sm bttn-primary" id="see-resume-btn">
-								See my resume
-							</button>
-							<div>&nbsp;</div>
-							<button class="bttn-fill bttn-sm bttn-primary" id="download-resume-btn">
-								Download my resume
-							</button>
+							<span class="resume-btn-container">
+								<button class="bttn-fill bttn-sm bttn-primary" id="see-resume-btn">
+									See my resume
+								</button>
+								<div>&nbsp;</div>
+								<button class="bttn-fill bttn-sm bttn-primary" id="download-resume-btn">
+									Download my resume
+								</button>
+							</span>
 							<script>
 								$("#see-resume-btn").click(function(){
 									window.open("/resume", "_blank");
@@ -211,15 +224,19 @@
 							</script>
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
 				<div id="pricing"></div>
 				<div class="animate-container">
 					<div class="animate-box">
 						<h2>Pricing</h2>
-						<div>
+						<div class="wording">
 							My rate is negotiable, but I generally charge around $25 per hour. I'm also happy to work from a fixed-price contract. If you have a specific budget, I can give you an estimate of what I could do for you while staying within your price range.
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
 				<div id="panel-wipe-trigger-3" data-triggers="3" class="panel-wipe-trigger"></div>
 				<div class="end-scroll-trigger"></div>
@@ -231,10 +248,11 @@
 				<div id="contact"></div>
 				<div class="animate-container">
 					<div class="animate-box">
-						<h2>Get in Touch</h2>
+						<h2 class="rotate">Get in Touch</h2>
 						<div>
+							<div class="rotate">
 							Feel free to email me directly at drew@pereliwebworks.com.<br/>
-							Or use this form to contact me.
+							Or use this form to contact me.</div>
 							<form id="contact-form" method="POST" action="contact.php">
 								<div class="form-group">
 									<input 
@@ -294,6 +312,8 @@
 							</script>
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
 				<div id="payment"></div>
 				<div class="animate-container">
@@ -451,6 +471,8 @@
 							-->
 						</div>
 					</div>
+					<div class="large-spacer"></div>
+					<div class="large-spacer"></div>
 				</div>
 				<div class="medium-spacer"></div>
 				<div class="medium-spacer"></div>

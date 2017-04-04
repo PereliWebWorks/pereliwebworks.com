@@ -100,6 +100,7 @@ $(()=>{
 	//Animate base containers
 	$(".animate-container").each((i,e)=>{
 		var textElement = $(e).find(".animate-box");
+		var baseClassList = textElement[0].className;
 		//var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
 		//var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
 		//var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
@@ -107,16 +108,20 @@ $(()=>{
 		var startRY = i % 2 === 0 ? -baseRY : baseRY;
 		var startRX = -10;
 		var vw = document.body.clientWidth;
+		var vh = document.body.clientHeight;
 		var rotationRadius = -1 * vw * 1.3 ;
 		//Global animation settings
 		var animation = new TimelineMax()
 			.set(textElement,
 				{
-					left: (50-animateBoxWidth/2)+"%", 
+					//left: (50-animateBoxWidth/2)+"%", 
 					top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
 				}
 			);
 		switch(i){
+			//***************
+			//First box
+			//***************
 			case 0:
 				animation
 					.set(textElement,
@@ -126,6 +131,7 @@ $(()=>{
 							transformOrigin: "50% 50% " + rotationRadius,
 							transformPerspective: 1000,
 							opacity: 0,
+							
 						}
 					)
 					.to(textElement, 1, 
@@ -141,9 +147,15 @@ $(()=>{
 					});
 
 					animation
+					.add("highlight")
 					.staggerTo($(e).find(".lettering").children(), .1, 
 						{backgroundColor: "gray", delay: .5}, 
 						0.01
+					)
+					.staggerTo($(e).find(".lettering").children(), .1, 
+						{color: "white", delay: .5}, 
+						0.01,
+						"highlight"
 					)
 					.to($(e).find(".lettering").children(), .1, 
 						{visibility: "hidden", delay: .5}
@@ -164,6 +176,9 @@ $(()=>{
 					)
 					;
 				break;
+			//***************
+			//Second box
+			//***************
 			case 1:
 				animation
 					.set(textElement,
@@ -174,11 +189,7 @@ $(()=>{
 							transformPerspective: 1000,
 						}
 					)
-					.set($(textElement).children(),
-						{
-							opacity: 0,
-						}
-					)
+					//Bring in the element
 					.to(textElement, 1, 
 						{
 							scaleY: .05
@@ -193,21 +204,253 @@ $(()=>{
 						{
 							scaleY: 1
 						}
-					)
-					.to($(textElement).children(), 1, 
+					);
+					//"type" the text
+					$(e).find(".lettering").each(function(i,el){
+						animation.staggerTo($(el).children(), .1, {visibility: "initial"}, 0.01);
+					});
+					//Make the rocket prepare to take off
+					var newClassList = addClasses(baseClassList, "prepping-rocket");
+					animation
+					.to(textElement, 1, 
 						{
-							opacity: 1,
+							css: {
+								className: newClassList
+							}
 						}
+					);
+					//Make the rocket launch
+					newClassList = addClasses(baseClassList, "launching-rocket");
+					animation
+					.add("takeoff")
+					.to(textElement, 1.5, 
+						{
+							css: {
+								className: newClassList
+							},
+							ease: RoughEase.ease.config({ template:  Power0.easeNone, strength: 1.5, points: 20, taper: "none", randomize: true, clamp: true})
+						},
+						"takeoff"
 					)
 					.to(textElement, 1, 
 						{
 							rotationY: startRY,
 							rotationX: -startRX, 
-							delay: 1,
-							ease: Power2.easeIn
-						}
+							ease: Power3.easeIn
+						},
+						"takeoff+=.5"
 					)
 					;
+				break;
+			//***************
+			//Third box
+			//***************
+			case 2:
+				var btnDiff = 55;
+				animation
+					.set(textElement, 
+						{
+							scale: 0,
+							opacity: 0
+						}
+					)
+					.to(textElement, 1,
+						{
+							scale: 1,
+							opacity: 1,
+							ease: Back.easeOut.config(3)
+						}
+					)
+					.add("orbit", "+=1")
+					.to($("#see-resume-btn"), 1,
+						{
+							y: btnDiff
+						},
+						"orbit"
+					)
+					.to($("#download-resume-btn"), 1,
+						{
+							y: -btnDiff
+						},
+						"orbit"
+					)
+					.to($("#see-resume-btn"), .5,
+						{
+							scale: .8
+						},
+						"orbit"
+					)
+					.to($("#download-resume-btn"), .5,
+						{
+							scale: 1.2
+						},
+						"orbit"
+					)
+					.to($("#see-resume-btn"), .5,
+						{
+							scale: 1
+						},
+						"orbit+=.5"
+					)
+					.to($("#download-resume-btn"), .5,
+						{
+							scale: 1
+						},
+						"orbit+=.5"
+					)
+					.to(textElement, 2, {}); //Add a delay for the end
+				break;
+			//***************
+			//Fourth box
+			//***************
+			case 3:
+				//Get previous animation box for this
+				var prev = $(".animate-container").eq(i-1).find(".animate-box");
+				animation
+					.set(textElement,
+						{
+							left: "100%"
+						}
+					)
+					.to(textElement, 1,
+						{
+							left: 50 + animateBoxWidth / 2 + "%",
+							ease: Linear.easeNone
+						}
+					)
+					.add("gtfo")
+					.to(textElement, 2,
+						{
+							left: 50 - animateBoxWidth / 2 + "%",
+							ease: Linear.easeNone
+						}
+					)
+					.to(prev, 1,
+						{
+							left: -animateBoxWidth - 10 + "%",
+							ease: Linear.easeNone
+						},
+						"gtfo"
+					)
+					.staggerTo($(textElement).find("h2, .word"), .5,
+						{
+							scale: 3,
+							opacity: 0,
+							delay: 1
+						},
+						.1
+					)
+					.to(textElement, 1,
+						{
+							scale: 3,
+							opacity: 0,
+							delay: 1
+						}
+					)
+
+				break;
+			//***************
+			//Five box
+			//***************
+			case 4:
+				animation
+				.set(textElement,
+					{
+						transformPerspective: 1000,
+						transformOrigin: "50% top",
+						rotationX: -90
+					}
+				)
+				.set(textElement.find(".rotate, .form-group"),
+					{
+						transformOrigin: "left top",
+					}
+				)
+				.to(textElement, 4, 
+					{
+						rotationX: 0,
+						ease: Elastic.easeOut.config(2, 0.3)
+					}
+				)
+				.staggerTo(textElement.find(".rotate, .form-group"), 2,
+					{
+						rotationZ: 80,
+						delay: 1,
+						ease: Elastic.easeOut.config(1.5, 0.3)
+					},
+					.1,
+					2
+				)
+				.staggerTo(textElement.find(".rotate, .form-group"), 1,
+					{
+						y: vh
+					},
+					.2
+				)
+				.to(textElement, 1,
+					{
+						height: $(".animate-box").eq(i+1).height(),
+						rotationX: 90
+					}
+				)
+				break;
+			//***************
+			//Sixth box
+			//***************
+			case 5:
+				animation
+				.set(textElement,
+					{
+						transformPerspective: 1000,
+						transformOrigin: "50% top",
+						rotationX: 90
+					}
+				)
+				.set(textElement.children(),
+					{
+						opacity: 0
+					}
+				)
+				.add("swing")
+				.to(textElement, 1,
+					{
+						rotationX: 360
+					}
+				)
+				.to(textElement.children(), 1,
+					{
+						opacity: 1
+					},
+					"swing"
+				)
+				.set(textElement,
+					{
+						transformOrigin: "right bottom"
+					}
+				)
+				.to(textElement, 1,
+					{
+						rotationY:180,
+						delay: 1,
+					}
+				)
+				.to(textElement, 1,
+					{
+						rotationX:540
+					}
+				)
+				.set(textElement,
+					{
+						transformOrigin: "left bottom",
+						left: 50 + 3 * animateBoxWidth/2 + "%",
+						rotationY: -180
+					}
+				)
+				.to(textElement, 1,
+					{
+						rotationY:0,
+					}
+				)
 				break;
 		}
 
@@ -218,8 +461,10 @@ $(()=>{
 						duration: $(e).height(),
 					})
 					.setTween(animation) // trigger a TweenMax.to tween
-					.addIndicators({name: "t" + i}) // add indicators (requires plugin)
+					//.addIndicators({name: "t" + i}) // add indicators (requires plugin)
 					.addTo(controller);
+
+		//Show or hide the box depending on scroll direction
 		s.on("start", function(e){
 			if (e.scrollDirection === "FORWARD"){
 				$(textElement).css("display", "initial");
@@ -229,9 +474,12 @@ $(()=>{
 			}
 		});
 
+		//Show or hide the box depending on scroll direction
 		s.on("end", function(e){
 			if (e.scrollDirection === "FORWARD"){
-				$(textElement).css("display", "none");
+				//Box number 2 is a special case because it will be pushed away by box 3.
+				if (i !== 2)
+					$(textElement).css("display", "none");
 			}
 			else{
 				$(textElement).css("display", "initial");
@@ -253,7 +501,7 @@ $(()=>{
 		.staggerTo($(".site-example, #site-example-header"), 1, 
 					{left: "100%", top: "100vH", opacity: 0, rotationY: 90, ease: Back.easeIn.config(1)},
 				.2);
-		new ScrollMagic.Scene({
+	var s = new ScrollMagic.Scene({
 				triggerElement: $("#site-example-trigger"),
 				triggerHook: "onEnter",
 				duration: 3000
@@ -262,11 +510,32 @@ $(()=>{
 			.addTo(controller);
 	//Add mouseover animation
 	$(".site-example").mouseover(function(){
-		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, filter: 'grayscale(0)', ease: Back.easeOut.config(3)});
+		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, ease: Back.easeOut.config(3)});
 	});
 	$(".site-example").mouseout(function(){
-		TweenMax.to($(this), .3, {scale: 1, zIndex: 1, filter: 'grayscale(100&)'});
+		TweenMax.to($(this), .3, {scale: 1, zIndex: 1});
 	});
+
+	//Show or hide the box depending on scroll direction
+	var textElement = $("#site-examples");
+	s.on("start", function(e){
+		if (e.scrollDirection === "FORWARD"){
+			$(textElement).css("display", "initial");
+		}
+		else{
+			$(textElement).css("display", "none");
+		}
+	});
+
+	//Show or hide the box depending on scroll direction
+	s.on("end", function(e){
+		if (e.scrollDirection === "FORWARD"){
+			$(textElement).css("display", "none");
+		}
+		else{
+			$(textElement).css("display", "initial");
+		}
+	})
 });
 
 //Add nice scrolling
@@ -292,6 +561,23 @@ $(()=>{
 	});
 
 
+
+function changeClasses(classList, add, subtract){
+	return removeClasses(addClasses(classList, add), subtract);
+}
+
+function removeClasses(classList, subtract){
+	var c = classList.split(" ");
+	var exclude = subtract.split(" ");
+	c = c.filter(function(x){
+		return exclude.indexOf(x) === -1;
+	})
+	return c.join(" ");
+}
+
+function addClasses(classList, add){
+	return classList + " " + add;
+}
 
 
 

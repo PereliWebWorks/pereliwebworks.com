@@ -147,16 +147,20 @@ body{
 	min-height: 100vH;
 
 	.animate-box{
+		$animatBoxBoxShadowPx: 0 0 10px 5px;
+		$animateBoxComputerScreenBoxShadow: inset 0 0 6px 20px gray;
 		z-index: 9999;
 		display: none;
 		position: fixed;
-		color: $mainTextColor;
+		//color: $mainTextColor;
+		color: rgb(0,239,0);
 		width: $animateBoxWidth;
+		left: (50 - $animateBoxWidth / 2);
 		text-align: left;
 		background-color: rgba(0,0,0,.85);
-		padding: 1em;
+		padding: 25px;
 		border-radius: 5px;
-		box-shadow: 0 0 10px 5px #ddd;
+		box-shadow: $animatBoxBoxShadowPx #ddd;
 		font-size: 1.2em;
 
 		h1, h2{
@@ -174,6 +178,19 @@ body{
 
 		.lettering span{
 			visibility: hidden;
+		}
+
+		.word{
+			display: inline-block;
+		}
+
+		//Animation stuff
+		&.prepping-rocket{
+			box-shadow: $animatBoxBoxShadowPx red;
+		}
+
+		&.launching-rocket{
+			box-shadow: $animatBoxBoxShadowPx red, -80px 20px 100px 0px  red;	
 		}
 	}
 }
@@ -214,7 +231,7 @@ body{
 	margin: 1%;
 	box-shadow: 0 0 6px 2px white;
   	border-radius: 2px;
-  	filter: grayscale(100%);
+  	//filter: grayscale(100%);
 }
 
 
