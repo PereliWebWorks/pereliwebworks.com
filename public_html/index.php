@@ -29,6 +29,37 @@
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
 	<script>
+		//Returns true or false depending on whether the browser supports rotation or not.
+		function has3d() {
+		    if (!window.getComputedStyle) {
+		        return false;
+		    }
+
+		    var el = document.createElement('p'), 
+		        has3d,
+		        transforms = {
+		            'webkitTransform':'-webkit-transform',
+		            'OTransform':'-o-transform',
+		            'msTransform':'-ms-transform',
+		            'MozTransform':'-moz-transform',
+		            'transform':'transform'
+		        };
+
+		    // Add it to the body to get the computed style.
+		    document.body.insertBefore(el, null);
+
+		    for (var t in transforms) {
+		        if (el.style[t] !== undefined) {
+		            el.style[t] = "translate3d(1px,1px,1px)";
+		            has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+		        }
+		    }
+
+		    document.body.removeChild(el);
+
+		    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+		}
+
 		$(function(){
 			$(".lettering").each(function(_,e){
 				var html = $(e).html().split("");
@@ -117,7 +148,9 @@
 			<div class="panel-layout" id="panel-1-layout" data-layout-for="panel_1">
 				<div id="home"></div><!-- Anchor for home section -->
 				<div class="start-scroll-trigger"></div>
-				<h1 id="main-header">Pereli Web Works</h1>
+				<h1 id="main-header">
+					Pereli Web Works
+				</h1>
 				<div class="medium-spacer"></div>
 				<div id="main-header-disappear-trigger"></div>
 				<div class="spacer"></div>
@@ -247,7 +280,7 @@
 				<div class="large-spacer"></div>
 				<div class="medium-spacer"></div>
 				<div id="contact"></div>
-				<div class="animate-container">
+				<div class="animate-container" id="contact-container">
 					<div class="animate-box">
 						<h2 class="rotate">Get in Touch</h2>
 						<div class="smaller-font">

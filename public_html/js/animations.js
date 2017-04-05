@@ -86,7 +86,7 @@ $(function(){
 	var animation = new TimelineMax().to($("#main-header"), 1, {opacity: 0});
 	new ScrollMagic.Scene({
 		triggerElement: $("#main-header-disappear-trigger"),
-		triggerHook: "onEnter",
+		triggerHook: "onLeave",
 		duration: 600
 	})
 	.setTween(animation)
@@ -105,13 +105,16 @@ $(function(){
 		//var fromX = i % 2 === 0 ? -animateBoxWidth : 100;
 		//var toX = i % 2 === 0 ? 100 : -animateBoxWidth;
 		//var toY = (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2;
-		var baseRY = 40;
+		var baseRY = 42;
 		var startRY = i % 2 === 0 ? -baseRY : baseRY;
 		var startRX = -10;
 		var vw = document.body.clientWidth;
 		var vh = document.body.clientHeight;
 		var rotationRadius = -1 * vw * 1.3 ;
 		//Global animation settings
+		if (i === 4){
+			console.log((100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2);
+		}
 		var animation = new TimelineMax()
 			.set(textElement,
 				{
@@ -252,9 +255,9 @@ $(function(){
 						},
 						"takeoff+=.5"
 					)
-					.set($(e).find(".lettering").children,
+					.set($(e).find(".lettering").children(),
 						{
-							visibility: "hidden",
+							clearProps: "visibility"
 						}
 					)
 					;
@@ -455,7 +458,7 @@ $(function(){
 				animation
 				.set(textElement,
 					{
-						transformPerspective: 1000,
+						transformPerspective: 3000,
 						transformOrigin: "50% top",
 						rotationX: 90
 					}

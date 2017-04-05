@@ -172,6 +172,7 @@ body{
 		//color: $mainTextColor;
 		color: rgb(0,239,0);
 		width: $animateBoxWidth;
+		max-height: 80%;
 		left: (50 - $animateBoxWidth / 2);
 		text-align: left;
 		background-color: rgba(0,0,0,.85);
@@ -267,6 +268,11 @@ body{
 
 
 
+
+
+#contact-container{
+
+}
 
 
 
