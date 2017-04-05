@@ -204,13 +204,14 @@
 				<div class="animate-container">
 					<div class="animate-box">
 						<h2>Resume</h2>
+						<div>&nbsp;</div>
 						<div class="text-center">
 							<span class="resume-btn-container">
-								<button class="bttn-fill bttn-sm bttn-primary" id="see-resume-btn">
+								<button class="bttn-fill bttn-lg bttn-primary" id="see-resume-btn">
 									See my resume
 								</button>
 								<div>&nbsp;</div>
-								<button class="bttn-fill bttn-sm bttn-primary" id="download-resume-btn">
+								<button class="bttn-fill bttn-lg bttn-primary" id="download-resume-btn">
 									Download my resume
 								</button>
 							</span>
@@ -249,10 +250,11 @@
 				<div class="animate-container">
 					<div class="animate-box">
 						<h2 class="rotate">Get in Touch</h2>
-						<div>
+						<div class="smaller-font">
 							<div class="rotate">
 							Feel free to email me directly at drew@pereliwebworks.com.<br/>
-							Or use this form to contact me.</div>
+							Or use this form to contact me.
+							</div>
 							<form id="contact-form" method="POST" action="contact.php">
 								<div class="form-group">
 									<input 
@@ -268,17 +270,19 @@
 										placeholder="Email Address"
 										required/>
 								</div>
+								<!--
 								<div class="form-group">
 									<input 
 										name="subject" 
 										placeholder="Subject"
 										required/>
 								</div>
+								-->
 								<div class="form-group">
 									<textarea 
 										name="message"
 										placeholder="Message"
-										rows="5" required></textarea>
+										rows="3" required></textarea>
 								</div>
 								<div class="form-group">
 									<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
@@ -316,7 +320,7 @@
 					<div class="large-spacer"></div>
 				</div>
 				<div id="payment"></div>
-				<div class="animate-container">
+				<div class="animate-container smaller-font">
 					<div class="animate-box">
 						<h2>Make a Payment</h2>
 						<div>

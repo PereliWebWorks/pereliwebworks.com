@@ -9,7 +9,7 @@ $panelOverflow: $spacerHeight;
 $panelPaddingBottom: 1000px;
 
 $messageWidth: 20%;
-$animateBoxWidth: 40%;
+$animateBoxWidth: 80%;
 
 $defaultFont: "timeburner";
 $headerFont: "coalition";
@@ -167,7 +167,7 @@ body{
 		$animatBoxBoxShadowPx: 0 0 10px 5px;
 		$animateBoxComputerScreenBoxShadow: inset 0 0 6px 20px gray;
 		z-index: 9999;
-		display: none;
+		visibility: hidden;
 		position: fixed;
 		//color: $mainTextColor;
 		color: rgb(0,239,0);
@@ -178,9 +178,14 @@ body{
 		padding: 25px;
 		border-radius: 5px;
 		box-shadow: $animatBoxBoxShadowPx #ddd;
-		font-size: 1.2em;
+		font-size: 2em;
+
+		&.smaller-font{
+			font-size: 1em;
+		}
 
 		h1, h2{
+			font-size: 2em;
 			@extend .header-style;
 		}
 
@@ -210,6 +215,8 @@ body{
 			box-shadow: $animatBoxBoxShadowPx red, -80px 20px 100px 0px  red;	
 		}
 	}
+
+
 }
 
 

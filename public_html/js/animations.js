@@ -1,10 +1,11 @@
 var messageWidth = 20; //In %
-var animateBoxWidth = 40; //In %
+var animateBoxWidth = 80; //In %
 var controller = new ScrollMagic.Controller();
 
 
-$(()=>{
+$(function(){
 	var swipeDuration = 1500;
+	var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
 	//Create wipe animation and scroll animation
 	var currentPanel = 1; //Current panel we're looking at. Doesn't change until next panel is fully faded in
 	$(".panel").each((i, e) => {
@@ -157,15 +158,26 @@ $(()=>{
 						0.01,
 						"highlight"
 					)
-					.to($(e).find(".lettering").children(), .1, 
+					.set($(e).find(".lettering").children(),
 						{visibility: "hidden", delay: .5}
+					)
+					.set(textElement,
+						{backgroundColor: "rgba(200,0,0,.85)"}
+					)
+					.add("delete")
+					.to(textElement, .5,
+						{
+							backgroundColor: "rgba(0,0,0,.85)",
+							ease: Power2.easeOut,
+						}
 					)
 					.to(textElement, 1, 
 						{
 							scaleX: .05,
 							delay: .5,
 							ease: Power2.easeIn, 
-						}
+						},
+						"delete"
 					)
 					.to(textElement, 1, 
 						{
@@ -240,13 +252,17 @@ $(()=>{
 						},
 						"takeoff+=.5"
 					)
+					.set($(e).find(".lettering").children,
+						{
+							visibility: "hidden",
+						}
+					)
 					;
 				break;
 			//***************
 			//Third box
 			//***************
 			case 2:
-				var btnDiff = 55;
 				animation
 					.set(textElement, 
 						{
@@ -258,7 +274,7 @@ $(()=>{
 						{
 							scale: 1,
 							opacity: 1,
-							ease: Back.easeOut.config(3)
+							ease: Back.easeOut.config(2)
 						}
 					)
 					.add("orbit", "+=1")
@@ -297,6 +313,44 @@ $(()=>{
 							scale: 1
 						},
 						"orbit+=.5"
+					)
+					.add("orbit2")
+					.set($("#see-resume-btn"), {zIndex:2})
+					.to($("#see-resume-btn"), 1,
+						{
+							y: 0
+						},
+						"orbit2"
+					)
+					.to($("#download-resume-btn"), 1,
+						{
+							y: 0
+						},
+						"orbit2"
+					)
+					.to($("#see-resume-btn"), .5,
+						{
+							scale: 1.2
+						},
+						"orbit2"
+					)
+					.to($("#download-resume-btn"), .5,
+						{
+							scale: .8
+						},
+						"orbit2"
+					)
+					.to($("#see-resume-btn"), .5,
+						{
+							scale: 1
+						},
+						"orbit2+=.5"
+					)
+					.to($("#download-resume-btn"), .5,
+						{
+							scale: 1
+						},
+						"orbit2+=.5"
 					)
 					.to(textElement, 2, {}); //Add a delay for the end
 				break;
@@ -467,10 +521,10 @@ $(()=>{
 		//Show or hide the box depending on scroll direction
 		s.on("start", function(e){
 			if (e.scrollDirection === "FORWARD"){
-				$(textElement).css("display", "initial");
+				$(textElement).css("visibility", "visible");
 			}
 			else{
-				$(textElement).css("display", "none");
+				$(textElement).css("visibility", "hidden");
 			}
 		});
 
@@ -479,10 +533,10 @@ $(()=>{
 			if (e.scrollDirection === "FORWARD"){
 				//Box number 2 is a special case because it will be pushed away by box 3.
 				if (i !== 2)
-					$(textElement).css("display", "none");
+					$(textElement).css("visibility", "hidden");
 			}
 			else{
-				$(textElement).css("display", "initial");
+				$(textElement).css("visibility", "visible");
 			}
 		})
 	});
