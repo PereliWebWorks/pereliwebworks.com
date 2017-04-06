@@ -76,6 +76,84 @@
 	<div id="loading_spinner_container">
 		<img src="img/loading_spinner.gif"/>
 	</div>
+	<!-- Modals -->
+	<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+				<h2>Get in Touch</h2>
+				<div class="smaller-font">
+					<div>
+					Feel free to email me directly at drew@pereliwebworks.com.<br/>
+					Or use this form to contact me.
+					</div>
+					<form id="contact-form" method="POST" action="contact.php">
+						<div class="form-group">
+							<input 
+								name="name" 
+								type="text" 
+								placeholder="Name" 
+								required/>
+						</div>
+						<div class="form-group">
+							<input 
+								name="email" 
+								type="email" 
+								placeholder="Email Address"
+								required/>
+						</div>
+						<div class="form-group">
+							<textarea 
+								name="message"
+								placeholder="Message"
+								rows="3" required></textarea>
+						</div>
+						<div class="form-group">
+							<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
+						</div>
+					</form>
+					<div class="response">
+						<img src="img/spinner.gif" class="display-none"/>
+						<div class="message display-none"></div>
+					</div>
+					<script>
+						$("#contact-form").submit(function(e){
+							e.preventDefault();
+							$("#contact-form").parent().find(".response img").removeClass("display-none");
+							$("#contact-form").ajaxSubmit(function(response){
+								$("#contact-form").parent().find(".response img").addClass("display-none");
+								if (response){
+									$("#contact-form").parent().find(".response .message")
+										.removeClass("display-none")
+										.addClass("success-message")
+										.html("Your message has been sent.");
+								}
+								else{
+									$("#contact-form").parent().find(".response .message")
+										.removeClass("display-none")
+										.addClass("failure-message")
+										.html("There was an error. Please try again later.");
+								}
+							});
+							return false;
+						});
+					</script>
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- /Modals -->
 	<div id="container" class="">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
 		    <div class="container-fluid">
@@ -287,14 +365,6 @@
 										placeholder="Email Address"
 										required/>
 								</div>
-								<!--
-								<div class="form-group">
-									<input 
-										name="subject" 
-										placeholder="Subject"
-										required/>
-								</div>
-								-->
 								<div class="form-group">
 									<textarea 
 										name="message"
@@ -305,6 +375,13 @@
 									<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
 								</div>
 							</form>
+							<button type="button" 
+									class="bttn-fill bttn-lg bttn-primary" 
+									id="open-contact-modal" 
+									data-toggle="modal" 
+									data-target="#contact-modal">
+										Show Form
+							</button>
 							<div class="response">
 								<img src="img/spinner.gif" class="display-none"/>
 								<div class="message display-none"></div>
