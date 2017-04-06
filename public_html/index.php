@@ -25,42 +25,27 @@
 	<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />
 	<!-- Lettering.js -->
 	<script src="library/lettering.js"></script>
+	<script src="library/modernizr.js"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
 	<script>
-		//Returns true or false depending on whether the browser supports rotation or not.
-		function has3d() {
-		    if (!window.getComputedStyle) {
-		        return false;
-		    }
+		var currentScrollPosition;
 
-		    var el = document.createElement('p'), 
-		        has3d,
-		        transforms = {
-		            'webkitTransform':'-webkit-transform',
-		            'OTransform':'-o-transform',
-		            'msTransform':'-ms-transform',
-		            'MozTransform':'-moz-transform',
-		            'transform':'transform'
-		        };
-
-		    // Add it to the body to get the computed style.
-		    document.body.insertBefore(el, null);
-
-		    for (var t in transforms) {
-		        if (el.style[t] !== undefined) {
-		            el.style[t] = "translate3d(1px,1px,1px)";
-		            has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
-		        }
-		    }
-
-		    document.body.removeChild(el);
-
-		    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
-		}
 
 		$(function(){
+			var removedScene;
+			$("input, textarea")
+			.focus(function(){
+				currentScrollPosition = $(document).scrollTop();
+				removedScene = currentScene;
+				currentScene.remove();
+			})
+			.blur(function(){
+				$(document).scrollTop(currentScrollPosition);
+				removedScene.addTo(controller);
+			});
+
 			$(".lettering").each(function(_,e){
 				var html = $(e).html().split("");
 				html = html.reduce(function(acc, val){
@@ -151,9 +136,8 @@
 				<h1 id="main-header">
 					Pereli Web Works
 				</h1>
-				<div class="medium-spacer"></div>
 				<div id="main-header-disappear-trigger"></div>
-				<div class="spacer"></div>
+				<div class="large-spacer"></div>
 				<div id="about"></div>
 				<div class="animate-container">
 					<div class="animate-box">
@@ -401,11 +385,11 @@
 								var style = {
 								  base: {
 								    color: '#ddd',
-								    iconColor: '#fff'
-								    //lineHeight: '24px',
+								    iconColor: '#fff',
+								    lineHeight: $("#payment-form input").height() + "px",
+								    fontSize: $("#payment-form input").css("font-size")
 								    //fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
 								    //fontSmoothing: 'antialiased',
-								    //fontSize: '16px',
 								    //'::placeholder': {
 								      //color: '#aab7c4'
 								    //}

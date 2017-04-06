@@ -17,6 +17,8 @@ $mainHeaderFont: "thunderstrike";
 
 $mainTextColor: #ddd;
 
+$mobileBreakPoint: 1000px;
+
 @font-face{
 	src: url("../fonts/timeburnernormal.ttf");
 	font-family: "timeburner";
@@ -90,10 +92,10 @@ body{
 		position: fixed;
 		top: 0;
 		left: 0;
-		@media screen and (min-width: 768px){
+		@media screen and (min-width: $mobileBreakPoint){
 			width: 220%;
 		}
-		@media screen and (max-width: 768px){
+		@media screen and (max-width: $mobileBreakPoint){
 			height: 200%;
 		}
 	}
@@ -156,6 +158,8 @@ body{
 	text-shadow: -1px 1px 2px #337;
 }
 
+
+
 .animate-container{
 	width: 100%;
 	text-align: center;
@@ -179,10 +183,16 @@ body{
 		padding: 25px;
 		border-radius: 5px;
 		box-shadow: $animatBoxBoxShadowPx #ddd;
-		font-size: 2em;
+		font-size: 25px;
+		@media screen and (max-width: $mobileBreakPoint){
+			font-size: 40px;
+		}
 
 		&.smaller-font{
-			font-size: 1em;
+			font-size: 20px;
+			@media screen and (max-width: $mobileBreakPoint){
+				font-size: 30px;
+			}
 		}
 
 		h1, h2{

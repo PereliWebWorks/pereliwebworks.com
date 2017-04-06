@@ -1,9 +1,19 @@
 var messageWidth = 20; //In %
 var animateBoxWidth = 80; //In %
+var mobileBreakPoint = 1000; //In pixels
 var controller = new ScrollMagic.Controller();
+var scenes = [];
+var currentScene = false;
 
 
 $(function(){
+
+	var vw = document.body.clientWidth;
+	var vh = document.body.clientHeight;
+	var isMobile = vw < mobileBreakPoint;
+	var noRotation = isMobile || !Modernizr.csstransforms3d;
+	noRotation = true;
+
 	var swipeDuration = 1500;
 	var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
 	//Create wipe animation and scroll animation
@@ -97,7 +107,7 @@ $(function(){
 
 	
 
-
+	
 	//Animate base containers
 	$(".animate-container").each((i,e)=>{
 		var textElement = $(e).find(".animate-box");
@@ -108,13 +118,8 @@ $(function(){
 		var baseRY = 42;
 		var startRY = i % 2 === 0 ? -baseRY : baseRY;
 		var startRX = -10;
-		var vw = document.body.clientWidth;
-		var vh = document.body.clientHeight;
 		var rotationRadius = -1 * vw * 1.3 ;
 		//Global animation settings
-		if (i === 4){
-			console.log((100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2);
-		}
 		var animation = new TimelineMax()
 			.set(textElement,
 				{
@@ -130,27 +135,54 @@ $(function(){
 				animation
 					.set(textElement,
 						{
+							opacity: 0
+						}
+					)
+				if (!noRotation){
+					animation.set(textElement,
+						{
 							rotationY: startRY,
 							rotationX: startRX, 
 							transformOrigin: "50% 50% " + rotationRadius,
 							transformPerspective: 1000,
-							opacity: 0,
 							
 						}
-					)
-					.to(textElement, 1, 
+					);
+				}
+				else{
+					animation.set(textElement,
 						{
-							rotationY: 0, 
-							rotationX: 0, 
-							opacity: 1,
-							ease: Power2.easeOut
+							left: -animateBoxWidth - 1 + "%"
 						}
 					);
-					$(e).find(".lettering").each(function(i,el){
-						animation.staggerTo($(el).children(), .1, {visibility: "initial"}, 0.01);
-					});
-
+				}
+				if (!noRotation){
 					animation
+						.to(textElement, 1, 
+							{
+								rotationY: 0, 
+								rotationX: 0, 
+								opacity: 1,
+								ease: Power2.easeOut
+							}
+						);
+				}
+				else{
+					animation
+						.to(textElement, 1, 
+							{
+								left: 50 - animateBoxWidth / 2 + "%",
+								opacity: 1,
+								ease: Power2.easeOut
+							}
+						);
+				}
+
+				$(e).find(".lettering").each(function(i,el){
+					animation.staggerTo($(el).children(), .1, {visibility: "initial"}, 0.01);
+				});
+
+				animation
 					.add("highlight")
 					.staggerTo($(e).find(".lettering").children(), .1, 
 						{backgroundColor: "gray", delay: .5}, 
@@ -246,15 +278,27 @@ $(function(){
 							ease: RoughEase.ease.config({ template:  Power0.easeNone, strength: 1.5, points: 20, taper: "none", randomize: true, clamp: true})
 						},
 						"takeoff"
-					)
-					.to(textElement, 1, 
-						{
-							rotationY: startRY,
-							rotationX: -startRX, 
-							ease: Power3.easeIn
-						},
-						"takeoff+=.5"
-					)
+					);
+					if (!noRotation){
+						animation.to(textElement, 1, 
+							{
+								rotationY: startRY,
+								rotationX: -startRX, 
+								ease: Power3.easeIn
+							},
+							"takeoff+=.5"
+						);
+					}
+					else{
+						animation.to(textElement, 1, 
+							{
+								left: "100%",
+								ease: Power3.easeIn
+							},
+							"takeoff+=.5"
+						);
+					}
+					animation
 					.set($(e).find(".lettering").children(),
 						{
 							clearProps: "visibility"
@@ -410,104 +454,160 @@ $(function(){
 			//Five box
 			//***************
 			case 4:
-				animation
-				.set(textElement,
-					{
-						transformPerspective: 1000,
-						transformOrigin: "50% top",
-						rotationX: -90
-					}
-				)
-				.set(textElement.find(".rotate, .form-group"),
-					{
-						transformOrigin: "left top",
-					}
-				)
-				.to(textElement, 4, 
-					{
-						rotationX: 0,
-						ease: Elastic.easeOut.config(2, 0.3)
-					}
-				)
-				.staggerTo(textElement.find(".rotate, .form-group"), 2,
-					{
-						rotationZ: 80,
-						delay: 1,
-						ease: Elastic.easeOut.config(1.5, 0.3)
-					},
-					.1,
-					2
-				)
-				.staggerTo(textElement.find(".rotate, .form-group"), 1,
-					{
-						y: vh
-					},
-					.2
-				)
-				.to(textElement, 1,
-					{
-						height: $(".animate-box").eq(i+1).height(),
-						rotationX: 90
-					}
-				)
+				if (!noRotation){
+					animation
+						.set(textElement,
+							{
+								transformPerspective: 1000,
+								transformOrigin: "50% top",
+								rotationX: -90
+							}
+						)
+						.set(textElement.find(".rotate, .form-group"),
+							{
+								//transformOrigin: "left top",
+							}
+						)
+						.to(textElement, 4, 
+							{
+								rotationX: 0,
+								ease: Elastic.easeOut.config(2, 0.3)
+							}
+						)
+						.to(textElement.find(".rotate, .form-group"), 2,
+							{
+								rotationX: 90,
+								delay: 1
+							},
+							2
+						)
+						.to(textElement, 1,
+							{
+								height: $(".animate-box").eq(i+1).height(),
+								rotationX: 90
+							}
+						)
+				}
+				else{
+					animation
+						.set(textElement,
+							{
+								top: "100%"
+							}
+						)
+						.to(textElement, 1, 
+							{
+								top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
+							}
+						)
+						.staggerTo(textElement.find(".rotate, .form-group"), 1,
+							{
+								opacity: 0,
+								delay: 1
+							},
+							.2
+						)
+						.to(textElement, 1,
+							{
+								top: (100 - ($(".animate-box").eq(i+1).height() / document.body.clientHeight * 100)) / 2 + "%", 
+								height: "5%"
+							}
+						)
+
+				}				
 				break;
 			//***************
 			//Sixth box
 			//***************
 			case 5:
-				animation
-				.set(textElement,
-					{
-						transformPerspective: 3000,
-						transformOrigin: "50% top",
-						rotationX: 90
-					}
-				)
-				.set(textElement.children(),
-					{
-						opacity: 0
-					}
-				)
-				.add("swing")
-				.to(textElement, 1,
-					{
-						rotationX: 360
-					}
-				)
-				.to(textElement.children(), 1,
-					{
-						opacity: 1
-					},
-					"swing"
-				)
-				.set(textElement,
-					{
-						transformOrigin: "right bottom"
-					}
-				)
-				.to(textElement, 1,
-					{
-						rotationY:180,
-						delay: 1,
-					}
-				)
-				.to(textElement, 1,
-					{
-						rotationX:540
-					}
-				)
-				.set(textElement,
-					{
-						transformOrigin: "left bottom",
-						left: 50 + 3 * animateBoxWidth/2 + "%",
-						rotationY: -180
-					}
-				)
-				.to(textElement, 1,
-					{
-						rotationY:0,
-					}
-				)
+				if(!noRotation)
+				{
+					animation
+					.set(textElement,
+						{
+							transformPerspective: 3000,
+							transformOrigin: "50% top",
+							rotationX: 90
+						}
+					)
+					.set(textElement.children(),
+						{
+							opacity: 0
+						}
+					)
+					.add("swing")
+					.to(textElement, 1,
+						{
+							rotationX: 360
+						}
+					)
+					.to(textElement.children(), 1,
+						{
+							opacity: 1
+						},
+						"swing"
+					)
+					.set(textElement,
+						{
+							transformOrigin: "right bottom"
+						}
+					)
+					.to(textElement, 1,
+						{
+							rotationY:180,
+							delay: 1,
+						}
+					)
+					.to(textElement, 1,
+						{
+							rotationX:540
+						}
+					)
+					.set(textElement,
+						{
+							transformOrigin: "left bottom",
+							left: 50 + 3 * animateBoxWidth/2 + "%",
+							rotationY: -180
+						}
+					)
+					.to(textElement, 1,
+						{
+							rotationY:0,
+						}
+					)
+				}
+				else{
+					//Get height
+					var h = textElement.height();
+					animation
+					.set(textElement.children(), 
+						{
+							opacity: 0
+						}
+					)
+					.set(textElement, 
+						{
+							height: "5%"
+						}
+					)
+					.to(textElement, 1,
+						{
+							height: h + 20
+						}
+					)
+					.staggerTo(textElement.children(), 1,
+						{
+							opacity: 1
+						},
+						.2
+					)
+					.to(textElement, 1,
+						{
+							top: "-200%",
+							delay: 1
+						}
+					);
+				}
 				break;
 		}
 
@@ -521,12 +621,16 @@ $(function(){
 					//.addIndicators({name: "t" + i}) // add indicators (requires plugin)
 					.addTo(controller);
 
+		scenes.push(s);
+
 		//Show or hide the box depending on scroll direction
 		s.on("start", function(e){
 			if (e.scrollDirection === "FORWARD"){
+				currentScene = s;
 				$(textElement).css("visibility", "visible");
 			}
 			else{
+				currentScene = false;
 				$(textElement).css("visibility", "hidden");
 			}
 		});
@@ -534,11 +638,13 @@ $(function(){
 		//Show or hide the box depending on scroll direction
 		s.on("end", function(e){
 			if (e.scrollDirection === "FORWARD"){
+				currentScene = false;
 				//Box number 2 is a special case because it will be pushed away by box 3.
 				if (i !== 2)
 					$(textElement).css("visibility", "hidden");
 			}
 			else{
+				currentScene = s;
 				$(textElement).css("visibility", "visible");
 			}
 		})
@@ -550,13 +656,13 @@ $(function(){
 	//Animate example sites
 	var animation = new TimelineMax()
 		.staggerFromTo($(".site-example, #site-example-header"), 1, 
-					{left: "-100%", top: "100vH", opacity: 0, rotationY: -360},
-					{left: "0", top: "12vH", opacity: 1, rotationY: 0, ease: Elastic.easeOut.config(1, .75)},
+					{left: "-100%", top: "100vH", opacity: 0},
+					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
 				.2)
 		.staggerTo($(".site-example"), .2, 
 					{scale: 1.2, filter: "grayscale(0)", yoyo: true, repeat: 1}, .2)
 		.staggerTo($(".site-example, #site-example-header"), 1, 
-					{left: "100%", top: "100vH", opacity: 0, rotationY: 90, ease: Back.easeIn.config(1)},
+					{left: "100%", top: "100vH", opacity: 0, ease: Back.easeIn.config(1)},
 				.2);
 	var s = new ScrollMagic.Scene({
 				triggerElement: $("#site-example-trigger"),
