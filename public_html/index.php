@@ -26,25 +26,31 @@
 	<!-- Lettering.js -->
 	<script src="library/lettering.js"></script>
 	<script src="library/modernizr.js"></script>
+	<!-- Stripe -->
+	<script src="https://js.stripe.com/v3/"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
 	<script>
-		var currentScrollPosition;
+		
 
 
 		$(function(){
-			var removedScene;
-			$("input, textarea")
-			.focus(function(){
-				currentScrollPosition = $(document).scrollTop();
-				removedScene = currentScene;
-				currentScene.remove();
-			})
-			.blur(function(){
-				$(document).scrollTop(currentScrollPosition);
-				removedScene.addTo(controller);
+			var currentScrollPosition;
+			$(".open-modal-btn").click(function(){
+				currentScrollPosition = controller.scrollPos();
+				$("body")
+					.css("position", "fixed")
+					.css("overflow", "hidden");
+				$(".modal-background-box").css("display", "block");
 			});
+			$(".close-modal-btn").click(function(){
+				$("body")
+					.css("position", "initial")
+					.css("overflow", "initial");
+				$(".modal-background-box").css("display", "none");
+				$(document).scrollTop(currentScrollPosition);
+			})
 
 			$(".lettering").each(function(_,e){
 				var html = $(e).html().split("");
@@ -77,23 +83,22 @@
 		<img src="img/loading_spinner.gif"/>
 	</div>
 	<!-- Modals -->
-	<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="contact-modal-label" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <h2 class="modal-title" id="contact-modal-label">Get in Touch</h2>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
-				<h2>Get in Touch</h2>
 				<div class="smaller-font">
 					<div>
 					Feel free to email me directly at drew@pereliwebworks.com.<br/>
 					Or use this form to contact me.
 					</div>
-					<form id="contact-form" method="POST" action="contact.php">
+					<form id="mobile-contact-form" method="POST" action="contact.php">
 						<div class="form-group">
 							<input 
 								name="name" 
@@ -103,6 +108,7 @@
 						</div>
 						<div class="form-group">
 							<input 
+								id="email-input"
 								name="email" 
 								type="email" 
 								placeholder="Email Address"
@@ -115,7 +121,7 @@
 								rows="3" required></textarea>
 						</div>
 						<div class="form-group">
-							<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
+							<button class="bttn-fill bttn-lg submit-btn">Submit</button>
 						</div>
 					</form>
 					<div class="response">
@@ -123,19 +129,19 @@
 						<div class="message display-none"></div>
 					</div>
 					<script>
-						$("#contact-form").submit(function(e){
+						$("#mobile-contact-form").submit(function(e){
 							e.preventDefault();
-							$("#contact-form").parent().find(".response img").removeClass("display-none");
-							$("#contact-form").ajaxSubmit(function(response){
-								$("#contact-form").parent().find(".response img").addClass("display-none");
+							$("#mobile-contact-form").parent().find(".response img").removeClass("display-none");
+							$("#mobile-contact-form").ajaxSubmit(function(response){
+								$("#mobile-contact-form").parent().find(".response img").addClass("display-none");
 								if (response){
-									$("#contact-form").parent().find(".response .message")
+									$("#mobile-contact-form").parent().find(".response .message")
 										.removeClass("display-none")
 										.addClass("success-message")
 										.html("Your message has been sent.");
 								}
 								else{
-									$("#contact-form").parent().find(".response .message")
+									$("#mobile-contact-form").parent().find(".response .message")
 										.removeClass("display-none")
 										.addClass("failure-message")
 										.html("There was an error. Please try again later.");
@@ -147,11 +153,150 @@
 				</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="bttn-fill bttn-lg close-modal-btn" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
 	  </div>
+	</div>
+	<div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="payment-modla-label" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h2 class="modal-title" id="payment-modla-label">Make a Payment</h2>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<div>
+				<form action="/charge.php" method="post" id="mobile-payment-form">
+					<div class="form-group">
+						<input 
+							name="name" 
+							placeholder="Name" 
+							required/>
+					</div>
+				    <div class="form-group">
+				   		<div id="mobile-card-element"></div>
+				   	</div>
+
+				    <!-- Used to display form errors -->
+				    <div id="mobile-card-errors"></div>
+
+				    <div class="form-group">
+				    	<span class="pre-input">$</span>
+						<input 
+							name="amount" 
+							type="number" 
+							placeholder="Amount" 
+							required/>
+					</div>
+
+				  <button class="bttn-fill bttn-lg bttn-primary">Submit Payment</button>
+				</form>
+				<div class="response">
+					<img src="img/spinner.gif" class="display-none"/>
+					<div class="message display-none"></div>
+				</div>
+				<script>
+					// Create a Stripe client
+					var stripe = Stripe('pk_live_CNeiyiaWknkKKhcZ05jBA7OH');
+
+					// Create an instance of Elements
+					var elements = stripe.elements();
+
+					// Custom styling can be passed to options when creating an Element.
+					// (Note that this demo uses a wider set of styles than the guide below.)
+
+					var style = {
+					  base: {
+					    color: '#ddd',
+					    iconColor: '#fff',
+					    lineHeight: "57px",
+					    fontSize: "40px"
+					    //fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+					    //fontSmoothing: 'antialiased',
+					    //'::placeholder': {
+					      //color: '#aab7c4'
+					    //}
+					  },
+					  invalid: {
+					    color: '#fa755a',
+					    iconColor: '#fa755a'
+					  }
+					};
+
+					// Create an instance of the card Element
+					var card = elements.create('card', {style: style});
+
+					// Add an instance of the card Element into the `card-element` <div>
+					card.mount('#mobile-card-element');
+
+					// Handle real-time validation errors from the card Element.
+					card.addEventListener('change', function(event) {
+					  var displayError = document.getElementById('mobile-card-errors');
+					  if (event.error) {
+					    displayError.textContent = event.error.message;
+					  } else {
+					    displayError.textContent = '';
+					  }
+					});
+
+					// Handle form submission
+					var form = document.getElementById('mobile-payment-form');
+					form.addEventListener('submit', function(event) {
+					  event.preventDefault();
+
+					  $(form).parent().find(".response img").removeClass("display-none");
+
+					  stripe.createToken(card).then(function(result) {
+					    if (result.error) {
+					      // Inform the user if there was an error
+					      var errorElement = document.getElementById('mobile-card-errors');
+					      errorElement.textContent = result.error.message;
+					    } else {
+					      // Send the token to your server
+					      stripeTokenHandler(result.token);
+					    }
+					  });
+					});
+
+					function stripeTokenHandler(token) {
+					  // Insert the token ID into the form so it gets submitted to the server
+					  var form = document.getElementById('mobile-payment-form');
+					  var hiddenInput = document.createElement('input');
+					  hiddenInput.setAttribute('type', 'hidden');
+					  hiddenInput.setAttribute('name', 'stripeToken');
+					  hiddenInput.setAttribute('value', token.id);
+					  form.appendChild(hiddenInput);
+
+					  // Submit the form
+					  $(form).ajaxSubmit(function(response){
+					  	$(form).parent().find(".response .img").addClass("display-none")
+					  	if (response){
+					  		$(form).parent().find(".response .message")
+					  			.removeClass("display-none")
+								.addClass("success-message")
+								.html("Your payment has been sent.");
+					  	}
+					  	else{
+					  		$(form).parent().find(".response .message")
+					  			.removeClass("display-none")
+								.addClass("failure-message-message")
+								.html("There was an error with your payment. Please try again later.");
+					  	}
+					  });
+					}
+				</script>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="bttn-fill bttn-lg close-modal-btn" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal-background-box">
 	</div>
 	<!-- /Modals -->
 	<div id="container" class="">
@@ -189,7 +334,11 @@
 		</div>
 		<span id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
-				<img src="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"/>
+				<img 
+
+					src="https://media.law.wisc.edu/m/jg4fw/aerial_uw_17-35mm11_6475_capital.jpg"
+					srcold="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"
+				/>
 			</div>
 			<div class="panel" id="panel_2" data-p-num="2">
 				<img src="img/backgrounds/forest.jpg"/>
@@ -344,48 +493,50 @@
 				<div id="contact"></div>
 				<div class="animate-container" id="contact-container">
 					<div class="animate-box">
-						<h2 class="rotate">Get in Touch</h2>
+						<h2 class="anim">Get in Touch</h2>
 						<div class="smaller-font">
-							<div class="rotate">
-							Feel free to email me directly at drew@pereliwebworks.com.<br/>
-							Or use this form to contact me.
+							<div class="anim">
+								Feel free to email me directly at drew@pereliwebworks.com.<br/>
+								<span class="hidden-mobile">Or use this form to contact me.</span>
+								<span class="visible-mobile">Or click the button bellow to fill out a contact form.</span>
 							</div>
-							<form id="contact-form" method="POST" action="contact.php">
-								<div class="form-group">
-									<input 
-										name="name" 
-										type="text" 
-										placeholder="Name" 
-										required/>
+							<span class="hidden-mobile">
+								<form id="contact-form" method="POST" action="contact.php">
+									<div class="form-group anim">
+										<input 
+											name="name" 
+											type="text" 
+											placeholder="Name" 
+											required/>
+									</div>
+									<div class="form-group anim">
+										<input 
+											name="email" 
+											type="email" 
+											placeholder="Email Address"
+											required/>
+									</div>
+									<div class="form-group anim">
+										<textarea 
+											name="message"
+											placeholder="Message"
+											rows="3" required></textarea>
+									</div>
+									<div class="form-group anim">
+										<button class="bttn-fill bttn-lg bttn-primary submit-btn">Submit</button>
+									</div>
+								</form>
+								<div class="response anim">
+									<img src="img/spinner.gif" class="display-none"/>
+									<div class="message display-none"></div>
 								</div>
-								<div class="form-group">
-									<input 
-										name="email" 
-										type="email" 
-										placeholder="Email Address"
-										required/>
-								</div>
-								<div class="form-group">
-									<textarea 
-										name="message"
-										placeholder="Message"
-										rows="3" required></textarea>
-								</div>
-								<div class="form-group">
-									<button class="bttn-fill bttn-sm bttn-primary submit-btn">Submit</button>
-								</div>
-							</form>
+							</span>
 							<button type="button" 
-									class="bttn-fill bttn-lg bttn-primary" 
-									id="open-contact-modal" 
-									data-toggle="modal" 
-									data-target="#contact-modal">
-										Show Form
-							</button>
-							<div class="response">
-								<img src="img/spinner.gif" class="display-none"/>
-								<div class="message display-none"></div>
-							</div>
+										class="bttn-fill bttn-lg bttn-primary open-modal-btn visible-mobile anim" 
+										data-toggle="modal" 
+										data-target="#contact-modal">
+											Get in Touch
+								</button>
 							<script>
 								$("#contact-form").submit(function(e){
 									e.preventDefault();
@@ -417,9 +568,8 @@
 				<div class="animate-container smaller-font">
 					<div class="animate-box">
 						<h2>Make a Payment</h2>
-						<div>
+						<div class="hidden-mobile">
 							You can use the secure payment form bellow to make a payment. If you'd rather use PayPal, you can send a PayPal payment to drew@pereliwebworks.com.
-							<script src="https://js.stripe.com/v3/"></script>
 							<form action="/charge.php" method="post" id="payment-form">
 								<div class="form-group">
 									<input 
@@ -443,7 +593,7 @@
 										required/>
 								</div>
 
-							  <button class="bttn-fill bttn-sm bttn-primary">Submit Payment</button>
+							  <button class="bttn-fill bttn-lg bttn-primary">Submit Payment</button>
 							</form>
 							<div class="response">
 								<img src="img/spinner.gif" class="display-none"/>
@@ -539,34 +689,19 @@
 								  });
 								}
 							</script>
-							<!--
-							<form>
-								<div>
-									<input 
-										id="cf-name" 
-										name="name" 
-										type="text" 
-										placeholder="Your Name" />
-								</div>
-								<div>
-									<input 
-										id="cf-email" 
-										name="email" 
-										type="email" 
-										placeholder="Your Email Address"/>
-								</div>
-								<div>
-									<textarea 
-										id="cf-message" 
-										name="message"
-										placeholder="Your Message"
-										rows="5"></textarea>
-								</div>
-								<div>
-									<button class="bttn-fill bttn-sm bttn-primary">Submit</button>
-								</div>
-							</form>
-							-->
+						</div>
+						<div class="visible-mobile">
+							<div>
+							Click the button bellow to access a secure payment form. If you'd rather use paypal, send a paypal payment to drew@pereliwebworks.com.
+							</div>
+							<div>
+								<button type="button"
+										class="bttn-fill bttn-lg bttn-primary"
+										data-toggle="modal" 
+										data-target="#payment-modal">
+									Make a Payment
+								</button>
+							</div>
 						</div>
 					</div>
 					<div class="large-spacer"></div>

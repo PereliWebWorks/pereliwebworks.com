@@ -57,6 +57,17 @@ $mobileBreakPoint: 1000px;
 	background-color: rgba(200, 50, 50, .6);
 }
 
+@media (max-width: $mobileBreakPoint){
+	.hidden-mobile{
+		display: none;
+	}
+}
+@media (min-width: $mobileBreakPoint){
+	.visible-mobile{
+		display: none;
+	}
+}
+
 body{
 	background-color: black;
 	overflow-x: hidden;
@@ -93,7 +104,7 @@ body{
 		top: 0;
 		left: 0;
 		@media screen and (min-width: $mobileBreakPoint){
-			width: 220%;
+			width: 200%;
 		}
 		@media screen and (max-width: $mobileBreakPoint){
 			height: 200%;
@@ -159,6 +170,45 @@ body{
 }
 
 
+$animatBoxBoxShadowPx: 0 0 10px 5px;
+.base-box{
+	color: rgb(0,239,0);
+	width: $animateBoxWidth;
+	left: (50 - $animateBoxWidth / 2);
+	text-align: left;
+	background-color: rgba(0,0,0,.85);
+	padding: 25px;
+	border-radius: 5px;
+	box-shadow: $animatBoxBoxShadowPx #ddd;
+	font-size: 25px;
+	@media screen and (max-width: $mobileBreakPoint){
+		font-size: 40px;
+	}
+
+	&.smaller-font{
+		font-size: 20px;
+		@media screen and (max-width: $mobileBreakPoint){
+			font-size: 30px;
+		}
+	}
+
+	h1, h2{
+		font-size: 2em;
+		@extend .header-style;
+	}
+
+	a{
+	  $linkColor: rgb(28,133,248);
+	  color: $linkColor;
+
+	  &:hover{
+	  	color: darken($linkColor, 10%);
+	  }
+	}
+}
+
+
+
 
 .animate-container{
 	width: 100%;
@@ -168,47 +218,11 @@ body{
 	min-height: 100vH;
 
 	.animate-box{
-		$animatBoxBoxShadowPx: 0 0 10px 5px;
-		$animateBoxComputerScreenBoxShadow: inset 0 0 6px 20px gray;
+		@extend .base-box;
 		z-index: 3;
-		visibility: hidden;
 		position: fixed;
-		//color: $mainTextColor;
-		color: rgb(0,239,0);
-		width: $animateBoxWidth;
+		visibility: hidden;
 		max-height: 80%;
-		left: (50 - $animateBoxWidth / 2);
-		text-align: left;
-		background-color: rgba(0,0,0,.85);
-		padding: 25px;
-		border-radius: 5px;
-		box-shadow: $animatBoxBoxShadowPx #ddd;
-		font-size: 25px;
-		@media screen and (max-width: $mobileBreakPoint){
-			font-size: 40px;
-		}
-
-		&.smaller-font{
-			font-size: 20px;
-			@media screen and (max-width: $mobileBreakPoint){
-				font-size: 30px;
-			}
-		}
-
-		h1, h2{
-			font-size: 2em;
-			@extend .header-style;
-		}
-
-		a{
-		  $linkColor: rgb(28,133,248);
-		  color: $linkColor;
-
-		  &:hover{
-		  	color: darken($linkColor, 10%);
-		  }
-		}
-
 		.lettering span{
 			visibility: hidden;
 		}
@@ -231,6 +245,37 @@ body{
 }
 
 
+
+.modal{
+	width: 100%;
+	background-color: black;
+	.modal-dialog{
+		@media (min-width: $mobileBreakPoint){
+			width: 60%;
+		}
+		@media (max-width: $mobileBreakPoint){
+			width: 100%;
+		}
+		margin: auto;
+	}
+	.modal-content{
+		@extend .base-box;
+	}
+	.modal-footer{
+		button{
+			color: black;
+		}
+	}
+}
+
+.modal-background-box{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 4;
+  display: none;
+}
 
 
 
@@ -296,7 +341,7 @@ body{
   margin-bottom: .5em;
   width: 100%;
   display: flex;
-    > input, > textarea, > #card-element{
+    > input, > textarea, > #card-element, > #mobile-card-element{
 	  background-color: rgba(250,250,250,.3);
 	  border: 0;
 	  border-bottom: 1px solid #ddd;

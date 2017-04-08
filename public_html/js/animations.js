@@ -12,7 +12,7 @@ $(function(){
 	var vh = document.body.clientHeight;
 	var isMobile = vw < mobileBreakPoint;
 	var noRotation = isMobile || !Modernizr.csstransforms3d;
-	noRotation = true;
+	//noRotation = true;
 
 	var swipeDuration = 1500;
 	var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
@@ -23,16 +23,14 @@ $(function(){
 		$layout = $("#panel-" + id + "-layout");
 		if (i !== 0){ //Don't do swipe animation for first panel
 			var fromX;
-			var fromBSX;
+			var toX;
 			if (i % 2 === 1){
 				fromX = "-100%";
 				toX = "0%";
-				fromBSX = "50px";
 			}
 			else{
 				fromX = "0%";
 				toX = "-50%";
-				fromBSX = "-50px"
 			}
 			var wipeAnimation = new TimelineMax().fromTo(e, 1, 
 							{x: fromX, opacity: 0 /*boxShadow: fromBSX + " -50px 10px 5px rgba(0,0,0,.3);"*/}, 
@@ -463,7 +461,7 @@ $(function(){
 								rotationX: -90
 							}
 						)
-						.set(textElement.find(".rotate, .form-group"),
+						.set(textElement.find(".anim"),
 							{
 								//transformOrigin: "left top",
 							}
@@ -474,7 +472,7 @@ $(function(){
 								ease: Elastic.easeOut.config(2, 0.3)
 							}
 						)
-						.to(textElement.find(".rotate, .form-group"), 2,
+						.to(textElement.find(".anim"), 2,
 							{
 								rotationX: 90,
 								delay: 1
@@ -500,12 +498,11 @@ $(function(){
 								top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
 							}
 						)
-						.staggerTo(textElement.find(".rotate, .form-group"), 1,
+						.staggerTo(textElement.find(".anim"), 1,
 							{
 								opacity: 0,
 								delay: 1
-							},
-							.2
+							}
 						)
 						.to(textElement, 1,
 							{
@@ -698,30 +695,35 @@ $(function(){
 		else{
 			$(textElement).css("display", "initial");
 		}
-	})
+	});
+
+
+	if (!isMobile){
+		//Add nice scrolling
+		// change behaviour of controller to animate scroll instead of jump
+		controller.scrollTo(function (newpos) {
+			TweenMax.to(window, 2, {scrollTo: {y: newpos}});
+		});
+
+		//  bind scroll to anchor links
+		$(document).on("click", "a[href^='#']", function (e) {
+			var id = $(this).attr("href");
+			if ($(id).length > 0) {
+				e.preventDefault();
+
+				// trigger scroll
+				controller.scrollTo(id);
+
+					// if supported by the browser we can even update the URL.
+				if (window.history && window.history.pushState) {
+					history.pushState("", document.title, id);
+				}
+			}
+		});
+	}
 });
 
-//Add nice scrolling
-	// change behaviour of controller to animate scroll instead of jump
-	controller.scrollTo(function (newpos) {
-		TweenMax.to(window, 2, {scrollTo: {y: newpos}});
-	});
-
-	//  bind scroll to anchor links
-	$(document).on("click", "a[href^='#']", function (e) {
-		var id = $(this).attr("href");
-		if ($(id).length > 0) {
-			e.preventDefault();
-
-			// trigger scroll
-			controller.scrollTo(id);
-
-				// if supported by the browser we can even update the URL.
-			if (window.history && window.history.pushState) {
-				history.pushState("", document.title, id);
-			}
-		}
-	});
+	
 
 
 
