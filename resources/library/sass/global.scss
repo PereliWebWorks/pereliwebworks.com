@@ -142,12 +142,10 @@ body{
 		overflow: hidden;
 		position: fixed;
 		top: 0;
-		left: 0;
-		@media screen and (min-width: $mobileBreakPoint){
+		width: 350%;
+		left: -100%;
+		@media screen and (min-aspect-ratio: 1/1){
 			width: 200%;
-		}
-		@media screen and (max-width: $mobileBreakPoint){
-			height: 200%;
 		}
 	}
 }
@@ -177,6 +175,7 @@ body{
 
 
 .btn{
+  margin: 5px;
   $btnColor: lighten($green, 15%);
   background-color: $btnColor;
   color: $white;
@@ -188,6 +187,21 @@ body{
   	color: #fff;
   	box-shadow: 0 0 10px $gray;
   }
+
+  &.btn-white{
+  	background-color: $white;
+  	color: $black;
+
+  	&.hover{
+	  	background-color: darken($white, 10%);
+	  	color: lighten($black, 10%);
+	  }
+  }
+}
+
+a.btn{
+  	text-decoration: unset;
+	color: unset;
 }
 
 
@@ -204,6 +218,22 @@ body{
 	background-color: $blue;
 	box-shadow: inset -30px -20px 170px -20px $black;
 }
+
+
+
+
+#main-header{
+	position: fixed;
+	top: $tinySpacerHeight;
+	color: $white;
+	font-family: $mainHeaderFont;
+	text-align: center;
+	font-size: 9em;
+	text-shadow: -2px 2px 10px $black;
+}
+
+
+
 
 
 $animatBoxBoxShadowPx: 0 0 20px -2px;
@@ -261,6 +291,37 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 		visibility: hidden;
 		max-height: 80%;
 
+		.resume-btn-container{
+			display: block;
+			@media (min-width: $mobileBreakPoint){
+		  		display: flex;
+		  		align-items: center;
+		  		justify-content: center;
+		  	}
+		  position: relative;
+		  margin: auto;
+		  text-align: center;
+		  height: 10em;
+		  width: 100%;
+		  left: 0;
+
+		  button{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			@media (min-width: $mobileBreakPoint){
+				width: 30vw;
+				left: unset;
+			}
+			height: 30%;
+			&:nth-of-type(2){
+				top: 50%;
+			}
+		  }
+		}
+
+
 		.lettering span{
 			visibility: hidden;
 		}
@@ -287,6 +348,7 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 .modal{
 	width: 100%;
 	background-color: black;
+	overflow: hidden;
 	.modal-dialog{
 		@media (min-width: $mobileBreakPoint){
 			width: 60%;
@@ -319,15 +381,7 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 
 
 
-#main-header{
-	position: fixed;
-	top: $tinySpacerHeight;
-	color: white;
-	font-family: $mainHeaderFont;
-	text-align: center;
-	font-size: 9em;
-	text-shadow: -2px 2px 10px purple;
-}
+
 
 
 #site-examples{
@@ -347,8 +401,8 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 
 	.site-example{
 		position: relative;
-		width: 20vmin;
-		height: 20vmin;
+		width: 18vmax;
+		height: 18vmax;
 		margin: 1%;
 		box-shadow: 0 0 6px 2px white;
 	  	border-radius: 2px;

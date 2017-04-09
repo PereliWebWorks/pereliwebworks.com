@@ -11,28 +11,40 @@ $(function(){
 	var vw = document.body.clientWidth;
 	var vh = document.body.clientHeight;
 	var isMobile = vw < mobileBreakPoint;
-	isMobile = true;
+	var aspectRatioFraction = vh > vw;
+	//isMobile = true;
 	var noRotation = isMobile || !Modernizr.csstransforms3d;
 	//noRotation = true;
 
 	var swipeDuration = 1500;
-	var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
+	//var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
+	var secondBtnTop = "50%";
+	var btnWidth = $("#download-resume-btn").width();
+	var btnHeight = $("#download-resume-btn").height();
+	var btnFontSize = $("#download-resume-btn").css("font-size").split("px")[0];
 	//Create wipe animation and scroll animation
 	var currentPanel = 1; //Current panel we're looking at. Doesn't change until next panel is fully faded in
 	$(".panel").each((i, e) => {
 		var id = $(e).data("p-num");
 		$layout = $("#panel-" + id + "-layout");
+		//***************
+		//Whipe animation
+		//***************
 		if (i !== 0){ //Don't do swipe animation for first panel
-			var fromX;
-			var toX;
-			if (i % 2 === 1){
-				fromX = "-100%";
-				toX = "0%";
+			var fromX = "-100%";//Mobile values
+			var toX = "0";
+			if (!aspectRatioFraction)
+			{
+				if (i % 2 === 1){
+					fromX = "-100%";
+					toX = "0%";
+				}
+				else{
+					fromX = "0%";
+					toX = "-50%";
+				}
 			}
-			else{
-				fromX = "0%";
-				toX = "-50%";
-			}
+
 			var wipeAnimation = new TimelineMax().fromTo(e, 1, 
 							{x: fromX, opacity: 0 /*boxShadow: fromBSX + " -50px 10px 5px rgba(0,0,0,.3);"*/}, 
 							{x: toX, opacity: 1, /*boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3);",*/ ease: Power1.easeOut});
@@ -67,20 +79,27 @@ $(function(){
 				currentPanel = triggered;
 			});
 		}
-		var toLeft1;
-		var toLeft2;
+		//***************
+		//Scroll animation
+		//***************
+		var toLeft1="+=5%";//Mobile value
+		var toLeft2="-=5%";//Mobile value
 		if (i % 2 === 0){
-			toLeft1 = "-=200px";
-			toLeft2 = "+=200px";
+			if (!aspectRatioFraction){
+				toLeft1 = "-=200px";
+				toLeft2 = "+=200px";
+			}
 		}
 		else{
-			toLeft1 = "+=200px";
-			toLeft2 = "-=200px";
+			if (!aspectRatioFraction){
+				toLeft1 = "+=200px";
+				toLeft2 = "-=200px";
+			}
 		}
 		//Add scroll effects
 		var animation = new TimelineMax()
-					.to($(e).find("img"), 2, {top: "-=500px", left: toLeft1, ease:Power1.easeOut})
-					.to($(e).find("img"), 2, {top: "-=500px", left: toLeft2, ease:Power1.easeInOut});
+					.to($(e).find("img"), 2, {top: "-=300px", left: toLeft1, ease:Power1.easeOut})
+					.to($(e).find("img"), 2, {top: "-=300px", left: toLeft2, ease:Power1.easeInOut});
 		new ScrollMagic.Scene({
 			triggerElement: $layout.find(".start-scroll-trigger"),
 			triggerHook: "onLeave",
@@ -311,18 +330,12 @@ $(function(){
 			//Third box
 			//***************
 			case 2:
+				var scaleFactor = .8;
 				animation
 					.set(textElement, 
 						{
 							scale: 0,
 							opacity: 0,
-							transformStyle: "preserve3d"
-						}
-					)
-					.set($("#see-resume-btn, #download-resume-btn"),
-						{
-							transformPerspective: 1000,
-							transformStyle: "preserve3d"
 						}
 					)
 					.to(textElement, 1,
@@ -335,82 +348,88 @@ $(function(){
 					.add("orbit", "+=1")
 					.to($("#see-resume-btn"), 1,
 						{
-							y: btnDiff
+							top: secondBtnTop
 						},
 						"orbit"
 					)
 					.to($("#download-resume-btn"), 1,
 						{
-							y: -btnDiff
+							top: 0
 						},
 						"orbit"
-					)
-					.to($("#see-resume-btn"), .5,
-						{
-							//scale: .8
-							z: -100
-						},
-						"orbit"
-					)
-					.to($("#download-resume-btn"), .5,
-						{
-							//scale: 1.2
-							z: 100
-						},
-						"orbit"
-					)
-					.to($("#see-resume-btn"), .5,
-						{
-							z: 0
-						},
-						"orbit+=.5"
-					)
-					.to($("#download-resume-btn"), .5,
-						{
-							z: 0
-						},
-						"orbit+=.5"
-					)
+					);
+					if (!isMobile){
+						animation
+						.to($("#see-resume-btn"), .5,
+							{
+								width: scaleFactor * btnWidth,
+								height: scaleFactor * btnHeight,
+								fontSize: scaleFactor * btnFontSize + "px"
+							},
+							"orbit"
+						)
+						.to($("#download-resume-btn"), .5,
+							{
+								width: 1 / scaleFactor * btnWidth,
+								height: 1 / scaleFactor * btnHeight,
+								fontSize: 1 / scaleFactor * btnFontSize + "px"
+							},
+							"orbit"
+						)
+						.to($("#see-resume-btn, #download-resume-btn"), .5,
+							{
+								width: btnWidth,
+								height: btnHeight,
+								fontSize: btnFontSize + "px"
+							},
+							"orbit+=.5"
+						);
+					}
+					animation
 					.add("orbit2")
-					.set($("#see-resume-btn"), {zIndex: 100})
-					.set($("#download-resume-btn"), {zIndex: -100})
+					.set($("#see-resume-btn"), {zIndex: 3})
+					.set($("#download-resume-btn"), {zIndex: 1})
 					.to($("#see-resume-btn"), 1,
 						{
-							y: 0
+							top: 0
 						},
 						"orbit2"
 					)
 					.to($("#download-resume-btn"), 1,
 						{
-							y: 0
+							top: secondBtnTop
 						},
 						"orbit2"
 					)
-					.to($("#see-resume-btn"), .5,
-						{
-							z: 100
-						},
-						"orbit2"
-					)
-					.to($("#download-resume-btn"), .5,
-						{
-							z: -100
-						},
-						"orbit2"
-					)
-					.to($("#see-resume-btn"), .5,
-						{
-							z: 0
-						},
-						"orbit2+=.5"
-					)
-					.to($("#download-resume-btn"), .5,
-						{
-							z: 0
-						},
-						"orbit2+=.5"
-					)
-					.to(textElement, 2, {}); //Add a delay for the end
+					if (!isMobile){
+						animation
+						.to($("#see-resume-btn"), .5,
+							{
+								width: 1 / scaleFactor * btnWidth,
+								height: 1 / scaleFactor * btnHeight,
+								fontSize: 1 / scaleFactor * btnFontSize + "px"
+							},
+							"orbit2"
+						)
+						.to($("#download-resume-btn"), .5,
+							{
+								width: scaleFactor * btnWidth,
+								height: scaleFactor * btnHeight,
+								fontSize: scaleFactor * btnFontSize + "px"
+							},
+							"orbit2"
+						)
+						.to($("#see-resume-btn, #download-resume-btn"), .5,
+							{
+								width: btnWidth,
+								height: btnHeight,
+								fontSize: btnFontSize + "px"
+							},
+							"orbit2+=.5"
+						);
+					}
+					animation
+					.to(textElement, 1, {}); //Add a delay for the end
 				break;
 			//***************
 			//Fourth box
@@ -462,7 +481,7 @@ $(function(){
 
 				break;
 			//***************
-			//Five box
+			//Fifth box
 			//***************
 			case 4:
 				if (!noRotation){
@@ -511,11 +530,12 @@ $(function(){
 								top: (100 - ($(textElement).height() / document.body.clientHeight * 100)) / 2 + "%", 
 							}
 						)
+						.to(textElement, 1, {})//Add second delay
 						.staggerTo(textElement.find(".anim"), 1,
 							{
-								opacity: 0,
-								delay: 1
-							}
+								opacity: 0
+							},
+							.1
 						)
 						.to(textElement, 1,
 							{

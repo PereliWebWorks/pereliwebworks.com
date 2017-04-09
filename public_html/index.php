@@ -153,7 +153,7 @@
 				</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="bttn-fill bttn-lg close-modal-btn" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-white close-modal-btn" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
 	  </div>
@@ -291,7 +291,7 @@
 			</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="bttn-fill bttn-lg close-modal-btn" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-white close-modal-btn" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
 	  </div>
@@ -350,16 +350,25 @@
 		<span id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
 				<img 
-
-					src="https://media.law.wisc.edu/m/jg4fw/aerial_uw_17-35mm11_6475_capital.jpg"
-					srcold="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"
+					src="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-capitol.jpg"
+					src-old="https://s-media-cache-ak0.pinimg.com/originals/86/83/2d/86832d354e61b5ccf5d8592ea1b9bac3.jpg"
+					src-old="https://media.law.wisc.edu/m/jg4fw/aerial_uw_17-35mm11_6475_capital.jpg"
+					src-old="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"
 				/>
 			</div>
 			<div class="panel" id="panel_2" data-p-num="2">
-				<img src="img/backgrounds/forest.jpg"/>
+				<img 
+					src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bascom_Hall%2C_Madison%2C_Wisconsin_05-19-2012_365.jpg"
+					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-the-nature-boardwalk.jpg"
+					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-on-the-curving-road.jpg"
+					src-old="img/backgrounds/forest.jpg"
+				/>
 			</div>
 			<div class="panel" id="panel_3" data-p-num="3">
-				<img src="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"></div>
+				<img 
+					src="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-over-mendota.jpg"
+					src-old="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"
+				/>
 			</div>
 		</span>
 		<!-- 
@@ -387,7 +396,18 @@
 						<div>
 							<div class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
 							<div class="text-center">
-								<a href="#contact" class="lettering btn btn-lg">Get in touch</a>
+								<a href="#contact" class="lettering btn hidden-mobile">
+									Get in touch
+								</a>
+								<span class="lettering btn visible-mobile"
+										data-toggle="modal" 
+										data-target="#contact-modal">
+									Get in touch
+								</span>
+								<div>&nbsp;</div>
+								<a href="#work" class="lettering btn hidden-mobile">
+									See my work
+								</a>
 							</div>
 						</div>
 					</div>
@@ -551,14 +571,14 @@
 									<div class="message display-none"></div>
 								</div>
 							</span>
-							<span class="anim">
+							<div class="anim text-center">
 								<button type="button" 
-										class="bttn-fill bttn-lg bttn-primary open-modal-btn visible-mobile" 
+										class="btn open-modal-btn visible-mobile" 
 										data-toggle="modal" 
 										data-target="#contact-modal">
 											Get in Touch
 								</button>
-							</span>
+							</div>
 							<script>
 								$("#contact-form").submit(function(e){
 									e.preventDefault();
@@ -716,7 +736,7 @@
 							<div>
 							Click the button bellow to access a secure payment form. If you'd rather use paypal, send a paypal payment to drew@pereliwebworks.com.
 							</div>
-							<div>
+							<div class="text-center">
 								<button type="button"
 										class="btn"
 										data-toggle="modal" 
