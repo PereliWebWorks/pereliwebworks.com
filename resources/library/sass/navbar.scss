@@ -51,3 +51,45 @@ ul.dropdown-menu li a:hover {
   color: #fff;
   background-color: rgba(100,100,100,.7);
 }
+
+.navbar-brand{
+  padding-left: 30px;
+}
+
+
+//mobile navbar
+#mobile-navbar{
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(0,0,0,.8);
+  width: 100%;
+
+  div{
+    float: left;
+    width: 33%;
+    padding: 15px 30px 15px 30px;
+
+    &:nth-child(2){
+      text-align: center;
+    }
+
+    &:nth-child(3){
+      text-align: right;
+    }
+
+    a{
+      //font-size: 2em;
+      font-size: 3vmax;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+

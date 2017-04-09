@@ -9,8 +9,8 @@
   	<!-- jQuery ajax form -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.0/jquery.form.min.js" integrity="sha384-E4RHdVZeKSwHURtFU54q6xQyOpwAhqHxy2xl9NLW9TQIqdNrNh60QVClBRBkjeB8" crossorigin="anonymous"></script>
   	<!-- bootstrap -->
-  	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  	<link href="library/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  	<script src="library/bootstrap/js/bootstrap.min.js"></script>
   	<!-- Animation stuff -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/CSSPlugin.min.js"></script>
@@ -22,7 +22,7 @@
 	<script src="library/ScrollMagic/plugins/debug.addIndicators.js"></script>
 	<script src="library/ScrollMagic/plugins/jquery.ScrollMagic.js"></script>
 	<!-- Bttn.css-->
-	<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />
+	<!--<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />-->
 	<!-- Lettering.js -->
 	<script src="library/lettering.js"></script>
 	<script src="library/modernizr.js"></script>
@@ -121,7 +121,7 @@
 								rows="3" required></textarea>
 						</div>
 						<div class="form-group">
-							<button class="bttn-fill bttn-lg submit-btn">Submit</button>
+							<button class="btn submit-btn">Submit</button>
 						</div>
 					</form>
 					<div class="response">
@@ -192,7 +192,7 @@
 							required/>
 					</div>
 
-				  <button class="bttn-fill bttn-lg bttn-primary">Submit Payment</button>
+				  <button class="btn">Submit Payment</button>
 				</form>
 				<div class="response">
 					<img src="img/spinner.gif" class="display-none"/>
@@ -299,8 +299,8 @@
 	<div class="modal-background-box">
 	</div>
 	<!-- /Modals -->
-	<div id="container" class="">
-		<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div id="container" class="navbar-container">
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top hidden-mobile" role="navigation">
 		    <div class="container-fluid">
 		        <div class="navbar-header"><a class="navbar-brand" href="#home">Pereli Web Works</a>
 		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
@@ -331,6 +331,21 @@
 		            </ul>
 		        </div>
 		    </div>
+		</div>
+		<div id="mobile-navbar" class="visible-mobile">
+			<div>
+				<a href="#home">Home</a>
+			</div>
+			<div>
+				<a href="#about">
+				About
+				</a>
+			</div>
+			<div>
+				<a href="#contact">
+				Contact
+				</a>
+			</div>
 		</div>
 		<span id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
@@ -370,7 +385,10 @@
 					<div class="animate-box">
 						<h2><span class="lettering">Who I am</span></h2>
 						<div>
-							<span class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </span><a href="#contact" class="lettering">Get in touch.</a>
+							<div class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
+							<div class="text-center">
+								<a href="#contact" class="lettering btn btn-lg">Get in touch</a>
+							</div>
 						</div>
 					</div>
 					<div class="large-spacer"></div>
@@ -390,49 +408,51 @@
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
 				<div id="site-examples">
-					<h1 id="site-example-header">Sites I've Worked On</h1>
-					<?php 
-						$sites = array(
-							array(
-								"src"=>"state_street_brats",
-								"url"=>"http://www.statestreetbrats.com",
-							),
-							array(
-								"src"=>"paw_friendly_cat_furniture",
-								"url"=>"http://www.statestreetbrats.com"
-							),
-							array(
-								"src"=>"silver_cloud_society",
-								"url"=>"http://www.statestreetbrats.com"
-							),
-							array(
-								"src"=>"the_landing",
-								"url"=>"http://www.statestreetbrats.com"
-							),
-							array(
-								"src"=>"JCW_tax_and_accounting",
-								"url"=>"http://www.statestreetbrats.com"
-							),
-							array(
-								"src"=>"skin608",
-								"url"=>"http://www.statestreetbrats.com"
-							)
-						); 
-						$s = 0;
-					?>
-					<?php for ($i = 0 ; $i < 3 ; $i++) : ?>
-						<div>
-							<?php for ($j = 0 ; $j < 2 ; $j++) : ?>
-								<a href="<?=$sites[$s]['url'];?>" target="_blank">
-									<img class="site-example"
-										src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" />
-								</a>
-							<?php 
-									$s++;
-								endfor; 
-							?>
-						</div>
-					<?php endfor; ?>
+					<h1 id="site-example-header">My Work</h1>
+					<span class="example-images">
+						<?php 
+							$sites = array(
+								array(
+									"src"=>"state_street_brats",
+									"url"=>"http://www.statestreetbrats.com",
+								),
+								array(
+									"src"=>"paw_friendly_cat_furniture",
+									"url"=>"http://www.statestreetbrats.com"
+								),
+								array(
+									"src"=>"silver_cloud_society",
+									"url"=>"http://www.statestreetbrats.com"
+								),
+								array(
+									"src"=>"the_landing",
+									"url"=>"http://www.statestreetbrats.com"
+								),
+								array(
+									"src"=>"JCW_tax_and_accounting",
+									"url"=>"http://www.statestreetbrats.com"
+								),
+								array(
+									"src"=>"skin608",
+									"url"=>"http://www.statestreetbrats.com"
+								)
+							); 
+							$s = 0;
+						?>
+						<?php for ($i = 0 ; $i < 3 ; $i++) : ?>
+							<div class="example-row">
+								<?php for ($j = 0 ; $j < 2 ; $j++) : ?>
+									<a href="<?=$sites[$s]['url'];?>" target="_blank" class="example-container">
+										<img class="site-example"
+											src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" />
+									</a>
+								<?php 
+										$s++;
+									endfor; 
+								?>
+							</div>
+						<?php endfor; ?>
+					</span>
 				</div>
 				<div class="large-spacer"></div>
 				<div class="medium-spacer"></div>
@@ -451,11 +471,11 @@
 						<div>&nbsp;</div>
 						<div class="text-center">
 							<span class="resume-btn-container">
-								<button class="bttn-fill bttn-lg bttn-primary" id="see-resume-btn">
+								<button class="btn" id="see-resume-btn">
 									See my resume
 								</button>
 								<div>&nbsp;</div>
-								<button class="bttn-fill bttn-lg bttn-primary" id="download-resume-btn">
+								<button class="btn" id="download-resume-btn">
 									Download my resume
 								</button>
 							</span>
@@ -492,7 +512,7 @@
 				<div class="medium-spacer"></div>
 				<div id="contact"></div>
 				<div class="animate-container" id="contact-container">
-					<div class="animate-box">
+					<div class="animate-box" id="contact-box">
 						<h2 class="anim">Get in Touch</h2>
 						<div class="smaller-font">
 							<div class="anim">
@@ -523,7 +543,7 @@
 											rows="3" required></textarea>
 									</div>
 									<div class="form-group anim">
-										<button class="bttn-fill bttn-lg bttn-primary submit-btn">Submit</button>
+										<button class="btn submit-btn">Submit</button>
 									</div>
 								</form>
 								<div class="response anim">
@@ -531,12 +551,14 @@
 									<div class="message display-none"></div>
 								</div>
 							</span>
-							<button type="button" 
-										class="bttn-fill bttn-lg bttn-primary open-modal-btn visible-mobile anim" 
+							<span class="anim">
+								<button type="button" 
+										class="bttn-fill bttn-lg bttn-primary open-modal-btn visible-mobile" 
 										data-toggle="modal" 
 										data-target="#contact-modal">
 											Get in Touch
 								</button>
+							</span>
 							<script>
 								$("#contact-form").submit(function(e){
 									e.preventDefault();
@@ -593,7 +615,7 @@
 										required/>
 								</div>
 
-							  <button class="bttn-fill bttn-lg bttn-primary">Submit Payment</button>
+							  <button class="btn">Submit Payment</button>
 							</form>
 							<div class="response">
 								<img src="img/spinner.gif" class="display-none"/>
@@ -696,7 +718,7 @@
 							</div>
 							<div>
 								<button type="button"
-										class="bttn-fill bttn-lg bttn-primary"
+										class="btn"
 										data-toggle="modal" 
 										data-target="#payment-modal">
 									Make a Payment

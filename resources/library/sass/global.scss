@@ -1,3 +1,12 @@
+//Colors
+$white: #eee;
+$black: #111;
+$gray: #DFDCE3;
+$green: #277552;
+$blue: #2F4073;
+$red: #AA5839;
+
+//Other vars
 $spacerHeight: 800px;
 $largeSpacerHeight: 1600px;
 $mediumSpacerHeight: 800px;
@@ -15,9 +24,13 @@ $defaultFont: "timeburner";
 $headerFont: "coalition";
 $mainHeaderFont: "thunderstrike";
 
-$mainTextColor: #ddd;
+$mainTextColor: $gray;
 
 $mobileBreakPoint: 1000px;
+
+
+
+
 
 @font-face{
 	src: url("../fonts/timeburnernormal.ttf");
@@ -43,6 +56,33 @@ $mobileBreakPoint: 1000px;
 	display: none;
 }
 
+.text-center{
+	text-align: center;
+}
+
+
+.spacer{
+	height: $spacerHeight;
+}
+
+.large-spacer{
+	height: $largeSpacerHeight;
+}
+
+
+.medium-spacer{
+	height: $mediumSpacerHeight;
+}
+
+.small-spacer{
+	height: $smallSpacerHeight;
+}
+
+.tiny-spacer{
+	height: $tinySpacerHeight;
+}
+
+
 .message{
 	padding: 1em;
   	border-radius: 4px;
@@ -57,7 +97,7 @@ $mobileBreakPoint: 1000px;
 	background-color: rgba(200, 50, 50, .6);
 }
 
-@media (max-width: $mobileBreakPoint){
+@media (max-width: $mobileBreakPoint - 1){
 	.hidden-mobile{
 		display: none;
 	}
@@ -135,54 +175,51 @@ body{
 
 
 
-.spacer{
-	height: $spacerHeight;
+
+.btn{
+  $btnColor: lighten($green, 15%);
+  background-color: $btnColor;
+  color: $white;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 5px;
+  &.hover{
+  	background-color: darken($btnColor, 10%);
+  	color: #fff;
+  	box-shadow: 0 0 10px $gray;
+  }
 }
 
-.large-spacer{
-	height: $largeSpacerHeight;
-}
-
-
-.medium-spacer{
-	height: $mediumSpacerHeight;
-}
-
-.small-spacer{
-	height: $smallSpacerHeight;
-}
-
-.tiny-spacer{
-	height: $tinySpacerHeight;
-}
 
 
 .header-style{
 	text-align: center;
 	font-family: "coalition";
+	font-size: 4vw;
 	padding: .3em;
 	padding-top: .5em;
 	border-radius: 3px;
-	color: rgb(0,239,0);
-	background-color: purple;
-	box-shadow: 0 0 5px 5px #36f;
-	text-shadow: -1px 1px 2px #337;
+	color: $green;
+	text-shadow: -1px 1px 2px darken($green, 30%);
+	background-color: $blue;
+	box-shadow: inset -30px -20px 170px -20px $black;
 }
 
 
-$animatBoxBoxShadowPx: 0 0 10px 5px;
+$animatBoxBoxShadowPx: 0 0 20px -2px;
+//$animateBoxInsetBoxShadow: inset 12px 12px 200px -40px $gray;
 .base-box{
-	color: rgb(0,239,0);
+	//color: rgb(0,239,0);
 	width: $animateBoxWidth;
 	left: (50 - $animateBoxWidth / 2);
 	text-align: left;
-	background-color: rgba(0,0,0,.85);
+	background-color: rgba($black,.9);
 	padding: 25px;
 	border-radius: 5px;
-	box-shadow: $animatBoxBoxShadowPx #ddd;
+	box-shadow: $animatBoxBoxShadowPx $gray;
 	font-size: 25px;
 	@media screen and (max-width: $mobileBreakPoint){
-		font-size: 40px;
+		font-size: 3vw;
 	}
 
 	&.smaller-font{
@@ -193,16 +230,16 @@ $animatBoxBoxShadowPx: 0 0 10px 5px;
 	}
 
 	h1, h2{
-		font-size: 2em;
+		margin-top: 0;
 		@extend .header-style;
 	}
 
 	a{
-	  $linkColor: rgb(28,133,248);
-	  color: $linkColor;
+	  //$linkColor: rgb(28,133,248);
+	  //color: $linkColor;
 
 	  &:hover{
-	  	color: darken($linkColor, 10%);
+	  	//color: darken($linkColor, 10%);
 	  }
 	}
 }
@@ -223,6 +260,7 @@ $animatBoxBoxShadowPx: 0 0 10px 5px;
 		position: fixed;
 		visibility: hidden;
 		max-height: 80%;
+
 		.lettering span{
 			visibility: hidden;
 		}
@@ -293,32 +331,45 @@ $animatBoxBoxShadowPx: 0 0 10px 5px;
 
 
 #site-examples{
-	h1{
-		width: 50%;
-		margin: auto;
-		@extend .header-style;
-	}
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	left: 0;
 	top: 0;
 	text-align: center;
+
+	#site-example-header{
+		position: relative;
+		width: 50%;
+		margin: auto;
+		@extend .header-style;
+	}
+
+	.site-example{
+		position: relative;
+		width: 20vmin;
+		height: 20vmin;
+		margin: 1%;
+		box-shadow: 0 0 6px 2px white;
+	  	border-radius: 2px;
+	}
+
+	@media (min-aspect-ratio: 1/1 ){
+		.example-row{
+		  float: left;
+		  width: 33%;
+		}
+
+		.example-container{
+		  display: block;
+		  margin-top: 10vh;
+		}	
+  	}
 }
 
-#site-example-header{
-	position: relative;
-}
 
-.site-example{
-	position: relative;
-	width: 20vh;
-	height: 20vh;
-	margin: 1%;
-	box-shadow: 0 0 6px 2px white;
-  	border-radius: 2px;
-  	//filter: grayscale(100%);
-}
+
+
 
 
 

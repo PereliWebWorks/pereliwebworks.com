@@ -11,6 +11,7 @@ $(function(){
 	var vw = document.body.clientWidth;
 	var vh = document.body.clientHeight;
 	var isMobile = vw < mobileBreakPoint;
+	isMobile = true;
 	var noRotation = isMobile || !Modernizr.csstransforms3d;
 	//noRotation = true;
 
@@ -252,7 +253,7 @@ $(function(){
 					);
 					//"type" the text
 					$(e).find(".lettering").each(function(i,el){
-						animation.staggerTo($(el).children(), .1, {visibility: "initial"}, 0.01);
+						animation.staggerTo($(el).children(), .1, {visibility: "visible"}, 0.01);
 					});
 					//Make the rocket prepare to take off
 					var newClassList = addClasses(baseClassList, "prepping-rocket");
@@ -296,6 +297,7 @@ $(function(){
 							"takeoff+=.5"
 						);
 					}
+					/*
 					animation
 					.set($(e).find(".lettering").children(),
 						{
@@ -303,6 +305,7 @@ $(function(){
 						}
 					)
 					;
+					*/
 				break;
 			//***************
 			//Third box
@@ -312,7 +315,14 @@ $(function(){
 					.set(textElement, 
 						{
 							scale: 0,
-							opacity: 0
+							opacity: 0,
+							transformStyle: "preserve3d"
+						}
+					)
+					.set($("#see-resume-btn, #download-resume-btn"),
+						{
+							transformPerspective: 1000,
+							transformStyle: "preserve3d"
 						}
 					)
 					.to(textElement, 1,
@@ -337,30 +347,33 @@ $(function(){
 					)
 					.to($("#see-resume-btn"), .5,
 						{
-							scale: .8
+							//scale: .8
+							z: -100
 						},
 						"orbit"
 					)
 					.to($("#download-resume-btn"), .5,
 						{
-							scale: 1.2
+							//scale: 1.2
+							z: 100
 						},
 						"orbit"
 					)
 					.to($("#see-resume-btn"), .5,
 						{
-							scale: 1
+							z: 0
 						},
 						"orbit+=.5"
 					)
 					.to($("#download-resume-btn"), .5,
 						{
-							scale: 1
+							z: 0
 						},
 						"orbit+=.5"
 					)
 					.add("orbit2")
-					.set($("#see-resume-btn"), {zIndex:2})
+					.set($("#see-resume-btn"), {zIndex: 100})
+					.set($("#download-resume-btn"), {zIndex: -100})
 					.to($("#see-resume-btn"), 1,
 						{
 							y: 0
@@ -375,25 +388,25 @@ $(function(){
 					)
 					.to($("#see-resume-btn"), .5,
 						{
-							scale: 1.2
+							z: 100
 						},
 						"orbit2"
 					)
 					.to($("#download-resume-btn"), .5,
 						{
-							scale: .8
+							z: -100
 						},
 						"orbit2"
 					)
 					.to($("#see-resume-btn"), .5,
 						{
-							scale: 1
+							z: 0
 						},
 						"orbit2+=.5"
 					)
 					.to($("#download-resume-btn"), .5,
 						{
-							scale: 1
+							z: 0
 						},
 						"orbit2+=.5"
 					)
@@ -506,8 +519,9 @@ $(function(){
 						)
 						.to(textElement, 1,
 							{
-								top: (100 - ($(".animate-box").eq(i+1).height() / document.body.clientHeight * 100)) / 2 + "%", 
-								height: "5%"
+								//top: (100 - ($(".animate-box").eq(i+1).height() / document.body.clientHeight * 100)) / 2 + "%", 
+								//height: "5%"
+								opacity: 0
 							}
 						)
 
@@ -576,6 +590,7 @@ $(function(){
 				else{
 					//Get height
 					var h = textElement.height();
+					//textElement.html(h);
 					animation
 					.set(textElement.children(), 
 						{
@@ -584,12 +599,14 @@ $(function(){
 					)
 					.set(textElement, 
 						{
-							height: "5%"
+							opacity: 0
 						}
 					)
 					.to(textElement, 1,
 						{
-							height: h + 20
+							//height: 460
+							//minHeight: "50%"
+							opacity: 1
 						}
 					)
 					.staggerTo(textElement.children(), 1,
@@ -696,6 +713,26 @@ $(function(){
 			$(textElement).css("display", "initial");
 		}
 	});
+
+
+
+
+
+
+	//Animate buttons
+	$(".btn").mouseover(function(){
+		TweenMax.to($(this), .2, {className: "+=hover", color: "orange"});
+	}).mouseout(function(){
+		TweenMax.to($(this), .2, {className: "-=hover"});
+	});
+
+
+
+
+
+
+
+
 
 
 	if (!isMobile){
