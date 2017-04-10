@@ -16,17 +16,59 @@ $(function(){
 	var noRotation = isMobile || !Modernizr.csstransforms3d;
 	//noRotation = true;
 
-	var swipeDuration = 1500;
-	//var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
 	var secondBtnTop = "50%";
 	var btnWidth = $("#download-resume-btn").width();
 	var btnHeight = $("#download-resume-btn").height();
 	var btnFontSize = $("#download-resume-btn").css("font-size").split("px")[0];
+
+
+
+
+
+	var swipeDuration = 1500;
+	//var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
 	//Create wipe animation and scroll animation
 	var currentPanel = 1; //Current panel we're looking at. Doesn't change until next panel is fully faded in
 	$(".panel").each((i, e) => {
 		var id = $(e).data("p-num");
-		$layout = $("#panel-" + id + "-layout");
+		var $layout = $("#panel-" + id + "-layout");
+		//***************
+		//Scroll animation
+		//***************
+		var img = $(e).find("img");
+		var imgWidth = img.width();
+		var imgLeft = (vw - imgWidth) / 2;
+		//CSS hack that I hate
+		img.css("left", imgLeft);
+		if (!isMobile){
+			var imgRemainderLeft = -imgLeft;
+			var imgRemainderRight = imgLeft + imgWidth - vw;
+			var imgRemainderBottom = img.height() - vh;
+			var toLeft1;
+			var toLeft2;
+			if (i % 2 === 0){
+				toLeft1 = "-=" + (imgRemainderRight - 10) + "px";
+				toLeft2 = 0;
+			}
+			else{
+				toLeft1 = 0;
+				toLeft2 = "-=" + (imgRemainderRight - 10) + "px";
+			}
+			//Add scroll effects
+			var animation = new TimelineMax()
+						.to(img, 4, {top: -(imgRemainderBottom - 10)})
+						.to(img, 2, {left: toLeft1, ease:Power1.easeOut}, 0)
+						.to(img, 2, {left: toLeft2, ease:Power1.easeIn}, 2)
+						.set(img, {visibility: "hidden"});
+			new ScrollMagic.Scene({
+				triggerElement: $layout.find(".start-scroll-trigger"),
+				triggerHook: "onLeave",
+				duration: $layout.find(".end-scroll-trigger").offset().top - $layout.find(".start-scroll-trigger").offset().top
+			})
+			.setTween(animation)
+			.addTo(controller);
+		}
+
 		//***************
 		//Whipe animation
 		//***************
@@ -37,17 +79,18 @@ $(function(){
 			{
 				if (i % 2 === 1){
 					fromX = "-100%";
-					toX = "0%";
+					//toX = "0%";
 				}
 				else{
 					fromX = "0%";
-					toX = "-50%";
+					//toX = "-50%";
 				}
 			}
 
-			var wipeAnimation = new TimelineMax().fromTo(e, 1, 
-							{x: fromX, opacity: 0 /*boxShadow: fromBSX + " -50px 10px 5px rgba(0,0,0,.3);"*/}, 
-							{x: toX, opacity: 1, /*boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3);",*/ ease: Power1.easeOut});
+			var wipeAnimation = new TimelineMax().from(e, 1, 
+							{x: fromX, opacity: 0 /*boxShadow: fromBSX + " -50px 10px 5px rgba(0,0,0,.3);"*/}
+							//{x: toX, opacity: 1, /*boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3);",*/ ease: Power1.easeOut}
+							);
 			var wipeScene = new ScrollMagic.Scene({
 					triggerElement: $("#panel-wipe-trigger-" + id),
 					triggerHook: "onLeave",
@@ -79,34 +122,6 @@ $(function(){
 				currentPanel = triggered;
 			});
 		}
-		//***************
-		//Scroll animation
-		//***************
-		var toLeft1="+=5%";//Mobile value
-		var toLeft2="-=5%";//Mobile value
-		if (i % 2 === 0){
-			if (!aspectRatioFraction){
-				toLeft1 = "-=200px";
-				toLeft2 = "+=200px";
-			}
-		}
-		else{
-			if (!aspectRatioFraction){
-				toLeft1 = "+=200px";
-				toLeft2 = "-=200px";
-			}
-		}
-		//Add scroll effects
-		var animation = new TimelineMax()
-					.to($(e).find("img"), 2, {top: "-=300px", left: toLeft1, ease:Power1.easeOut})
-					.to($(e).find("img"), 2, {top: "-=300px", left: toLeft2, ease:Power1.easeInOut});
-		new ScrollMagic.Scene({
-			triggerElement: $layout.find(".start-scroll-trigger"),
-			triggerHook: "onLeave",
-			duration: $layout.find(".end-scroll-trigger").offset().top - $layout.find(".start-scroll-trigger").offset().top
-		})
-		.setTween(animation)
-		.addTo(controller);
 	});
 
 
@@ -689,6 +704,7 @@ $(function(){
 	
 	//Animate example sites
 	var animation = new TimelineMax()
+		.to($("#site-examples .example-container"), 0, {display: "block"})
 		.staggerFromTo($(".site-example, #site-example-header"), 1, 
 					{left: "-100%", top: "100vH", opacity: 0},
 					{left: "0", top: "12vH", opacity: 1, ease: Elastic.easeOut.config(1, .75)},
@@ -714,23 +730,23 @@ $(function(){
 	});
 
 	//Show or hide the box depending on scroll direction
-	var textElement = $("#site-examples");
+	var examples = $(".site-example");
 	s.on("start", function(e){
 		if (e.scrollDirection === "FORWARD"){
-			$(textElement).css("display", "initial");
+			$(examples).css("display", "initial");
 		}
 		else{
-			$(textElement).css("display", "none");
+			$(examples).css("display", "none");
 		}
 	});
 
 	//Show or hide the box depending on scroll direction
 	s.on("end", function(e){
 		if (e.scrollDirection === "FORWARD"){
-			$(textElement).css("display", "none");
+			$(examples).css("display", "none");
 		}
 		else{
-			$(textElement).css("display", "initial");
+			$(examples).css("display", "initial");
 		}
 	});
 

@@ -142,10 +142,13 @@ body{
 		overflow: hidden;
 		position: fixed;
 		top: 0;
-		width: 350%;
-		left: -100%;
-		@media screen and (min-aspect-ratio: 1/1){
+		//Narrow screens
+		@media (max-aspect-ratio: 1/1){
+		}
+		//Wide screens
+		@media (min-aspect-ratio: 1/1){
 			width: 200%;
+			//The image will be centered with js (i know, I know)
 		}
 	}
 }
@@ -161,9 +164,7 @@ body{
 }	
 
 #panel_2{
-	img{
-		left: -200px;
-	}
+	
 	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
 	//background-attachment: fixed;
 }
@@ -400,6 +401,7 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	}
 
 	.site-example{
+		display: none;
 		position: relative;
 		width: 18vmax;
 		height: 18vmax;
@@ -408,15 +410,25 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	  	border-radius: 2px;
 	}
 
+	@media (max-aspect-ratio: 1/1){
+		.example-container{
+			width: 50%;
+			float: left;
+			margin-top: 5vh;
+		}
+	}
+
+	//Wide screens
 	@media (min-aspect-ratio: 1/1 ){
 		.example-row{
 		  float: left;
-		  width: 33%;
+		  //width: 33%;
+		  margin: auto;
 		}
 
 		.example-container{
 		  display: block;
-		  margin-top: 10vh;
+		  margin-top: 2vh;
 		}	
   	}
 }
