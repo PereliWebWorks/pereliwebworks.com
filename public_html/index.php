@@ -1,6 +1,8 @@
 <?php require_once __DIR__ . "/../resources/config.php"; ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<meta name="description" content="My name is Drew Pereli. I'm a Madison-based freelance full-stack web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it.">
 	<title>Pereli Web Works</title>
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -88,7 +90,7 @@
 </head>
 <body>
 	<div id="loading_spinner_container">
-		<img src="img/loading_spinner.gif"/>
+		<img src="img/loading_spinner.gif" alt="page loading spinner"/>
 	</div>
 	<!-- Modals -->
 	<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="contact-modal-label" aria-hidden="true">
@@ -112,6 +114,7 @@
 								name="name" 
 								type="text" 
 								placeholder="Name" 
+								title="Name"
 								required/>
 						</div>
 						<div class="form-group">
@@ -120,12 +123,14 @@
 								name="email" 
 								type="email" 
 								placeholder="Email Address"
+								title="Email Address"
 								required/>
 						</div>
 						<div class="form-group">
 							<textarea 
 								name="message"
 								placeholder="Message"
+								title="Message"
 								rows="3" required></textarea>
 						</div>
 						<div class="form-group">
@@ -133,7 +138,7 @@
 						</div>
 					</form>
 					<div class="response">
-						<img src="img/spinner.gif" class="display-none"/>
+						<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
 						<div class="message display-none"></div>
 					</div>
 					<script>
@@ -182,6 +187,7 @@
 						<input 
 							name="name" 
 							placeholder="Name" 
+							title="Name"
 							required/>
 					</div>
 				    <div class="form-group">
@@ -197,13 +203,14 @@
 							name="amount" 
 							type="number" 
 							placeholder="Amount" 
+							title="Amount"
 							required/>
 					</div>
 
 				  <button class="btn">Submit Payment</button>
 				</form>
 				<div class="response">
-					<img src="img/spinner.gif" class="display-none"/>
+					<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
 					<div class="message display-none"></div>
 				</div>
 				<script>
@@ -316,7 +323,10 @@
 		        </div>
 		        <div class="collapse navbar-collapse navbar-menubuilder">
 		            <ul class="nav navbar-nav navbar-left">
-		                <li class="dropdown" class="dropdown" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+		                <li class="dropdown">
+		                	<a class="dropdown-toggle" data-toggle="dropdown">
+		                		About <b class="caret"></b>
+		                	</a>
 		                    <ul class="dropdown-menu" role="menu">
 		                    	<li><a href="#about">About Me</a>
 		                        </li>
@@ -328,7 +338,10 @@
 		                        </li>
 		                    </ul>
 		                </li>
-		                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
+		                <li class="dropdown">
+		                	<a class="dropdown-toggle" data-toggle="dropdown">
+		                		Contact <b class="caret"></b>
+		                	</a>
 		                    <ul class="dropdown-menu" role="menu">
 		                    	<li><a href="#contact">Get in Touch</a>
 		                        </li>
@@ -355,33 +368,26 @@
 				</a>
 			</div>
 		</div>
-		<span id="panels">
+		<div id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
 				<img 
 					src="img/backgrounds/capital.jpg"
-					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-capitol.jpg"
-					src-old="https://s-media-cache-ak0.pinimg.com/originals/86/83/2d/86832d354e61b5ccf5d8592ea1b9bac3.jpg"
-					src-old="https://media.law.wisc.edu/m/jg4fw/aerial_uw_17-35mm11_6475_capital.jpg"
-					src-old="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"
+					alt="Madison Capital"
 				/>
 			</div>
 			<div class="panel" id="panel_2" data-p-num="2">
 				<img 
 					src="img/backgrounds/bascom.jpg"
-					src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bascom_Hall%2C_Madison%2C_Wisconsin_05-19-2012_365.jpg"
-					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-the-nature-boardwalk.jpg"
-					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-on-the-curving-road.jpg"
-					src-old="img/backgrounds/forest.jpg"
+					alt="University of Wisconsin Madison Bascom Hall"
 				/>
 			</div>
 			<div class="panel" id="panel_3" data-p-num="3">
 				<img 
 					src="img/backgrounds/sunset.jpg"
-					src="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-over-mendota.jpg"
-					src-old="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"
+					alt="Madison Sunset"
 				/>
 			</div>
-		</span>
+		</div>
 		<!-- 
 			***********************
 			***********************
@@ -408,7 +414,7 @@
 					<div class="animate-box">
 						<h2><span class="lettering">Who I am</span></h2>
 						<div>
-							<div class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
+							<div class="lettering">My name is Drew Pereli. I'm a Madison-based full-stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
 							<div>&nbsp;</div>
 							<div class="text-center">
 								<a href="#contact" class="lettering btn hidden-mobile">
@@ -443,33 +449,39 @@
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
 				<div id="site-examples">
-					<h1 id="site-example-header">My Work</h1>
+					<h2 id="site-example-header">My Work</h2>
 					<span class="example-images">
 						<?php 
 							$sites = array(
 								array(
 									"src"=>"state_street_brats",
 									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"State Street Brats"
 								),
 								array(
 									"src"=>"paw_friendly_cat_furniture",
-									"url"=>"http://www.statestreetbrats.com"
+									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"Paw Friendly Cat Furniture"
 								),
 								array(
 									"src"=>"silver_cloud_society",
-									"url"=>"http://www.statestreetbrats.com"
+									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"Silver Cloud Society"
 								),
 								array(
 									"src"=>"the_landing",
-									"url"=>"http://www.statestreetbrats.com"
+									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"The Landing"
 								),
 								array(
 									"src"=>"JCW_tax_and_accounting",
-									"url"=>"http://www.statestreetbrats.com"
+									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"JCW Tax and Accounting"
 								),
 								array(
 									"src"=>"skin608",
-									"url"=>"http://www.statestreetbrats.com"
+									"url"=>"http://www.statestreetbrats.com",
+									"alt"=>"Skin608"
 								)
 							); 
 							$s = 0;
@@ -480,7 +492,9 @@
 									<div class="example-container">
 										<a href="<?=$sites[$s]['url'];?>" target="_blank" class="site-example">
 											<img 
-												src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" />
+												src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" 
+												alt="<?=$sites[$s]['alt'];?>"
+											/>
 										</a>
 									</div>
 								<?php 
@@ -564,6 +578,7 @@
 											name="name" 
 											type="text" 
 											placeholder="Name" 
+											title="Name"
 											required/>
 									</div>
 									<div class="form-group anim">
@@ -571,12 +586,14 @@
 											name="email" 
 											type="email" 
 											placeholder="Email Address"
+											title="Email Address"
 											required/>
 									</div>
 									<div class="form-group anim">
 										<textarea 
 											name="message"
 											placeholder="Message"
+											title="Message"
 											rows="3" required></textarea>
 									</div>
 									<div class="form-group anim">
@@ -584,7 +601,7 @@
 									</div>
 								</form>
 								<div class="response anim">
-									<img src="img/spinner.gif" class="display-none"/>
+									<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
 									<div class="message display-none"></div>
 								</div>
 							</span>
@@ -634,6 +651,7 @@
 									<input 
 										name="name" 
 										placeholder="Name" 
+										title="Name"
 										required/>
 								</div>
 							    <div class="form-group">
@@ -649,13 +667,14 @@
 										name="amount" 
 										type="number" 
 										placeholder="Amount" 
+										title="Amount"
 										required/>
 								</div>
 
 							  <button class="btn">Submit Payment</button>
 							</form>
 							<div class="response">
-								<img src="img/spinner.gif" class="display-none"/>
+								<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
 								<div class="message display-none"></div>
 							</div>
 							<script>
