@@ -321,7 +321,7 @@
 		        </div>
 		        <div class="collapse navbar-collapse navbar-menubuilder">
 		            <ul class="nav navbar-nav navbar-left">
-		                <li class="dropdown" class="dropdown" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+		                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
 		                    <ul class="dropdown-menu" role="menu">
 		                    	<li><a href="#about">About Me</a>
 		                        </li>
@@ -442,7 +442,7 @@
 				<div id="work"></div>
 				<div id="site-examples">
 					<h1 id="site-example-header">My Work</h1>
-					<span class="example-images">
+					<div class="example-images">
 						<?php 
 							$sites = array(
 								array(
@@ -489,7 +489,7 @@
 								?>
 							</div>
 						<?php endfor; ?>
-					</span>
+					</div>
 				</div>
 				<div class="large-spacer"></div>
 				<div class="medium-spacer"></div>
