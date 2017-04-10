@@ -397,39 +397,66 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 		position: relative;
 		width: 50%;
 		margin: auto;
+		margin-bottom: 2vh;
 		@extend .header-style;
 	}
+
 
 	.site-example{
 		display: none;
 		position: relative;
-		width: 18vmax;
-		height: 18vmax;
+		width: 10vmax;
+		height: 10vmax;
 		margin: 1%;
 		box-shadow: 0 0 6px 2px white;
 	  	border-radius: 2px;
+
+	  	img{
+	  		width: 100%;
+	  	}
 	}
 
+	//Narrow screens
 	@media (max-aspect-ratio: 1/1){
-		.example-container{
-			width: 50%;
-			float: left;
-			margin-top: 5vh;
+		.example-row{
+			width: 100%;
+			height: 24vh;
+			.example-container{
+				width: 50%;
+				float: left;
+				margin-top: 5vh;
+				text-align: center;
+				.site-example{
+					display: block;
+					width: 25vw;
+					height: 25vw;
+					margin: auto;
+				}
+			}
 		}
 	}
+	
 
 	//Wide screens
 	@media (min-aspect-ratio: 1/1 ){
 		.example-row{
 		  float: left;
-		  //width: 33%;
+		  width: 33%;
 		  margin: auto;
-		}
 
-		.example-container{
-		  display: block;
-		  margin-top: 2vh;
-		}	
+		  .example-container{
+			  display: block;
+			  width: 100%;
+			  height: 24vh;
+			  margin: auto;
+			  margin-top: 3vh;
+			  .site-example{
+			  	width: 25vh;
+			  	height: 25vh;
+			  	margin: auto;
+			  }
+			}	
+		}
   	}
 }
 

@@ -462,10 +462,12 @@
 						<?php for ($i = 0 ; $i < 3 ; $i++) : ?>
 							<div class="example-row">
 								<?php for ($j = 0 ; $j < 2 ; $j++) : ?>
-									<a href="<?=$sites[$s]['url'];?>" target="_blank" class="example-container">
-										<img class="site-example"
-											src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" />
-									</a>
+									<div class="example-container">
+										<a href="<?=$sites[$s]['url'];?>" target="_blank" class="site-example">
+											<img 
+												src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" />
+										</a>
+									</div>
 								<?php 
 										$s++;
 									endfor; 

@@ -723,6 +723,7 @@ $(function(){
 			.addTo(controller);
 	//Add mouseover animation
 	$(".site-example").mouseover(function(){
+		console.log("stuff");
 		TweenMax.to($(this), .3, {scale: 1.5, zIndex: 100, ease: Back.easeOut.config(3)});
 	});
 	$(".site-example").mouseout(function(){
@@ -733,7 +734,7 @@ $(function(){
 	var examples = $(".site-example");
 	s.on("start", function(e){
 		if (e.scrollDirection === "FORWARD"){
-			$(examples).css("display", "initial");
+			$(examples).css("display", "block");
 		}
 		else{
 			$(examples).css("display", "none");
@@ -746,7 +747,7 @@ $(function(){
 			$(examples).css("display", "none");
 		}
 		else{
-			$(examples).css("display", "initial");
+			$(examples).css("display", "block");
 		}
 	});
 
