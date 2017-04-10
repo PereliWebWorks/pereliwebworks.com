@@ -19,12 +19,12 @@
 	<script src="library/ScrollMagic/ScrollMagic.js"></script>
 	<script src="library/ScrollMagic/plugins/animation.gsap.js"></script>
 	<script src="library/ScrollMagic/plugins/animation.velocity.js"></script>
-	<script src="library/ScrollMagic/plugins/debug.addIndicators.js"></script>
+	<!--<script src="library/ScrollMagic/plugins/debug.addIndicators.js"></script>-->
 	<script src="library/ScrollMagic/plugins/jquery.ScrollMagic.js"></script>
 	<!-- Bttn.css-->
 	<!--<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />-->
 	<!-- Lettering.js -->
-	<script src="library/lettering.js"></script>
+	<!--<script src="library/lettering.js"></script>-->
 	<script src="library/modernizr.js"></script>
 	<!-- Stripe -->
 	<script src="https://js.stripe.com/v3/"></script>
@@ -350,7 +350,8 @@
 		<span id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
 				<img 
-					src="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-capitol.jpg"
+					src="img/backgrounds/capital.jpg"
+					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-capitol.jpg"
 					src-old="https://s-media-cache-ak0.pinimg.com/originals/86/83/2d/86832d354e61b5ccf5d8592ea1b9bac3.jpg"
 					src-old="https://media.law.wisc.edu/m/jg4fw/aerial_uw_17-35mm11_6475_capital.jpg"
 					src-old="https://static.pexels.com/photos/25926/pexels-photo-25926.jpg"
@@ -358,6 +359,7 @@
 			</div>
 			<div class="panel" id="panel_2" data-p-num="2">
 				<img 
+					src="img/backgrounds/bascom.jpg"
 					src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bascom_Hall%2C_Madison%2C_Wisconsin_05-19-2012_365.jpg"
 					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-the-nature-boardwalk.jpg"
 					src-old="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-on-the-curving-road.jpg"
@@ -366,6 +368,7 @@
 			</div>
 			<div class="panel" id="panel_3" data-p-num="3">
 				<img 
+					src="img/backgrounds/sunset.jpg"
 					src="https://www.goodfreephotos.com/albums/united-states/wisconsin/madison/wisconsin-madison-sunset-over-mendota.jpg"
 					src-old="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"
 				/>

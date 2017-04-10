@@ -59,7 +59,8 @@ $(function(){
 						.to(img, 4, {top: -(imgRemainderBottom - 10)})
 						.to(img, 2, {left: toLeft1, ease:Power1.easeOut}, 0)
 						.to(img, 2, {left: toLeft2, ease:Power1.easeIn}, 2)
-						.set(img, {visibility: "hidden"});
+						//.set(img, {visibility: "hidden"})
+						;
 			new ScrollMagic.Scene({
 				triggerElement: $layout.find(".start-scroll-trigger"),
 				triggerHook: "onLeave",
