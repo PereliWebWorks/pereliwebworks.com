@@ -108,6 +108,10 @@ $mobileBreakPoint: 1000px;
 	}
 }
 
+html{
+	height: 100%;
+}
+
 body{
 	background-color: black;
 	overflow-x: hidden;
@@ -115,7 +119,7 @@ body{
 	padding: 0;
 	color: $mainTextColor;
 	font-family: $defaultFont;
-	//height: 10000px;
+	height: 100%;
 }
 
 #loading_spinner_container{

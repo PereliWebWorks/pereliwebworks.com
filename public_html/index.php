@@ -138,7 +138,7 @@
 						</div>
 					</form>
 					<div class="response">
-						<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
+						<img src="img/spinner.gif" class="display-none" alt="waiting spinner"/>
 						<div class="message display-none"></div>
 					</div>
 					<script>
@@ -210,7 +210,8 @@
 				  <button class="btn">Submit Payment</button>
 				</form>
 				<div class="response">
-					<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
+
+					<img src="img/spinner.gif" class="display-none" alt="waiting spinner"/>
 					<div class="message display-none"></div>
 				</div>
 				<script>
@@ -449,8 +450,9 @@
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
 				<div id="site-examples">
-					<h2 id="site-example-header">My Work</h2>
-					<span class="example-images">
+
+					<h1 id="site-example-header">My Work</h1>
+					<div class="example-images">
 						<?php 
 							$sites = array(
 								array(
@@ -503,7 +505,7 @@
 								?>
 							</div>
 						<?php endfor; ?>
-					</span>
+					</div>
 				</div>
 				<div class="large-spacer"></div>
 				<div class="medium-spacer"></div>
@@ -601,7 +603,7 @@
 									</div>
 								</form>
 								<div class="response anim">
-									<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
+									<img src="img/spinner.gif" class="display-none" alt="waiting spinner"/>
 									<div class="message display-none"></div>
 								</div>
 							</span>
@@ -674,7 +676,7 @@
 							  <button class="btn">Submit Payment</button>
 							</form>
 							<div class="response">
-								<img src="img/spinner.gif" class="display-none" alt="loading spinner"/>
+								<img src="img/spinner.gif" class="display-none" alt="waiting spinner"/>
 								<div class="message display-none"></div>
 							</div>
 							<script>
