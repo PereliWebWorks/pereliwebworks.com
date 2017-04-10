@@ -32,7 +32,7 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
-	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
+	<!--<link href="css/navbar.css" type="text/css" rel="stylesheet" />-->
 	<script src="js/animations.js"></script>
 	<script>
 		$(function(){
@@ -548,7 +548,7 @@
 					<div class="animate-box">
 						<h2>Pricing</h2>
 						<div class="wording">
-							My rate is negotiable, but I generally charge around $25 per hour. I'm also happy to work from a fixed-price contract. If you have a specific budget, I can give you an estimate of what I could do for you while staying within your price range.
+							My rate is negotiable, but I generally charge around $25 per hour. I'm also happy to work from a fixed-price contract. If you have a specific budget, I can give you an estimate of what I can do for you while staying within your price range.
 						</div>
 					</div>
 					<div class="large-spacer"></div>
