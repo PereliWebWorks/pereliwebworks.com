@@ -6,7 +6,7 @@ var scenes = [];
 var currentScene = false;
 
 
-$(function(){
+function initializeAnimations(){
 
 	var vw = document.body.clientWidth;
 	var vh = document.body.clientHeight;
@@ -39,7 +39,7 @@ $(function(){
 		var imgWidth = img.width();
 		var imgLeft = (vw - imgWidth) / 2;
 		//CSS hack that I hate
-		img.css("left", imgLeft);
+		//img.css("left", imgLeft);
 		if (!isMobile || true){
 			var imgRemainderLeft = -imgLeft;
 			var imgRemainderRight = imgLeft + imgWidth - vw;
@@ -374,7 +374,7 @@ $(function(){
 						},
 						"orbit"
 					);
-					if (!isMobile){
+					if (!isMobile && false){
 						animation
 						.to($("#see-resume-btn"), .5,
 							{
@@ -417,21 +417,21 @@ $(function(){
 						},
 						"orbit2"
 					)
-					if (!isMobile){
+					if (!isMobile && false){
 						animation
 						.to($("#see-resume-btn"), .5,
 							{
-								width: 1 / scaleFactor * btnWidth,
-								height: 1 / scaleFactor * btnHeight,
-								fontSize: 1 / scaleFactor * btnFontSize + "px"
+								//width: 1 / scaleFactor * btnWidth,
+								//height: 1 / scaleFactor * btnHeight,
+								//fontSize: 1 / scaleFactor * btnFontSize + "px"
 							},
 							"orbit2"
 						)
 						.to($("#download-resume-btn"), .5,
 							{
-								width: scaleFactor * btnWidth,
-								height: scaleFactor * btnHeight,
-								fontSize: scaleFactor * btnFontSize + "px"
+								//width: scaleFactor * btnWidth,
+								//height: scaleFactor * btnHeight,
+								//fontSize: scaleFactor * btnFontSize + "px"
 							},
 							"orbit2"
 						)
@@ -444,8 +444,6 @@ $(function(){
 							"orbit2+=.5"
 						);
 					}
-					animation
-					.to(textElement, 1, {}); //Add a delay for the end
 				break;
 			//***************
 			//Fourth box
@@ -813,7 +811,7 @@ $(function(){
 			}
 		});
 	}
-});
+}
 
 	
 

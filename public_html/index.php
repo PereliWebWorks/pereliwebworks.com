@@ -33,10 +33,8 @@
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
 	<link href="css/navbar.css" type="text/css" rel="stylesheet" />
+	<script src="js/animations.js"></script>
 	<script>
-		
-
-
 		$(function(){
 			var currentScrollPosition;
 			$(".open-modal-btn").click(function(){
@@ -75,6 +73,7 @@
 			*/
 		});
 		$(window).on("load", function(){
+			initializeAnimations();
 			$("#loading_spinner_container").remove();
 			//Animate in header and other stuff if we're at the top of the page
 			if ($(document).scrollTop() === 0 && document.body.clientWidth > 1000){
@@ -86,7 +85,6 @@
 
 		});
 	</script>
-	<script src="js/animations.js"></script>
 </head>
 <body>
 	<div id="loading_spinner_container">
@@ -462,27 +460,27 @@
 								),
 								array(
 									"src"=>"paw_friendly_cat_furniture",
-									"url"=>"http://www.statestreetbrats.com",
+									"url"=>"http://pawfriendlyfurniture.com/",
 									"alt"=>"Paw Friendly Cat Furniture"
 								),
 								array(
 									"src"=>"silver_cloud_society",
-									"url"=>"http://www.statestreetbrats.com",
+									"url"=>"https://silvercloudsociety.com/",
 									"alt"=>"Silver Cloud Society"
 								),
 								array(
 									"src"=>"the_landing",
-									"url"=>"http://www.statestreetbrats.com",
+									"url"=>"http://www.thelandingmadison.com/",
 									"alt"=>"The Landing"
 								),
 								array(
 									"src"=>"JCW_tax_and_accounting",
-									"url"=>"http://www.statestreetbrats.com",
+									"url"=>"http://www.jcwtaxaccounting.com/",
 									"alt"=>"JCW Tax and Accounting"
 								),
 								array(
 									"src"=>"skin608",
-									"url"=>"http://www.statestreetbrats.com",
+									"url"=>"http://skin608.com/",
 									"alt"=>"Skin608"
 								)
 							); 
@@ -607,6 +605,7 @@
 									<div class="message display-none"></div>
 								</div>
 							</span>
+							<div>&nbsp;</div>
 							<div class="anim text-center">
 								<button type="button" 
 										class="btn open-modal-btn visible-mobile" 
@@ -672,7 +671,6 @@
 										title="Amount"
 										required/>
 								</div>
-
 							  <button class="btn">Submit Payment</button>
 							</form>
 							<div class="response">
@@ -774,6 +772,7 @@
 							<div>
 							Click the button bellow to access a secure payment form. If you'd rather use paypal, send a paypal payment to drew@pereliwebworks.com.
 							</div>
+							<div>&nbsp;</div>
 							<div class="text-center">
 								<button type="button"
 										class="btn"

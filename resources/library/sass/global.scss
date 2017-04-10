@@ -97,6 +97,43 @@ $mobileBreakPoint: 1000px;
 	background-color: rgba(200, 50, 50, .6);
 }
 
+
+.btn{
+  margin: 5px;
+  $btnColor: lighten($green, 15%);
+  background-color: $btnColor;
+  color: $white;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 5px;
+
+  @media (max-width: $mobileBreakPoint){
+  	font-size: 2em;
+  }
+
+  &.hover{
+  	background-color: darken($btnColor, 10%);
+  	color: #fff;
+  	box-shadow: 0 0 10px $gray;
+  }
+
+  &.btn-white{
+  	background-color: $white;
+  	color: $black;
+
+  	&.hover{
+	  	background-color: darken($white, 10%);
+	  	color: lighten($black, 10%);
+	  }
+  }
+}
+
+a.btn{
+  	text-decoration: unset;
+	color: unset;
+}
+
+
 @media (max-width: $mobileBreakPoint - 1){
 	.hidden-mobile{
 		display: none;
@@ -148,67 +185,26 @@ body{
 		top: 0;
 		//Narrow screens
 		@media (max-aspect-ratio: 1/1){
-			height: 200%;
+			//height: 200%;
+			width: 400%;
+			left: -150%;
 		}
 		//Wide screens
 		@media (min-aspect-ratio: 1/1){
 			width: 200%;
+			left: -50%;
 			//The image will be centered with js (i know, I know)
 		}
 	}
 }
 
 
-#panel_1{
-	//background-image: url("https://s-media-cache-ak0.pinimg.com/originals/6c/ef/bd/6cefbdd2728287dbf48a3830f53cf702.jpg");
-	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
-	//background-image: url("https://static.pexels.com/photos/340901/pexels-photo-340901.jpeg");
-	//background-image: url("https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg");
-	//background-size: 200%;
-	//background-attachment: fixed;
-}	
-
-#panel_2{
-	
-	//background-image: url("http://scriptieaf.nl/wp-content/uploads/2016/03/Hopwas_Woods_Sun.jpg");
-	//background-attachment: fixed;
-}
-
-#panel_3{
-}
 
 
 
 
-.btn{
-  margin: 5px;
-  $btnColor: lighten($green, 15%);
-  background-color: $btnColor;
-  color: $white;
-  padding: 5px 15px;
-  border: 0;
-  border-radius: 5px;
-  &.hover{
-  	background-color: darken($btnColor, 10%);
-  	color: #fff;
-  	box-shadow: 0 0 10px $gray;
-  }
 
-  &.btn-white{
-  	background-color: $white;
-  	color: $black;
 
-  	&.hover{
-	  	background-color: darken($white, 10%);
-	  	color: lighten($black, 10%);
-	  }
-  }
-}
-
-a.btn{
-  	text-decoration: unset;
-	color: unset;
-}
 
 
 
@@ -251,7 +247,7 @@ a.btn{
 	  background-color: rgba($black,.8);
 	  padding: .5em;
 	  border-radius: 5px;
-	  font-size: 2vh;
+	  font-size: 5vh;
 	  @media (max-width: $mobileBreakPoint){
 	  	font-size: 5vh;
 	  }
@@ -334,10 +330,11 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 			position: absolute;
 			top: 0;
 			left: 0;
+			//width: 30vw;
 			width: 100%;
-			@media (min-width: $mobileBreakPoint){
-				width: 30vw;
-				left: unset;
+			@media (max-width: $mobileBreakPoint){
+				//left: 0;
+				//width: 100%;
 			}
 			height: 30%;
 			&:nth-of-type(2){
