@@ -17,9 +17,9 @@ function initializeAnimations(){
 	//noRotation = true;
 
 	var secondBtnTop = "50%";
-	var btnWidth = $("#download-resume-btn").width();
-	var btnHeight = $("#download-resume-btn").height();
-	var btnFontSize = $("#download-resume-btn").css("font-size").split("px")[0];
+	//var btnWidth = $("#download-resume-btn").width();
+	//var btnHeight = $("#download-resume-btn").height();
+	//var btnFontSize = $("#download-resume-btn").css("font-size").split("px")[0];
 
 
 
@@ -29,7 +29,7 @@ function initializeAnimations(){
 	//var btnDiff = $("#download-resume-btn").offset().top - $("#see-resume-btn").offset().top;
 	//Create wipe animation and scroll animation
 	var currentPanel = 1; //Current panel we're looking at. Doesn't change until next panel is fully faded in
-	$(".panel").each((i, e) => {
+	$(".panel").each(function(i, e) {
 		var id = $(e).data("p-num");
 		var $layout = $("#panel-" + id + "-layout");
 		//***************
@@ -104,7 +104,7 @@ function initializeAnimations(){
 				During the wipe animation, there is no current panel.
 				After the wipe animation completes, the current panel is set to whichever panel is now visible.
 			*/
-			wipeScene.on("start", (event)=>{
+			wipeScene.on("start", function(event){
 				if (event.scrollDirection === "FORWARD"){
 					currentPanel = false;
 					return;
@@ -112,7 +112,7 @@ function initializeAnimations(){
 				var triggered = $(event.target.triggerElement()).data("triggers") - 1; //the panel triggered by the event
 				currentPanel = triggered;
 			});
-			wipeScene.on("end", (event)=>{
+			wipeScene.on("end", function(event){
 				if (event.scrollDirection === "REVERSE"){
 					currentPanel = false;
 					return;
@@ -143,7 +143,7 @@ function initializeAnimations(){
 
 	
 	//Animate base containers
-	$(".animate-container").each((i,e)=>{
+	$(".animate-container").each(function(i,e){
 		var textElement = $(e).find(".animate-box");
 		var baseClassList = textElement[0].className;
 		//var fromX = i % 2 === 0 ? -animateBoxWidth : 100;

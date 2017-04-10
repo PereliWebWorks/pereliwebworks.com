@@ -30,7 +30,7 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
-	<script src="js/animations.js"></script>
+	<script src="js/animations.min.js"></script>
 	<script>
 		$(function(){
 			var currentScrollPosition;
@@ -75,9 +75,9 @@
 			//Animate in header and other stuff if we're at the top of the page
 			if ($(document).scrollTop() === 0 && document.body.clientWidth > 1000){
 				new TimelineMax()
-					.from($("#container"), 1, {opacity: 0, delay: .1})
-					.from($("#main-header"), 1, {opacity: 0})
-					.from($("#scroll-for-more"), 1, {opacity: 0});
+					.from($("#container"), 1, {opacity: 0})
+					.staggerFrom($("#main-header span"), .5, {opacity: 0}, .02, .5)
+					.from($("#scroll-for-more"), .5, {opacity: 0}, 1);
 			}
 
 		});
@@ -397,7 +397,7 @@
 			<div class="panel-layout" id="panel-1-layout" data-layout-for="panel_1">
 				<div id="home"></div><!-- Anchor for home section -->
 				<div class="start-scroll-trigger"></div>
-				<h1 id="main-header">
+				<h1 id="main-header" class="lettering">
 					Pereli Web Works
 				</h1>
 				<div id="main-header-disappear-trigger"></div>
@@ -549,7 +549,7 @@
 						</div>
 					</div>
 					<div class="large-spacer"></div>
-					<div class="large-spacer"></div>
+					<!--<div class="large-spacer"></div>-->
 				</div>
 				<div id="panel-wipe-trigger-3" data-triggers="3" class="panel-wipe-trigger"></div>
 				<div class="end-scroll-trigger"></div>
