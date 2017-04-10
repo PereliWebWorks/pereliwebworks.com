@@ -4,6 +4,7 @@
 <head>
 	<meta name="description" content="My name is Drew Pereli. I'm a Madison-based freelance full-stack web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it.">
 	<title>Pereli Web Works</title>
+	<!-- jQuery -->
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -23,16 +24,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.velocity.min.js"></script>
 	<!--<script src="library/ScrollMagic/plugins/debug.addIndicators.js"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/jquery.ScrollMagic.min.js"></script>
-	<!-- Bttn.css-->
-	<!--<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />-->
-	<!-- Lettering.js -->
-	<!--<script src="library/lettering.js"></script>-->
+	<!-- Modernizr -->
 	<script src="library/modernizr.js"></script>
 	<!-- Stripe -->
 	<script src="https://js.stripe.com/v3/"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
-	<!--<link href="css/navbar.css" type="text/css" rel="stylesheet" />-->
 	<script src="js/animations.js"></script>
 	<script>
 		$(function(){
