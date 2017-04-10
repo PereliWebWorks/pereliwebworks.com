@@ -15,12 +15,12 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/CSSPlugin.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js"></script>
-  	<script src="library/velocity.js"></script>
-	<script src="library/ScrollMagic/ScrollMagic.js"></script>
-	<script src="library/ScrollMagic/plugins/animation.gsap.js"></script>
-	<script src="library/ScrollMagic/plugins/animation.velocity.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.velocity.min.js"></script>
 	<!--<script src="library/ScrollMagic/plugins/debug.addIndicators.js"></script>-->
-	<script src="library/ScrollMagic/plugins/jquery.ScrollMagic.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/jquery.ScrollMagic.min.js"></script>
 	<!-- Bttn.css-->
 	<!--<link href="css/bttn.min.css" type="text/css" rel="stylesheet" />-->
 	<!-- Lettering.js -->

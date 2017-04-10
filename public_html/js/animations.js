@@ -59,8 +59,7 @@ $(function(){
 						.to(img, 4, {top: -(imgRemainderBottom - 10)})
 						.to(img, 2, {left: toLeft1, ease:Power1.easeOut}, 0)
 						.to(img, 2, {left: toLeft2, ease:Power1.easeIn}, 2)
-						//.set(img, {visibility: "hidden"})
-						;
+						//.set(img, {visibility: "hidden"});
 			new ScrollMagic.Scene({
 				triggerElement: $layout.find(".start-scroll-trigger"),
 				triggerHook: "onLeave",
@@ -74,12 +73,11 @@ $(function(){
 		//Whipe animation
 		//***************
 		if (i !== 0){ //Don't do swipe animation for first panel
-			var fromX = "-100%";//Mobile values
-			var toX = "0";
-			if (!aspectRatioFraction)
+			var fromX = 0;//Mobile values
+			if (!aspectRatioFraction && !isMobile)
 			{
 				if (i % 2 === 1){
-					fromX = "-100%";
+					fromX = "-50%";
 					//toX = "0%";
 				}
 				else{
