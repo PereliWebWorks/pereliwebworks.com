@@ -112,6 +112,7 @@
 								name="name" 
 								type="text" 
 								placeholder="Name" 
+								title="Name"
 								required/>
 						</div>
 						<div class="form-group">
@@ -120,12 +121,14 @@
 								name="email" 
 								type="email" 
 								placeholder="Email Address"
+								title="Email Address"
 								required/>
 						</div>
 						<div class="form-group">
 							<textarea 
 								name="message"
 								placeholder="Message"
+								title="Message"
 								rows="3" required></textarea>
 						</div>
 						<div class="form-group">
@@ -182,6 +185,7 @@
 						<input 
 							name="name" 
 							placeholder="Name" 
+							title="Name"
 							required/>
 					</div>
 				    <div class="form-group">
@@ -197,6 +201,7 @@
 							name="amount" 
 							type="number" 
 							placeholder="Amount" 
+							title="Amount"
 							required/>
 					</div>
 
@@ -355,7 +360,7 @@
 				</a>
 			</div>
 		</div>
-		<span id="panels">
+		<div id="panels">
 			<div class="panel" id="panel_1" data-p-num="1">
 				<img 
 					src="img/backgrounds/capital.jpg"
@@ -381,7 +386,7 @@
 					src-old="https://static.pexels.com/photos/33688/delicate-arch-night-stars-landscape.jpg"
 				/>
 			</div>
-		</span>
+		</div>
 		<!-- 
 			***********************
 			***********************
@@ -564,6 +569,7 @@
 											name="name" 
 											type="text" 
 											placeholder="Name" 
+											title="Name"
 											required/>
 									</div>
 									<div class="form-group anim">
@@ -571,12 +577,14 @@
 											name="email" 
 											type="email" 
 											placeholder="Email Address"
+											title="Email Address"
 											required/>
 									</div>
 									<div class="form-group anim">
 										<textarea 
 											name="message"
 											placeholder="Message"
+											title="Message"
 											rows="3" required></textarea>
 									</div>
 									<div class="form-group anim">
@@ -634,6 +642,7 @@
 									<input 
 										name="name" 
 										placeholder="Name" 
+										title="Name"
 										required/>
 								</div>
 							    <div class="form-group">
@@ -649,6 +658,7 @@
 										name="amount" 
 										type="number" 
 										placeholder="Amount" 
+										title="Amount"
 										required/>
 								</div>
 
