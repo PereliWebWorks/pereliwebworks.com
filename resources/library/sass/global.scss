@@ -229,13 +229,12 @@ a.btn{
 
 #main-header{
 	position: fixed;
-	top: 0;
+	top: 10px;
 	color: $white;
 	font-family: $mainHeaderFont;
 	text-align: center;
 	font-size: 9em;
 	text-shadow: -2px 2px 10px $black;
-	opacity: 0; //Initial value. Will be changed on load animation
 }
 
 
@@ -243,13 +242,15 @@ a.btn{
   position: fixed;
   bottom: 5vh;
   width: 100%;
-  opacity: 0; //Initial value. Will be changed on load animation
 
   span{
 	  background-color: rgba($black,.8);
 	  padding: .5em;
 	  border-radius: 5px;
-	  font-size: 2vw;
+	  font-size: 2vh;
+	  @media (max-width: $mobileBreakPoint){
+	  	font-size: 5vh;
+	  }
   }
 } 
 

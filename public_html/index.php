@@ -75,11 +75,11 @@
 		$(window).on("load", function(){
 			$("#loading_spinner_container").remove();
 			//Animate in header and other stuff if we're at the top of the page
-			if ($(document).scrollTop() === 0){
+			if ($(document).scrollTop() === 0 && document.body.clientWidth > 1000){
 				new TimelineMax()
 					.from($("#container"), 1, {opacity: 0, delay: .1})
-					.to($("#main-header"), 1, {opacity: 1})
-					.to($("#scroll-for-more"), 1, {opacity: 1});
+					.from($("#main-header"), 1, {opacity: 0})
+					.from($("#scroll-for-more"), 1, {opacity: 0});
 			}
 
 		});
@@ -409,6 +409,7 @@
 						<h2><span class="lettering">Who I am</span></h2>
 						<div>
 							<div class="lettering">I'm a Madison based full stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
+							<div>&nbsp;</div>
 							<div class="text-center">
 								<a href="#contact" class="lettering btn hidden-mobile">
 									Get in touch
