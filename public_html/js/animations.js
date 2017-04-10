@@ -40,7 +40,7 @@ $(function(){
 		var imgLeft = (vw - imgWidth) / 2;
 		//CSS hack that I hate
 		img.css("left", imgLeft);
-		if (!isMobile){
+		if (!isMobile || true){
 			var imgRemainderLeft = -imgLeft;
 			var imgRemainderRight = imgLeft + imgWidth - vw;
 			var imgRemainderBottom = img.height() - vh;
@@ -124,8 +124,10 @@ $(function(){
 	});
 
 
+
+
 	//Animate header
-	var animation = new TimelineMax().to($("#main-header"), 1, {opacity: 0});
+	var animation = new TimelineMax().staggerTo($("#main-header, #scroll-for-more"), 1, {opacity: 0}, .5);
 	new ScrollMagic.Scene({
 		triggerElement: $("#main-header-disappear-trigger"),
 		triggerHook: "onLeave",
@@ -658,7 +660,6 @@ $(function(){
 				}
 				break;
 		}
-
 		//Add animation to scene
 		var s = new ScrollMagic.Scene({
 						triggerElement: $(e),//.find(".animate-trigger"),
@@ -750,6 +751,24 @@ $(function(){
 		}
 	});
 
+
+
+
+
+	//Animate footer
+	animation = new TimelineMax()
+				.set($("#footer"),{
+					display: "flex",
+					opacity: 0
+				})
+				.to($("#footer"), 1, {opacity: 1});
+	new ScrollMagic.Scene({
+		triggerElement: $("#footer-animation-trigger"),
+		triggerHook: "onEnter",
+		duration: 500
+	})
+	.setTween(animation)
+	.addTo(controller);
 
 
 

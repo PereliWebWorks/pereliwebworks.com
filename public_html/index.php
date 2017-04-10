@@ -74,6 +74,14 @@
 		});
 		$(window).on("load", function(){
 			$("#loading_spinner_container").remove();
+			//Animate in header and other stuff if we're at the top of the page
+			if ($(document).scrollTop() === 0){
+				new TimelineMax()
+					.from($("#container"), 1, {opacity: 0, delay: .1})
+					.to($("#main-header"), 1, {opacity: 1})
+					.to($("#scroll-for-more"), 1, {opacity: 1});
+			}
+
 		});
 	</script>
 	<script src="js/animations.js"></script>
@@ -391,6 +399,9 @@
 					Pereli Web Works
 				</h1>
 				<div id="main-header-disappear-trigger"></div>
+				<div id="scroll-for-more" class="text-center">
+					<span>&#8681;&#8681;&#8681;&#8681;&#8681;</span>
+				</div>
 				<div class="large-spacer"></div>
 				<div id="about"></div>
 				<div class="animate-container">
@@ -755,6 +766,12 @@
 					<div class="large-spacer"></div>
 				</div>
 				<div class="medium-spacer"></div>
+				<div id="footer-animation-trigger"></div>
+				<div id="footer" class="text-center">
+					<span>
+						&copy; <script>document.write(new Date().getFullYear())</script> Drew Pereli, Pereli Web Works
+					</span>
+				</div>
 				<div class="medium-spacer"></div>
 				<div class="end-scroll-trigger"></div>
 			</div>
