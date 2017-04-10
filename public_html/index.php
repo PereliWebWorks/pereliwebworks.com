@@ -1,4 +1,5 @@
 <?php require_once __DIR__ . "/../resources/config.php"; ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Pereli Web Works</title>
