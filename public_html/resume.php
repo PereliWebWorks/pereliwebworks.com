@@ -78,7 +78,7 @@
 						<li>Freelance web development for individuals, businesses, and other organizations (Apr. 2016 to Present).</li>
 						<li>Portfolio available at 
 							<a href="https://github.com/PereliWebWorks">https://github.com/PereliWebWorks</a>.</li>
-						<li>List of sites launched available at <a href="/">https://pereliwebworks.com/#example-sites</a></li>
+						<li>List of sites launched available at&nbsp;<a href="https://pereliwebworks.com/#work">https://pereliwebworks.com/#work</a></li>
 					</ul>
 				</div>
 				<div class="row">
