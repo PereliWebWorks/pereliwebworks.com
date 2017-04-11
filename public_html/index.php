@@ -568,7 +568,7 @@
 							<div class="anim">
 								Feel free to email me directly at <a href="mailto:drew@pereliwebworks.com">drew@pereliwebworks.com</a>.
 								<span class="hidden-mobile">Or use this form to contact me.</span>
-								<span class="visible-mobile">Or click the button bellow to fill out a contact form.</span>
+								<span class="visible-mobile">Or click the button below to fill out a contact form.</span>
 							</div>
 							<span class="hidden-mobile">
 								<form id="contact-form" method="POST" action="contact.php">
@@ -645,7 +645,7 @@
 					<div class="animate-box">
 						<h2>Make a Payment</h2>
 						<div class="hidden-mobile">
-							You can use the secure payment form bellow to make a payment. If you'd rather use PayPal, you can send a PayPal payment to drew@pereliwebworks.com.
+							You can use the secure payment form below to make a payment. If you'd rather use PayPal, you can send a PayPal payment to drew@pereliwebworks.com.
 							<form action="/charge.php" method="post" id="payment-form">
 								<div class="form-group">
 									<input 
@@ -769,7 +769,7 @@
 						</div>
 						<div class="visible-mobile">
 							<div>
-							Click the button bellow to access a secure payment form. If you'd rather use paypal, send a paypal payment to drew@pereliwebworks.com.
+							Click the button below to access a secure payment form. If you'd rather use paypal, send a paypal payment to drew@pereliwebworks.com.
 							</div>
 							<div>&nbsp;</div>
 							<div class="text-center">
