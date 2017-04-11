@@ -1,5 +1,4 @@
-var messageWidth = 20; //In %
-var animateBoxWidth = 80; //In %
+//var messageWidth = 20; //In %
 var mobileBreakPoint = 1000; //In pixels
 var controller = new ScrollMagic.Controller();
 var scenes = [];
@@ -12,10 +11,12 @@ function initializeAnimations(){
 	var vh = document.body.clientHeight;
 	var isMobile = vw < mobileBreakPoint;
 	var aspectRatioFraction = vh > vw;
-	//isMobile = true;
 	var noRotation = isMobile || !Modernizr.csstransforms3d;
-	//noRotation = true;
 
+	//var animateBoxWidth = isMobile ? 100 : 80;
+	//var animateBoxWidth = 80;
+	var animateBoxWidth = 100 * $(".animate-box").outerWidth() / vw; //In %
+	//console.log($(".animate-box").eq(2).width() / vw);
 	var secondBtnTop = "50%";
 	//var btnWidth = $("#download-resume-btn").width();
 	//var btnHeight = $("#download-resume-btn").height();
@@ -40,34 +41,39 @@ function initializeAnimations(){
 		var imgLeft = (vw - imgWidth) / 2;
 		//CSS hack that I hate
 		//img.css("left", imgLeft);
-		if (!isMobile || true){
-			var imgRemainderLeft = -imgLeft;
-			var imgRemainderRight = imgLeft + imgWidth - vw;
-			var imgRemainderBottom = img.height() - vh;
-			var toLeft1;
-			var toLeft2;
+		//var imgRemainderLeft = -imgLeft;
+		var imgRemainderRight = imgLeft + imgWidth - vw;
+		var imgRemainderBottom = img.height() - vh;
+		var imgOffset = imgRemainderRight / 4;
+		var toLeft1;
+		var toLeft2;
+		if (!isMobile){
 			if (i % 2 === 0){
-				toLeft1 = "-=" + (imgRemainderRight - 10) + "px";
-				toLeft2 = 0;
+				toLeft1 = imgLeft - imgOffset + "px";
+				toLeft2 = imgLeft + imgOffset + "px";
 			}
 			else{
-				toLeft1 = 0;
-				toLeft2 = "-=" + (imgRemainderRight - 10) + "px";
+				toLeft1 = imgLeft + imgOffset + "px";
+				toLeft2 = imgLeft - imgOffset + "px";
 			}
-			//Add scroll effects
-			var animation = new TimelineMax()
-						.to(img, 4, {top: -(imgRemainderBottom - 10)})
-						.to(img, 2, {left: toLeft1, ease:Power1.easeOut}, 0)
-						.to(img, 2, {left: toLeft2, ease:Power1.easeIn}, 2)
-						//.set(img, {visibility: "hidden"});
-			new ScrollMagic.Scene({
-				triggerElement: $layout.find(".start-scroll-trigger"),
-				triggerHook: "onLeave",
-				duration: $layout.find(".end-scroll-trigger").offset().top - $layout.find(".start-scroll-trigger").offset().top
-			})
-			.setTween(animation)
-			.addTo(controller);
 		}
+		//Add scroll effects
+		var animation = new TimelineMax()
+					.to(img, 4, {top: -(imgRemainderBottom - 10), ease:Linear.easeNone});
+		if (!isMobile){
+			animation
+				.to(img, 2, {left: toLeft1, ease:Power1.easeOut}, 0)
+				.to(img, 2, {left: toLeft2, ease:Power1.easeIn}, 2);
+		}
+					
+		new ScrollMagic.Scene({
+			triggerElement: $layout.find(".start-scroll-trigger"),
+			triggerHook: "onLeave",
+			duration: $layout.find(".end-scroll-trigger").offset().top - $layout.find(".start-scroll-trigger").offset().top
+		})
+		.setTween(animation)
+		.addTo(controller);
+
 
 		//***************
 		//Whipe animation
@@ -217,15 +223,9 @@ function initializeAnimations(){
 				});
 
 				animation
-					.add("highlight")
 					.staggerTo($(e).find(".lettering").children(), .1, 
 						{backgroundColor: "gray", delay: .5}, 
 						0.01
-					)
-					.staggerTo($(e).find(".lettering").children(), .1, 
-						{color: "white", delay: .5}, 
-						0.01,
-						"highlight"
 					)
 					.set($(e).find(".lettering").children(),
 						{visibility: "hidden", delay: .5}

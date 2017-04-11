@@ -17,8 +17,6 @@ $panelContentHeight: 4000px;
 $panelOverflow: $spacerHeight;
 $panelPaddingBottom: 1000px;
 
-$messageWidth: 20%;
-$animateBoxWidth: 80%;
 
 //$defaultFont: "timeburner";
 $defaultFont: monospace;
@@ -94,26 +92,29 @@ $mobileBreakPoint: 1000px;
 
 .btn{
   margin: 5px;
-  $btnColor: lighten($green, 15%);
-  background-color: $btnColor;
-  color: $white;
+  $btnColor: darken($blue, 5%);
+  $btnBGColor: lighten($green, 15%);
+  background-color: $btnBGColor;
+  color: $btnColor;
   padding: 5px 15px;
   border: 0;
   border-radius: 5px;
   cursor: pointer;
+  border: 2px outset darken($btnBGColor, 5%);
 
   @media (max-width: $mobileBreakPoint){
   	font-size: 2em;
   }
 
   &.hover{
-  	background-color: darken($btnColor, 10%);
-  	color: #fff;
+  	background-color: darken($btnBGColor, 10%);
+  	color: lighten($btnColor, 5%);
   	box-shadow: 0 0 10px $gray;
   }
 
   &.btn-white{
   	background-color: $white;
+  	border: 1px solid darken($white, 10%);
   	color: $black;
 
   	&.hover{
@@ -125,7 +126,7 @@ $mobileBreakPoint: 1000px;
 
 a.btn{
   	text-decoration: unset;
-	color: unset;
+	//color: unset;
 }
 
 
@@ -253,7 +254,11 @@ body{
 
 
 
-
+$animateBoxWidth: 70%;
+$animateBoxWidthMobile: 90%;
+@media (max-width: $mobileBreakPoint){
+	$animateBoxWidth: 60%;
+}
 $animatBoxBoxShadowPx: 0 0 20px -2px;
 //$animateBoxInsetBoxShadow: inset 12px 12px 200px -40px $gray;
 .base-box{
@@ -265,8 +270,10 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	padding: 25px;
 	border-radius: 5px;
 	box-shadow: $animatBoxBoxShadowPx $gray;
-	font-size: 25px;
-	@media screen and (max-width: $mobileBreakPoint){
+	font-size: 1.8vw;
+	@media (max-width: $mobileBreakPoint){
+		width: $animateBoxWidthMobile;
+		left: (50 - $animateBoxWidthMobile / 2);
 		font-size: 3vw;
 	}
 

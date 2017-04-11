@@ -30,7 +30,7 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	<!-- Custom -->
 	<link href="css/global.css" type="text/css" rel="stylesheet" />
-	<script src="js/animations.min.js"></script>
+	<script src="js/animations.js"></script>
 	<script>
 		$(function(){
 			var currentScrollPosition;
@@ -100,7 +100,9 @@
 	      <div class="modal-body">
 				<div class="smaller-font">
 					<div>
-					Feel free to email me directly at drew@pereliwebworks.com.<br/>
+					Feel free to email me directly at 
+					<a href="mailto:drew@pereliwebworks.com">drew@pereliwebworks.com</a>.
+					<br/>
 					Or use this form to contact me.
 					</div>
 					<form id="mobile-contact-form" method="POST" action="contact.php">
@@ -564,7 +566,7 @@
 						<h2 class="anim">Get in Touch</h2>
 						<div class="smaller-font">
 							<div class="anim">
-								Feel free to email me directly at drew@pereliwebworks.com.<br/>
+								Feel free to email me directly at <a href="mailto:drew@pereliwebworks.com">drew@pereliwebworks.com</a>.
 								<span class="hidden-mobile">Or use this form to contact me.</span>
 								<span class="visible-mobile">Or click the button bellow to fill out a contact form.</span>
 							</div>
