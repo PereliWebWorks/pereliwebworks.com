@@ -11,8 +11,7 @@
   crossorigin="anonymous"></script>
   	<!-- jQuery ajax form -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.0/jquery.form.min.js" integrity="sha384-E4RHdVZeKSwHURtFU54q6xQyOpwAhqHxy2xl9NLW9TQIqdNrNh60QVClBRBkjeB8" crossorigin="anonymous"></script>
-  	<!-- bootstrap -->
-  	<link href="library/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  	<!-- bootstrap js-->
   	<script src="library/bootstrap/js/bootstrap.min.js"></script>
   	<!-- Animation stuff -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
@@ -28,8 +27,7 @@
 	<script src="library/modernizr.js"></script>
 	<!-- Stripe -->
 	<script src="https://js.stripe.com/v3/"></script>
-	<!-- Custom -->
-	<link href="css/global.css" type="text/css" rel="stylesheet" />
+	<!-- Custom js -->
 	<script src="js/animations.js"></script>
 	<script>
 		$(function(){
@@ -82,6 +80,10 @@
 
 		});
 	</script>
+	<!-- Bootstrap css -->
+	<link href="library/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<!-- Custom css-->
+	<link href="css/global.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div id="loading_spinner_container">
