@@ -7,20 +7,29 @@ $blue: #2F4073;
 $red: #AA5839;
 
 //Other vars
+/*
 $spacerHeight: 800px;
 $largeSpacerHeight: 1600px;
 $mediumSpacerHeight: 800px;
 $smallSpacerHeight: 400px;
 $tinySpacerHeight: 200px;
+*/
+
+$largeSpacerHeight: 150vh;
+$mediumSpacerHeight: 100vh;
+$smallSpacerHeight: 50vh;
+$tinySpacerHeight: 20vh;
 
 
 
 //$defaultFont: "timeburner";
-$defaultFont: monospace;
+//$defaultFont: monospace;
+$defaultFont: "corbert";
 $headerFont: "coalition";
 $mainHeaderFont: "thunderstrike";
 
-$mainTextColor: $gray;
+$mainTextColor: $black;
+$mainBGColor: $white;
 
 $mobileBreakPoint: 1000px;
 
@@ -41,6 +50,11 @@ $mobileBreakPoint: 1000px;
 	font-family: "thunderstrike"
 }
 
+@font-face{
+	src: url("../fonts/corbert.otf");
+	font-family: "corbert";
+}
+
 .display-none{
 	display: none;
 }
@@ -50,9 +64,6 @@ $mobileBreakPoint: 1000px;
 }
 
 
-.spacer{
-	height: $spacerHeight;
-}
 
 .large-spacer{
 	height: $largeSpacerHeight;
@@ -98,6 +109,7 @@ $mobileBreakPoint: 1000px;
   border-radius: 5px;
   cursor: pointer;
   border: 2px outset darken($btnBGColor, 5%);
+  text-align: center;
 
   @media (max-width: $mobileBreakPoint){
   	font-size: 2em;
@@ -143,11 +155,11 @@ html{
 }
 
 body{
-	background-color: black;
+	background-color: $mainBGColor;
+	color: $mainTextColor;
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
-	color: $mainTextColor;
 	font-family: $defaultFont;
 	height: 100%;
 }
@@ -167,33 +179,55 @@ body{
 
 
 
-.panel {
-	background-color: black;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	img{
-		overflow: hidden;
-		position: fixed;
-		top: 0;
-		//Narrow screens
-		@media (max-aspect-ratio: 1/1){
-			//height: 200%;
-			width: 400%;
-			left: -150%;
-		}
-		//Wide screens
-		@media (min-aspect-ratio: 1/1){
-			width: 200%;
-			left: -50%;
-			//The image will be centered with js (i know, I know)
-		}
+
+
+
+
+
+.parallax-box{
+	height: 90vh;
+
+
+	background-color: white; //Fallback
+	background-size: auto 200%;
+	background-position: center -500px;
+	background-attachment: fixed;
+
+	&.small-parallax-box{
+		height: 40vh;
+		background-size: auto 200%;
+		//background-position: center 2000px;
+	}
+
+	&.capital{
+		background-image: url("../img/backgrounds/capital.jpg");
+	}
+	&.bascom{
+		background-image: url("../img/backgrounds/bascom.jpg");
+	}
+	&.sunset{
+		background-image: url("../img/backgrounds/sunset.jpg");
+	}
+	&.summer{
+		background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/68/England_-_English_Summer_Forest_%287183018142%29.jpg");
+	}
+	&.winter{
+		background-image: url("https://lh3.googleusercontent.com/Q4sxIKDbkS86hSbOwKFRwOzIUIPpx_aR51mJ8hz8XHRfEGomGpvdA9HsQopZ__VHQCw=h900");
+	}
+	&.fall{
+		background-image: url("http://wallpaper-gallery.net/images/fall-forest-wallpaper/fall-forest-wallpaper-37.jpg");
+	}
+	&.spring{
+		background-image: url("http://eskipaper.com/images/spring-forest-wallpaper-7.jpg");
 	}
 }
 
 
+.panel{
+	background-color: darken($mainBGColor, 10%);
+	padding: 1em;
+  	border-radius: 5px;
+}
 
 
 
@@ -263,10 +297,6 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	width: $animateBoxWidth;
 	left: (50 - $animateBoxWidth / 2);
 	text-align: left;
-	background-color: rgba($black,.9);
-	padding: 25px;
-	border-radius: 5px;
-	box-shadow: $animatBoxBoxShadowPx $gray;
 	font-size: 1.8vw;
 	@media (max-width: $mobileBreakPoint){
 		width: $animateBoxWidthMobile;
@@ -282,18 +312,10 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	}
 
 	h1, h2{
-		margin-top: 0;
-		@extend .header-style;
+		//margin-top: 0;
+		//@extend .header-style;
 	}
 
-	a{
-	  //$linkColor: rgb(28,133,248);
-	  //color: $linkColor;
-
-	  &:hover{
-	  	//color: darken($linkColor, 10%);
-	  }
-	}
 }
 
 
@@ -301,65 +323,58 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 
 .animate-container{
 	width: 100%;
-	text-align: center;
 	top: 0;
 	left: 0;
 	min-height: 100vH;
 
 	.animate-box{
 		@extend .base-box;
+		position: relative;
+		min-height: 80vh;
+		width: 100%;
+		left: 0;
+		margin-top: 2em;
+		margin-bottom: 2em;
 		z-index: 3;
-		position: fixed;
-		visibility: hidden;
-		max-height: 80%;
 
-		.resume-btn-container{
-			display: block;
-			@media (min-width: $mobileBreakPoint){
-		  		display: flex;
-		  		align-items: center;
-		  		justify-content: center;
-		  	}
-		  position: relative;
-		  margin: auto;
-		  text-align: center;
-		  height: 10em;
-		  width: 100%;
-		  left: 0;
+		$defaultContentLeft: 10%;
+		$defaultHeaderTop: 0%;
+		$defaultContentTop: 15%;
+		$defaultContentWidth: 50%;
 
-		  button{
+		h2{
 			position: absolute;
-			top: 0;
-			left: 0;
-			//width: 30vw;
-			width: 100%;
-			@media (max-width: $mobileBreakPoint){
-				//left: 0;
-				//width: 100%;
+			top: $defaultHeaderTop;
+			left: $defaultContentLeft;
+		}
+
+		.section{
+			position: absolute;
+			top: $defaultContentTop;
+			left: $defaultContentLeft;
+			width: $defaultContentWidth;
+		}
+
+		&#who-i-am{
+
+			.section-2{
+				left: 65%;
+				width: 25%;
+				height: 100%;
+
+				.btn{	
+					display: block;
+					width: 100%;
+					padding-top: 3vh;
+					padding-bottom: 3vh;
+					margin: 0;
+					margin-bottom: 10vh;
+				}
 			}
-			height: 30%;
-			&:nth-of-type(2){
-				top: 50%;
-			}
-		  }
 		}
 
+		&#what-i-do{
 
-		.lettering span{
-			visibility: hidden;
-		}
-
-		.word{
-			display: inline-block;
-		}
-
-		//Animation stuff
-		&.prepping-rocket{
-			box-shadow: $animatBoxBoxShadowPx red;
-		}
-
-		&.launching-rocket{
-			box-shadow: $animatBoxBoxShadowPx red, -80px 20px 100px 0px  red;	
 		}
 	}
 
@@ -368,37 +383,7 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 
 
 
-.modal{
-	width: 100%;
-	background-color: black;
-	overflow: hidden;
-	.modal-dialog{
-		@media (min-width: $mobileBreakPoint){
-			width: 60%;
-		}
-		@media (max-width: $mobileBreakPoint){
-			width: 100%;
-		}
-		margin: auto;
-	}
-	.modal-content{
-		@extend .base-box;
-	}
-	.modal-footer{
-		button{
-			color: black;
-		}
-	}
-}
 
-.modal-background-box{
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  z-index: 4;
-  display: none;
-}
 
 
 
@@ -413,73 +398,39 @@ $animatBoxBoxShadowPx: 0 0 20px -2px;
 	height: 100%;
 	left: 0;
 	top: 0;
-	text-align: center;
 
 	#site-example-header{
 		position: relative;
 		width: 50%;
 		margin: auto;
 		margin-bottom: 2vh;
-		@extend .header-style;
+		//@extend .header-style;
 	}
 
+	.examples{
+	  width: 100%;
+	  top: 20%;
+	  position: relative;
+	  text-align: center;
 
-	.site-example{
-		display: none;
-		position: relative;
-		width: 10vmax;
-		height: 10vmax;
-		margin: 1%;
-		box-shadow: 0 0 6px 2px white;
-	  	border-radius: 2px;
+	  .example-container{
+	  	  position: absolute;
+		  width: 20vw;
+		  height: 20vw;
+	  	  top: 0;
+	  	  left: 40vw;
+	  	  box-shadow: 0px 0px 10px 5px white;
 
-	  	img{
-	  		width: 100%;
-	  	}
-	}
-
-	//Narrow screens
-	@media (max-aspect-ratio: 1/1){
-		.example-row{
+		  .example-img{
 			width: 100%;
-			height: 24vh;
-			.example-container{
-				width: 50%;
-				float: left;
-				margin-top: 5vh;
-				text-align: center;
-				.site-example{
-					display: block;
-					width: 25vw;
-					height: 25vw;
-					margin: auto;
-				}
-			}
+			height: 100%;
+		  }
 		}
 	}
+
 	
 
-	//Wide screens
-	@media (min-aspect-ratio: 1/1 ){
-		.example-row{
-		  float: left;
-		  width: 33%;
-		  margin: auto;
-
-		  .example-container{
-			  display: block;
-			  width: 100%;
-			  height: 24vh;
-			  margin: auto;
-			  margin-top: 3vh;
-			  .site-example{
-			  	width: 25vh;
-			  	height: 25vh;
-			  	margin: auto;
-			  }
-			}	
-		}
-  	}
+	
 }
 
 

@@ -47,6 +47,7 @@
 				$(document).scrollTop(currentScrollPosition);
 			})
 
+			/*
 			$(".lettering").each(function(_,e){
 				var html = $(e).html().split("");
 				html = html.reduce(function(acc, val){
@@ -62,9 +63,6 @@
 				}, "");
 				$(e).html(html);
 			});
-			/*
-			$(".lettering")
-				.lettering();
 			*/
 		});
 		$(window).on("load", function(){
@@ -368,26 +366,6 @@
 				</a>
 			</div>
 		</div>
-		<div id="panels">
-			<div class="panel" id="panel_1" data-p-num="1">
-				<img 
-					src="img/backgrounds/capital.jpg"
-					alt="Madison Capital"
-				/>
-			</div>
-			<div class="panel" id="panel_2" data-p-num="2">
-				<img 
-					src="img/backgrounds/bascom.jpg"
-					alt="University of Wisconsin Madison Bascom Hall"
-				/>
-			</div>
-			<div class="panel" id="panel_3" data-p-num="3">
-				<img 
-					src="img/backgrounds/sunset.jpg"
-					alt="Madison Sunset"
-				/>
-			</div>
-		</div>
 		<!-- 
 			***********************
 			***********************
@@ -399,59 +377,54 @@
 		-->
 		<div id="layout-container">
 			<div class="panel-layout" id="panel-1-layout" data-layout-for="panel_1">
-				<div id="home"></div><!-- Anchor for home section -->
-				<div class="start-scroll-trigger"></div>
-				<h1 id="main-header" class="lettering">
-					Pereli Web Works
-				</h1>
-				<div id="main-header-disappear-trigger"></div>
-				<div id="scroll-for-more" class="text-center">
-					<span>&#8681;&#8681;&#8681;&#8681;&#8681;</span>
+				<div class="parallax-box capital">
+					<div id="home"></div><!-- Anchor for home section -->
+					<div class="start-scroll-trigger"></div>
+					<h1 id="main-header" class="lettering">
+						Pereli Web Works
+					</h1>
+					<div id="main-header-disappear-trigger"></div>
 				</div>
-				<div class="large-spacer"></div>
 				<div id="about"></div>
 				<div class="animate-container">
-					<div class="animate-box">
-						<h2><span class="lettering">Who I am</span></h2>
-						<div>
-							<div class="lettering">My name is Drew Pereli. I'm a Madison-based full-stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it. </div>
-							<div>&nbsp;</div>
-							<div class="text-center">
-								<a href="#contact" class="lettering btn hidden-mobile">
-									Get in touch
-								</a>
-								<span class="lettering btn visible-mobile"
-										data-toggle="modal" 
-										data-target="#contact-modal">
-									Get in touch
-								</span>
-								<div>&nbsp;</div>
-								<a href="#work" class="lettering btn hidden-mobile">
-									See my work
-								</a>
-							</div>
+					<div class="animate-box" id="who-i-am">
+						<h2>Who I am</h2>
+						<div class="panel section section-1">My name is Drew Pereli. I'm a Madison-based full-stack freelance web developer and designer. I've been making websites for business, individuals, and other organizations for about a year now. I'm passionate about creating websites, and I feel incredibly lucky to be able to make a living off of it.
+						</div>
+						<div class="section section-2">
+							<a href="#contact" class="lettering btn hidden-mobile">
+								Get in touch
+							</a>
+							<a href="#work" class="lettering btn hidden-mobile">
+								See my work
+							</a>
 						</div>
 					</div>
-					<div class="large-spacer"></div>
-					<div class="large-spacer"></div>
 				</div>
 				<div class="animate-container">
-					<div class="animate-box">
+					<div class="animate-box" id="what-i-do">
 						<h2 class="lettering">What I Do</h2>
-						<div>
-							 <span class="lettering">I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out </span>
+						<div class="panel section section-1">
+							 I pride myself on creating websites that are first and foremost secure, user friendly, and mobile responsive. Feel free to check out
 							 <a href="#work" class="lettering">some of my work.</a>
 						</div>
 					</div>
 					<div class="large-spacer"></div>
-					<div class="large-spacer"></div>
+				</div>
+				<div class="medium-spacer"></div>
+				<div class="parallax-box small-parallax-box summer">
+				</div>
+				<div class="parallax-box small-parallax-box fall">
+				</div>
+				<div class="parallax-box small-parallax-box winter">
+				</div>
+				<div class="parallax-box small-parallax-box spring">
 				</div>
 				<div id="site-example-trigger"></div>
 				<div id="work"></div>
 				<div id="site-examples">
-
-					<h1 id="site-example-header">My Work</h1>
-					<div class="example-images">
+					<h2 id="site-example-header">My Work</h2>
+					<div class="examples">
 						<?php 
 							$sites = array(
 								array(
@@ -487,35 +460,29 @@
 							); 
 							$s = 0;
 						?>
-						<?php for ($i = 0 ; $i < 3 ; $i++) : ?>
-							<div class="example-row">
-								<?php for ($j = 0 ; $j < 2 ; $j++) : ?>
-									<div class="example-container">
-										<a href="<?=$sites[$s]['url'];?>" target="_blank" class="site-example">
-											<img 
-												src="img/example_sites/<?=$sites[$s]['src'];?>.jpg" 
-												alt="<?=$sites[$s]['alt'];?>"
-											/>
-										</a>
-									</div>
-								<?php 
-										$s++;
-									endfor; 
-								?>
+						<?php foreach ($sites as $site) : ?>
+							<div class="example-container">
+								<a href="<?=$site['url'];?>" target="_blank" class="example-link">
+									<img 
+										src="img/example_sites/<?=$site['src'];?>.jpg" 
+										alt="<?=$site['alt'];?>"
+										class="example-img"
+									/>
+								</a>
 							</div>
-						<?php endfor; ?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 				<div class="large-spacer"></div>
 				<div class="medium-spacer"></div>
+				<div class="parallax-box sunset">
+				</div>
 				<div id="panel-wipe-trigger-2" data-triggers="2" class="panel-wipe-trigger"></div>
 				<div class="end-scroll-trigger"></div>
 			</div>
 			<div class="panel-layout" id="panel-2-layout" data-layout-for="panel_2">
 				<div class="start-scroll-trigger"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
+				<div class="large-spacer"></div>
 				<div id="resume"></div>
 				<div class="animate-container">
 					<div class="animate-box">
